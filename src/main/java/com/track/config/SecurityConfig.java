@@ -52,7 +52,10 @@ public class SecurityConfig {
                                 "/swagger-resources/**",
                                 "/swagger-ui.html",
                                 "/webjars/**",
-                                "/h2-console/**"
+                                "/h2-console/**",
+                                "/stock/**",
+                                "/catalogue/**",
+                                "/panier/**"
                         ).permitAll()
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN", "MANAGER")
                         .anyRequest().authenticated())
