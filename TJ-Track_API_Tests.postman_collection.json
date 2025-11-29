@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "tj-track-api-tests",
+		"name": "TJ-Track API Tests",
+		"description": "Collection for testing TJ-Track e-commerce API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register Merchant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Jean Dupont\",\n  \"email\": \"merchant@example.com\",\n  \"password\": \"Password123!\",\n  \"role\": \"COMMERCANT\",\n  \"merchantInfo\": {\n    \"shopName\": \"Boutique Jean\",\n    \"town\": \"Douala\",\n    \"address\": \"123 Rue du Commerce, Akwa\",\n    \"phoneNumber\": \"+237690123456\",\n    \"latitude\": 4.0511,\n    \"longitude\": 9.7679\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"merchant@example.com\",\n  \"password\": \"Password123!\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					}
+				},
+				{
+					"name": "Verify OTP",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"merchant@example.com\",\n  \"otp\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/verify-otp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"verify-otp"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Registration Examples",
+			"item": [
+				{
+					"name": "Register Client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Marie Client\",\n  \"email\": \"client@example.com\",\n  \"password\": \"Password123!\",\n  \"role\": \"CLIENT\",\n  \"clientInfo\": {\n    \"town\": \"Yaoundé\",\n    \"address\": \"456 Avenue Kennedy, Centre-ville\",\n    \"phoneNumber\": \"+237677654321\",\n    \"latitude\": 3.8480,\n    \"longitude\": 11.5021\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					}
+				},
+				{
+					"name": "Register Supplier",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Paul Fournisseur\",\n  \"email\": \"supplier@example.com\",\n  \"password\": \"Password123!\",\n  \"role\": \"FOURNISSEUR\",\n  \"supplierInfo\": {\n    \"shopName\": \"Grossiste Paul\",\n    \"town\": \"Bafoussam\",\n    \"address\": \"789 Marché Central\",\n    \"phoneNumber\": \"+237698765432\",\n    \"latitude\": 5.4781,\n    \"longitude\": 10.4172\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					}
+				},
+				{
+					"name": "Register Delivery",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Pierre Livreur\",\n  \"email\": \"delivery@example.com\",\n  \"password\": \"Password123!\",\n  \"role\": \"LIVREUR\",\n  \"deliveryInfo\": {\n    \"town\": \"Douala\",\n    \"address\": \"Zone industrielle Bonabéri\",\n    \"phoneNumber\": \"+237691234567\",\n    \"latitude\": 4.0732,\n    \"longitude\": 9.7014\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					}
+				},
+				{
+					"name": "Register Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Admin User\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"AdminPass123!\",\n  \"role\": \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api/v1.0",
+			"type": "string"
+		}
+	]
+}
