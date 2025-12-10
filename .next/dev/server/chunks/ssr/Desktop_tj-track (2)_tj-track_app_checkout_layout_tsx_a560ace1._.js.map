@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/EUROPEOLINE/Desktop/tj-track%20%282%29/tj-track/app/checkout/layout.tsx"],"sourcesContent":["import type React from \"react\"\n\nexport const metadata = {\n  title: \"Checkout - TJ Track\",\n  description: \"Confirmez votre commande\",\n}\n\nexport default function CheckoutLayout({\n  children,\n}: {\n  children: React.ReactNode\n}) {\n  return children\n}"],"names":[],"mappings":";;;;;;AAEO,MAAM,WAAW;IACtB,OAAO;IACP,aAAa;AACf;AAEe,SAAS,eAAe,EACrC,QAAQ,EAGT;IACC,OAAO;AACT"}}]
+}

@@ -1,0 +1,31 @@
+{
+  "sorted_middleware": [],
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/Desktop_e-Commerce_next_tj-track_a08996eb._.js",
+        "server/edge/chunks/[root-of-the-server]__11b6f363._.js",
+        "server/edge/chunks/turbopack-Desktop_e-Commerce_next_tj-track_edge-wrapper_162a70a6.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "/:nextData(_next/data/[^/]{1,})?/((?!api|_next/static|_next/image|favicon.ico|manifest.json|.*\\.png$|.*\\.jpg$|.*\\.svg$).*){(\\\\.json)}?",
+          "originalSource": "/((?!api|_next/static|_next/image|favicon.ico|manifest.json|.*\\.png$|.*\\.jpg$|.*\\.svg$).*)"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "+Z7mIbL8B7hpgi5MduIaVG/gKzRlf2LI0M38gFRYCXI=",
+        "__NEXT_PREVIEW_MODE_ID": "6c9f2a1bedf1ecb3a09c974fb0c510b9",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "44fea1744ff9c00d1c1e79675f9a171c7519a8598438ec8f93ec485d2aba3481",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "afd7c4840fda4ff5c5056bac0f71c74b67b403b4f572b20f08466238e5fd3103"
+      }
+    }
+  },
+  "instrumentation": null,
+  "functions": {}
+}

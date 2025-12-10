@@ -16,20 +16,29 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         final String securitySchemeName = "bearerAuth";
 
-        return new OpenAPI()
-                .info(new Info()
-                        .title("TJ-Track REST API")
-                        .version("v1.0")
-                        .description("API documentation for the TJ-Track e-commerce platform")
-                        .termsOfService("http://swagger.io/terms/")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
-                
-                .components(new Components()
-                        .addSecuritySchemes(securitySchemeName, new SecurityScheme()
-                                .name(securitySchemeName)
-                                .type(SecurityScheme.Type.HTTP)
-                                .scheme("bearer")
-                                .bearerFormat("JWT")))
-                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName));
+        try {
+            return new OpenAPI()
+                    .info(new Info()
+                            .title("TJ-Track REST API")
+                            .version("v1.0")
+                            .description("API documentation for the TJ-Track e-commerce platform")
+                            .termsOfService("http://swagger.io/terms/")
+                            .license(new License().name("Apache 2.0").url("http://springdoc.org")))
+                    
+                    .components(new Components()
+                            .addSecuritySchemes(securitySchemeName, new SecurityScheme()
+                                    .name(securitySchemeName)
+                                    .type(SecurityScheme.Type.HTTP)
+                                    .scheme("bearer")
+                                    .bearerFormat("JWT")))
+                    .addSecurityItem(new SecurityRequirement().addList(securitySchemeName));
+        } catch (Exception e) {
+            // Fallback simple configuration
+            return new OpenAPI()
+                    .info(new Info()
+                            .title("TJ-Track REST API")
+                            .version("v1.0")
+                            .description("API documentation for the TJ-Track e-commerce platform"));
+        }
     }
 }

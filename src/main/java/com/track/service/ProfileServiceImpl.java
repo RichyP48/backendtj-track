@@ -200,20 +200,34 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public void approveUser(String userId, Boolean approved, String approvedBy) {
-        UserEntity user = userRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public void approveUser(String userIdOrEmail, Boolean approved, String approvedBy) {
+        log.info("Attempting to approve user with identifier: {}", userIdOrEmail);
+        
+        UserEntity user = userRepository.findByUserId(userIdOrEmail)
+                .or(() -> userRepository.findByEmail(userIdOrEmail))
+                .orElseThrow(() -> {
+                    log.error("User not found with identifier: {}", userIdOrEmail);
+                    return new RuntimeException("User not found with identifier: " + userIdOrEmail);
+                });
+        
+        log.info("Found user: {} ({})", user.getName(), user.getEmail());
         
         user.setIsApproved(approved);
         user.setApprovedBy(approvedBy);
         user.setApprovedAt(approved ? new java.sql.Timestamp(System.currentTimeMillis()) : null);
         userRepository.save(user);
         
+        log.info("User {} successfully {}", user.getEmail(), approved ? "approved" : "rejected");
+        
         // Send approval/rejection email
-        if (approved) {
-            emailService.sendApprovalEmail(user.getEmail(), user.getName());
-        } else {
-            emailService.sendRejectionEmail(user.getEmail(), user.getName());
+        try {
+            if (approved) {
+                emailService.sendApprovalEmail(user.getEmail(), user.getName());
+            } else {
+                emailService.sendRejectionEmail(user.getEmail(), user.getName());
+            }
+        } catch (Exception e) {
+            log.error("Failed to send approval/rejection email to {}: {}", user.getEmail(), e.getMessage());
         }
     }
 
@@ -232,6 +246,56 @@ public class ProfileServiceImpl implements ProfileService {
                 .stream()
                 .map(this::convertToProfileResponse)
                 .collect(java.util.stream.Collectors.toList());
+    }
+    
+    @Override
+    public void resetUserApproval(String userId) {
+        log.info("Resetting approval status for userId: {}", userId);
+        UserEntity user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with userId: " + userId));
+        
+        user.setIsApproved(null);
+        user.setApprovedBy(null);
+        user.setApprovedAt(null);
+        userRepository.save(user);
+        
+        log.info("User {} approval status reset to pending", user.getEmail());
+    }
+    
+    @Override
+    public java.util.Map<String, Object> getUserStats() {
+        var allUsers = userRepository.findAll();
+        
+        long totalUsers = allUsers.size();
+        long adminCount = allUsers.stream().mapToLong(user -> 
+            user.getRoles().stream().anyMatch(role -> "ADMIN".equals(role.getName())) ? 1 : 0
+        ).sum();
+        long clientCount = allUsers.stream().mapToLong(user -> 
+            user.getRoles().stream().anyMatch(role -> "CLIENT".equals(role.getName())) ? 1 : 0
+        ).sum();
+        long merchantCount = allUsers.stream().mapToLong(user -> 
+            user.getRoles().stream().anyMatch(role -> "COMMERCANT".equals(role.getName())) ? 1 : 0
+        ).sum();
+        long supplierCount = allUsers.stream().mapToLong(user -> 
+            user.getRoles().stream().anyMatch(role -> "FOURNISSEUR".equals(role.getName())) ? 1 : 0
+        ).sum();
+        long deliveryCount = allUsers.stream().mapToLong(user -> 
+            user.getRoles().stream().anyMatch(role -> "LIVREUR".equals(role.getName())) ? 1 : 0
+        ).sum();
+        long pendingCount = allUsers.stream().mapToLong(user -> 
+            (user.getIsApproved() == null && user.getIsAccountVerified() != null && user.getIsAccountVerified()) ? 1 : 0
+        ).sum();
+        
+        java.util.Map<String, Object> stats = new java.util.HashMap<>();
+        stats.put("totalUsers", totalUsers);
+        stats.put("adminCount", adminCount);
+        stats.put("clientCount", clientCount);
+        stats.put("merchantCount", merchantCount);
+        stats.put("supplierCount", supplierCount);
+        stats.put("deliveryCount", deliveryCount);
+        stats.put("pendingCount", pendingCount);
+        
+        return stats;
     }
     
     private void saveMerchantProfile(UserEntity user, com.track.dto.MerchantInfo merchantInfo) {

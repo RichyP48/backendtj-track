@@ -10,8 +10,10 @@ public interface ProfileService {
     void resetPassword(String email, String otp, String newPassword);
     void sendOtp(String email);
     void verifyOtp(String email, String otp);
-    void approveUser(String userId, Boolean approved, String approvedBy);
+    void approveUser(String userIdOrEmail, Boolean approved, String approvedBy);
     java.util.List<ProfileResponse> getPendingUsers();
     java.util.List<ProfileResponse> getAllUsers();
+    void resetUserApproval(String userId);
+    java.util.Map<String, Object> getUserStats();
 
 }

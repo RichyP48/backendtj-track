@@ -12,4 +12,6 @@ public interface PanierRepository extends JpaRepository<Panier, Long> {
     Optional<Panier> findByUserId(Long userId);
     
     Optional<Panier> findByUserUserId(String userUserId);
+    
+    Optional<Panier> findByUserEmail(String userEmail);
 }

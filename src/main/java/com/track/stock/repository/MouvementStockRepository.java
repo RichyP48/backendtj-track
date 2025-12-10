@@ -3,6 +3,7 @@ package com.track.stock.repository;
 import com.track.stock.entity.MouvementStock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -17,4 +18,7 @@ public interface MouvementStockRepository extends JpaRepository<MouvementStock, 
     List<MouvementStock> findByDateMouvementBetween(LocalDateTime dateDebut, LocalDateTime dateFin);
     
     List<MouvementStock> findByTypeMouvement(MouvementStock.TypeMouvement typeMouvement);
+    
+    @Query("SELECT COUNT(m) FROM MouvementStock m WHERE m.dateMouvement >= :startOfDay AND m.dateMouvement < :endOfDay")
+    Long countByDateBetween(@Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
 }

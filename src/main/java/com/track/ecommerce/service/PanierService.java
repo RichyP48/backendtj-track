@@ -7,6 +7,7 @@ import com.track.ecommerce.entity.PanierItem;
 import com.track.ecommerce.repository.PanierItemRepository;
 import com.track.ecommerce.repository.PanierRepository;
 import com.track.repository.UserRepository;
+import com.track.entity.UserEntity;
 import com.track.stock.entity.Article;
 import com.track.stock.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,15 +29,21 @@ public class PanierService {
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
     
-    public PanierDto ajouterArticle(String userId, Long articleId, Integer quantite) {
+    public PanierDto ajouterArticle(String userEmail, Long articleId, Integer quantite) {
+        System.out.println("=== PanierService.ajouterArticle ===");
+        System.out.println("userEmail: " + userEmail);
+        System.out.println("articleId: " + articleId);
+        System.out.println("quantite: " + quantite);
+        
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new RuntimeException("Article non trouvé"));
         
-        if (article.getQuantiteStock() < quantite) {
-            throw new RuntimeException("Stock insuffisant");
+        // Vérification ET réservation atomique du stock
+        if (article.getStockDisponible() < quantite) {
+            throw new RuntimeException("Stock disponible insuffisant");
         }
         
-        Panier panier = obtenirOuCreerPanier(userId);
+        Panier panier = obtenirOuCreerPanier(userEmail);
         
         PanierItem existingItem = panierItemRepository
                 .findByPanierIdAndArticleId(panier.getId(), articleId)
@@ -52,14 +60,17 @@ public class PanierService {
                     .prixUnitaire(article.getPrixUnitaireTtc())
                     .build();
             panierItemRepository.save(newItem);
+            
+            // Réserver temporairement le stock (session panier)
+            // inventoryService.reserverStock(articleId, quantite);
         }
         
-        return getPanier(userId);
+        return getPanier(userEmail);
     }
     
-    public PanierDto modifierQuantite(String userId, Long articleId, Integer nouvelleQuantite) {
+    public PanierDto modifierQuantite(String userEmail, Long articleId, Integer nouvelleQuantite) {
         if (nouvelleQuantite <= 0) {
-            return supprimerArticle(userId, articleId);
+            return supprimerArticle(userEmail, articleId);
         }
         
         Article article = articleRepository.findById(articleId)
@@ -69,7 +80,7 @@ public class PanierService {
             throw new RuntimeException("Stock insuffisant");
         }
         
-        Panier panier = obtenirOuCreerPanier(userId);
+        Panier panier = obtenirOuCreerPanier(userEmail);
         PanierItem item = panierItemRepository
                 .findByPanierIdAndArticleId(panier.getId(), articleId)
                 .orElseThrow(() -> new RuntimeException("Article non trouvé dans le panier"));
@@ -77,17 +88,17 @@ public class PanierService {
         item.setQuantite(nouvelleQuantite);
         panierItemRepository.save(item);
         
-        return getPanier(userId);
+        return getPanier(userEmail);
     }
     
-    public PanierDto supprimerArticle(String userId, Long articleId) {
-        Panier panier = obtenirOuCreerPanier(userId);
+    public PanierDto supprimerArticle(String userEmail, Long articleId) {
+        Panier panier = obtenirOuCreerPanier(userEmail);
         panierItemRepository.deleteByPanierIdAndArticleId(panier.getId(), articleId);
-        return getPanier(userId);
+        return getPanier(userEmail);
     }
     
-    public void viderPanier(String userId) {
-        Panier panier = panierRepository.findByUserUserId(userId).orElse(null);
+    public void viderPanier(String userEmail) {
+        Panier panier = panierRepository.findByUserEmail(userEmail).orElse(null);
         if (panier != null) {
             panier.getItems().clear();
             panierRepository.save(panier);
@@ -95,11 +106,11 @@ public class PanierService {
     }
     
     @Transactional(readOnly = true)
-    public PanierDto getPanier(String userId) {
-        Panier panier = panierRepository.findByUserUserId(userId).orElse(null);
+    public PanierDto getPanier(String userEmail) {
+        Panier panier = panierRepository.findByUserEmail(userEmail).orElse(null);
         if (panier == null) {
             return PanierDto.builder()
-                    .userId(userId)
+                    .userId(userEmail)
                     .items(List.of())
                     .totalItems(0)
                     .montantTotal(BigDecimal.ZERO)
@@ -111,23 +122,48 @@ public class PanierService {
         return mapToDto(panier);
     }
     
-    private Panier obtenirOuCreerPanier(String userId) {
-        return panierRepository.findByUserUserId(userId)
-                .orElseGet(() -> {
-                    var user = userRepository.findByUserId(userId)
-                            .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
-                    
-                    Panier nouveauPanier = Panier.builder()
-                            .user(user)
-                            .build();
-                    return panierRepository.save(nouveauPanier);
-                });
+    private Panier obtenirOuCreerPanier(String userEmail) {
+        System.out.println("obtenirOuCreerPanier pour: " + userEmail);
+        
+        try {
+            Optional<Panier> existingPanier = panierRepository.findByUserEmail(userEmail);
+            System.out.println("Recherche panier existant: " + existingPanier.isPresent());
+            
+            return existingPanier.orElseGet(() -> {
+                System.out.println("Panier non trouvé, création d'un nouveau panier");
+                
+                Optional<UserEntity> userOpt = userRepository.findByEmail(userEmail);
+                System.out.println("Recherche utilisateur: " + userOpt.isPresent());
+                
+                if (!userOpt.isPresent()) {
+                    System.out.println("Utilisateur non trouvé pour email: " + userEmail);
+                    throw new RuntimeException("Utilisateur non trouvé pour email: " + userEmail);
+                }
+                
+                UserEntity user = userOpt.get();
+                System.out.println("Utilisateur trouvé: " + user.getEmail() + ", ID: " + user.getId());
+                
+                Panier nouveauPanier = Panier.builder()
+                        .user(user)
+                        .build();
+                        
+                Panier savedPanier = panierRepository.save(nouveauPanier);
+                System.out.println("Nouveau panier créé avec ID: " + savedPanier.getId());
+                return savedPanier;
+            });
+        } catch (Exception e) {
+            System.out.println("Erreur dans obtenirOuCreerPanier: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
     
     private PanierDto mapToDto(Panier panier) {
-        List<PanierItemDto> itemsDto = panier.getItems().stream()
-                .map(this::mapItemToDto)
-                .collect(Collectors.toList());
+        List<PanierItemDto> itemsDto = panier.getItems() != null ? 
+                panier.getItems().stream()
+                        .map(this::mapItemToDto)
+                        .collect(Collectors.toList()) : 
+                List.of();
         
         BigDecimal montantTotal = itemsDto.stream()
                 .map(PanierItemDto::getSousTotal)
@@ -137,14 +173,22 @@ public class PanierService {
                 .mapToInt(PanierItemDto::getQuantite)
                 .sum();
         
+        // Calculs financiers corrects
+        BigDecimal montantHT = itemsDto.stream()
+                .map(item -> item.getPrixUnitaire().multiply(BigDecimal.valueOf(item.getQuantite()))
+                        .divide(BigDecimal.valueOf(1.20), 2, BigDecimal.ROUND_HALF_UP))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        
+        BigDecimal montantTVA = montantTotal.subtract(montantHT);
+        
         return PanierDto.builder()
                 .id(panier.getId())
                 .userId(panier.getUser().getUserId())
                 .items(itemsDto)
                 .totalItems(totalItems)
                 .montantTotal(montantTotal)
-                .montantHT(montantTotal) // Simplifié pour l'exemple
-                .montantTVA(BigDecimal.ZERO)
+                .montantHT(montantHT)
+                .montantTVA(montantTVA)
                 .build();
     }
     

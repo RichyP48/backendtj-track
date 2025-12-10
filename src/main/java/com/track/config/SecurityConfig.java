@@ -45,19 +45,30 @@ public class SecurityConfig {
                                 "/send-reset-otp",
                                 "/register-otp",
                                 "/verify-otp",
+                                "/login-verify-otp",
                                 "/reset-password",
                                 "/logout",
                                 "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/swagger-resources/**",
                                 "/swagger-ui.html",
+                                "/swagger-ui/index.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs",
+                                "/swagger-resources/**",
                                 "/webjars/**",
                                 "/h2-console/**",
                                 "/stock/**",
                                 "/catalogue/**",
-                                "/panier/**"
+                                "/panier/**",
+                                "/publicite/**",
+                                "/api/publicite/**",
+                                "/ecommerce/produits",
+                                "/actuator/**",
+                                "/error",
+                                "/delivery/**"
                         ).permitAll()
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN", "MANAGER")
+                        .requestMatchers("/merchant/**").permitAll()
+                        .requestMatchers("/supplier/**").hasRole("FOURNISSEUR")
                         .anyRequest().authenticated())
                 .sessionManagement(session->session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -77,7 +88,7 @@ public class SecurityConfig {
 
     private CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration config =new CorsConfiguration();
-    config.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:5173", "http://tjtrack-front.s3-website.eu-north-1.amazonaws.com"));
+    config.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:5173", "http://tjtrack-front.s3-website.eu-north-1.amazonaws.com", "http://localhost:3000"));
     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
     config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
     config.setAllowCredentials(true);

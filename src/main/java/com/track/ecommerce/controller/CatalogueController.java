@@ -1,15 +1,18 @@
 package com.track.ecommerce.controller;
 
+import com.track.dto.ApiResponse;
+import com.track.ecommerce.dto.ProduitDetailDto;
+import com.track.ecommerce.service.ProduitDetailService;
+import com.track.ecommerce.entity.ProduitEcommerce;
+import com.track.publicite.service.PubliciteService;
+import com.track.publicite.entity.CampagnePublicitaire;
 import com.track.stock.dto.ArticleDto;
 import com.track.stock.dto.CategorieDto;
 import com.track.stock.service.ArticleService;
 import com.track.stock.service.CategorieService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +24,8 @@ public class CatalogueController {
     
     private final ArticleService articleService;
     private final CategorieService categorieService;
+    private final ProduitDetailService produitDetailService;
+    private final PubliciteService publiciteService;
     
     @GetMapping("/articles")
     public ResponseEntity<List<ArticleDto>> getArticles(
@@ -49,16 +54,39 @@ public class CatalogueController {
         return ResponseEntity.ok(articles);
     }
     
-    @GetMapping("/articles/{id}")
-    public ResponseEntity<ArticleDto> getArticleDetail(@PathVariable Long id) {
+    @GetMapping("/produits/{id}")
+    public ResponseEntity<ProduitDetailDto> getProduitDetail(
+            @PathVariable Long id,
+            @CurrentSecurityContext(expression = "authentication?.name") String userId) {
         try {
-            ArticleDto article = articleService.getArticleById(id);
-            if (article.getQuantiteStock() <= 0) {
-                return ResponseEntity.notFound().build();
-            }
-            return ResponseEntity.ok(article);
+            ProduitDetailDto produit = produitDetailService.getProduitDetail(id, userId);
+            return ResponseEntity.ok(produit);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+    
+    @PostMapping("/produits/{id}/like")
+    public ResponseEntity<ApiResponse<Void>> ajouterLike(
+            @PathVariable Long id,
+            @CurrentSecurityContext(expression = "authentication?.name") String userId) {
+        try {
+            produitDetailService.ajouterLike(id, userId);
+            return ResponseEntity.ok(ApiResponse.success("Like ajouté", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+    
+    @PostMapping("/produits/{id}/favoris")
+    public ResponseEntity<ApiResponse<Void>> ajouterAuxFavoris(
+            @PathVariable Long id,
+            @CurrentSecurityContext(expression = "authentication?.name") String userId) {
+        try {
+            produitDetailService.ajouterAuxFavoris(id, userId);
+            return ResponseEntity.ok(ApiResponse.success("Ajouté aux favoris", null));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         }
     }
     
@@ -89,5 +117,25 @@ public class CatalogueController {
                 .toList();
         
         return ResponseEntity.ok(articles);
+    }
+    
+    @GetMapping("/produits-en-avant")
+    public ResponseEntity<ApiResponse<List<ProduitEcommerce>>> getProduitsEnAvant() {
+        List<ProduitEcommerce> produits = publiciteService.getProduitsEnAvant();
+        return ResponseEntity.ok(ApiResponse.success(produits));
+    }
+    
+    @GetMapping("/banniere-principale")
+    public ResponseEntity<ApiResponse<List<ProduitEcommerce>>> getBannierePrincipale() {
+        List<ProduitEcommerce> produits = publiciteService.getProduitsEnAvantParType(
+            CampagnePublicitaire.TypeCampagne.BANNIERE_PRINCIPALE);
+        return ResponseEntity.ok(ApiResponse.success(produits));
+    }
+    
+    @GetMapping("/carrousel-accueil")
+    public ResponseEntity<ApiResponse<List<ProduitEcommerce>>> getCarrouselAccueil() {
+        List<ProduitEcommerce> produits = publiciteService.getProduitsEnAvantParType(
+            CampagnePublicitaire.TypeCampagne.CARROUSEL_ACCUEIL);
+        return ResponseEntity.ok(ApiResponse.success(produits));
     }
 }

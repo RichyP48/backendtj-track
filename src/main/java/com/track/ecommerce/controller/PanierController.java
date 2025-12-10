@@ -1,13 +1,16 @@
 package com.track.ecommerce.controller;
 
+import com.track.dto.ApiResponse;
 import com.track.ecommerce.dto.PanierDto;
+import com.track.ecommerce.dto.PanierRequest;
 import com.track.ecommerce.service.PanierService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+
 
 @RestController
 @RequestMapping("/panier")
@@ -18,47 +21,58 @@ public class PanierController {
     
     @GetMapping
     public ResponseEntity<PanierDto> getPanier(
-            @CurrentSecurityContext(expression = "authentication?.name") String userEmail) {
-        PanierDto panier = panierService.getPanier(userEmail);
+            @RequestParam(required = false) String userEmail,
+            @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
+        String userId = userEmail != null ? userEmail : currentUser;
+        PanierDto panier = panierService.getPanier(userId);
         return ResponseEntity.ok(panier);
     }
     
     @PostMapping("/ajouter")
-    public ResponseEntity<PanierDto> ajouterArticle(
-            @RequestBody Map<String, Object> request,
-            @CurrentSecurityContext(expression = "authentication?.name") String userEmail) {
+    public ResponseEntity<ApiResponse<PanierDto>> ajouterArticle(
+            @Valid @RequestBody PanierRequest request,
+            @RequestParam(required = false) String userEmail,
+            @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
         try {
-            Long articleId = Long.valueOf(request.get("articleId").toString());
-            Integer quantite = Integer.valueOf(request.get("quantite").toString());
+            System.out.println("=== DEBUG PANIER AJOUTER ===");
+            System.out.println("userEmail param: " + userEmail);
+            System.out.println("currentUser: " + currentUser);
+            System.out.println("request: " + request);
             
-            PanierDto panier = panierService.ajouterArticle(userEmail, articleId, quantite);
-            return ResponseEntity.ok(panier);
+            String userId = userEmail != null ? userEmail : currentUser;
+            System.out.println("userId final: " + userId);
+            
+            PanierDto panier = panierService.ajouterArticle(userId, request.getArticleId(), request.getQuantite());
+            return ResponseEntity.ok(ApiResponse.success("Article ajouté", panier));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            System.out.println("Erreur dans ajouterArticle: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         }
     }
     
     @PutMapping("/modifier")
-    public ResponseEntity<PanierDto> modifierQuantite(
-            @RequestBody Map<String, Object> request,
-            @CurrentSecurityContext(expression = "authentication?.name") String userEmail) {
+    public ResponseEntity<ApiResponse<PanierDto>> modifierQuantite(
+            @Valid @RequestBody PanierRequest request,
+            @RequestParam(required = false) String userEmail,
+            @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
         try {
-            Long articleId = Long.valueOf(request.get("articleId").toString());
-            Integer quantite = Integer.valueOf(request.get("quantite").toString());
-            
-            PanierDto panier = panierService.modifierQuantite(userEmail, articleId, quantite);
-            return ResponseEntity.ok(panier);
+            String userId = userEmail != null ? userEmail : currentUser;
+            PanierDto panier = panierService.modifierQuantite(userId, request.getArticleId(), request.getQuantite());
+            return ResponseEntity.ok(ApiResponse.success("Quantité modifiée", panier));
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         }
     }
     
     @DeleteMapping("/supprimer/{articleId}")
     public ResponseEntity<PanierDto> supprimerArticle(
             @PathVariable Long articleId,
-            @CurrentSecurityContext(expression = "authentication?.name") String userEmail) {
+            @RequestParam(required = false) String userEmail,
+            @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
         try {
-            PanierDto panier = panierService.supprimerArticle(userEmail, articleId);
+            String userId = userEmail != null ? userEmail : currentUser;
+            PanierDto panier = panierService.supprimerArticle(userId, articleId);
             return ResponseEntity.ok(panier);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -67,8 +81,10 @@ public class PanierController {
     
     @DeleteMapping("/vider")
     public ResponseEntity<Void> viderPanier(
-            @CurrentSecurityContext(expression = "authentication?.name") String userEmail) {
-        panierService.viderPanier(userEmail);
+            @RequestParam(required = false) String userEmail,
+            @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
+        String userId = userEmail != null ? userEmail : currentUser;
+        panierService.viderPanier(userId);
         return ResponseEntity.ok().build();
     }
 }

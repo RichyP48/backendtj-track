@@ -6,16 +6,19 @@ import com.track.stock.entity.Categorie;
 import com.track.stock.entity.MouvementStock;
 import com.track.stock.repository.ArticleRepository;
 import com.track.stock.repository.CategorieRepository;
+import com.track.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class ArticleService {
     
     private final ArticleRepository articleRepository;
@@ -24,7 +27,7 @@ public class ArticleService {
     
     public ArticleDto createArticle(ArticleDto articleDto) {
         if (articleRepository.existsByCodeArticle(articleDto.getCodeArticle())) {
-            throw new RuntimeException("Un article avec ce code existe déjà");
+            throw new BusinessException("Un article avec ce code existe déjà");
         }
         
         Article article = mapToEntity(articleDto);
@@ -34,7 +37,7 @@ public class ArticleService {
     
     public ArticleDto updateArticle(Long id, ArticleDto articleDto) {
         Article article = articleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Article non trouvé"));
+                .orElseThrow(() -> new EntityNotFoundException("Article non trouvé avec l'ID: " + id));
         
         article.setDesignation(articleDto.getDesignation());
         article.setDescription(articleDto.getDescription());
@@ -95,26 +98,41 @@ public class ArticleService {
                 .collect(Collectors.toList());
     }
     
+    @Transactional(rollbackFor = Exception.class)
     public void ajusterStock(Long articleId, Integer quantite, String motif, String utilisateur) {
+        if (quantite == 0) {
+            throw new IllegalArgumentException("La quantité d'ajustement ne peut pas être zéro");
+        }
+        
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new RuntimeException("Article non trouvé"));
+        
+        Integer newStock = article.getQuantiteStock() + quantite;
+        if (newStock < 0) {
+            throw new RuntimeException("Stock ne peut pas être négatif");
+        }
         
         MouvementStock.TypeMouvement typeMouvement = quantite > 0 ? 
                 MouvementStock.TypeMouvement.CORRECTION_POSITIVE : 
                 MouvementStock.TypeMouvement.CORRECTION_NEGATIVE;
         
-        article.setQuantiteStock(article.getQuantiteStock() + quantite);
+        article.setQuantiteStock(newStock);
         articleRepository.save(article);
         
         mouvementStockService.enregistrerMouvement(articleId, typeMouvement, Math.abs(quantite), motif, utilisateur);
     }
     
+    @Transactional(rollbackFor = Exception.class)
     public void reduireStock(Long articleId, Integer quantite, String motif, String utilisateur) {
+        if (quantite <= 0) {
+            throw new IllegalArgumentException("La quantité doit être positive");
+        }
+        
         Article article = articleRepository.findById(articleId)
                 .orElseThrow(() -> new RuntimeException("Article non trouvé"));
         
-        if (article.getQuantiteStock() < quantite) {
-            throw new RuntimeException("Stock insuffisant");
+        if (article.getStockDisponible() < quantite) {
+            throw new RuntimeException("Stock disponible insuffisant pour " + article.getDesignation());
         }
         
         article.setQuantiteStock(article.getQuantiteStock() - quantite);
@@ -132,7 +150,9 @@ public class ArticleService {
                 .tauxTva(dto.getTauxTva())
                 .prixUnitaireTtc(dto.getPrixUnitaireTtc())
                 .quantiteStock(dto.getQuantiteStock() != null ? dto.getQuantiteStock() : 0)
+                .stockReserve(0)
                 .seuilAlerte(dto.getSeuilAlerte() != null ? dto.getSeuilAlerte() : 5)
+                .stockMax(dto.getStockMax() != null ? dto.getStockMax() : 1000)
                 .build();
         
         if (dto.getCategorieId() != null) {

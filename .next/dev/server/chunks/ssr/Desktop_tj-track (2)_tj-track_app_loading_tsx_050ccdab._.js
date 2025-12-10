@@ -1,0 +1,15 @@
+module.exports = [
+"[project]/Desktop/tj-track (2)/tj-track/app/loading.tsx [app-rsc] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>Loading
+]);
+function Loading() {
+    return null;
+}
+}),
+];
+
+//# sourceMappingURL=Desktop_tj-track%20%282%29_tj-track_app_loading_tsx_050ccdab._.js.map

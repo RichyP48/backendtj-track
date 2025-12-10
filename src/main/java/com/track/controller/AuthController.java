@@ -109,11 +109,27 @@ public class AuthController {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
     }
     @GetMapping("/is-authenticated")
-    public ResponseEntity<Boolean> isAuthenticated(
+    public ResponseEntity<Map<String, Object>> isAuthenticated(
             @CurrentSecurityContext(
                     expression = "authentication?.name") String email
     ) {
-        return ResponseEntity.ok(email != null);
+        Map<String, Object> response = new HashMap<>();
+        if (email != null) {
+            response.put("authenticated", true);
+            response.put("email", email);
+        } else {
+            response.put("authenticated", false);
+            response.put("message", "User is not authenticated");
+        }
+        return ResponseEntity.ok(response);
+    }
+    
+    @GetMapping("/test-public")
+    public ResponseEntity<Map<String, Object>> testPublic() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Public endpoint working");
+        response.put("timestamp", System.currentTimeMillis());
+        return ResponseEntity.ok(response);
     }
     @PostMapping("/send-reset-otp")
     public void sendResetOtp(@RequestParam String email) {
@@ -154,31 +170,35 @@ public class AuthController {
         }
     }
     
-    @PostMapping("/verify-otp")
-    public ResponseEntity<?> verifyEmail(@RequestBody Map<String, Object> request){
-        if(request.get("otp") == null || request.get("email") == null){
+    @PostMapping("/login-verify-otp")
+    public ResponseEntity<?> loginVerifyOtp(@RequestBody Map<String, Object> request) {
+        if (request.get("otp") == null || request.get("email") == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email and OTP required");
         }
-        try{
+        try {
             String email = request.get("email").toString();
             String otp = request.get("otp").toString();
             profileService.verifyOtp(email, otp);
             
-            // Generate JWT token after successful OTP verification
             final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
             final String jwtToken = jwtUtil.generateToken(userDetails);
             var userProfile = profileService.getProfile(email);
             
+            ResponseCookie cookie = ResponseCookie.from("jwt", jwtToken)
+                    .httpOnly(true)
+                    .path("/")
+                    .maxAge(Duration.ofDays(1))
+                    .sameSite("Strict")
+                    .build();
+            
             Map<String, Object> response = new HashMap<>();
-            response.put("success", true);
-            response.put("message", "Email verified");
-            response.put("token", jwtToken);
             response.put("email", email);
+            response.put("token", jwtToken);
             response.put("name", userProfile.getName());
             response.put("roles", userProfile.getRoles());
             
-            return ResponseEntity.ok(response);
-        }catch (Exception e){
+            return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(response);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", true, "message", e.getMessage()));
         }
     }

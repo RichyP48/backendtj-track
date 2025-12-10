@@ -8,6 +8,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserDetailsServiceImpl userDetailsService;
@@ -59,16 +61,21 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 }
             }
         }
-        if(jwt != null) {
-            email= jwtUtil.extractEmail(jwt);
-            if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-                if(jwtUtil.validateToken(jwt, userDetails)) {
-                    UsernamePasswordAuthenticationToken auth= new UsernamePasswordAuthenticationToken(userDetails,
-                            null, userDetails.getAuthorities());
-                    auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(auth);
+        if(jwt != null && !jwt.trim().isEmpty() && jwt.split("\\.").length == 3) {
+            try {
+                email= jwtUtil.extractEmail(jwt);
+                if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+                    if(jwtUtil.validateToken(jwt, userDetails)) {
+                        UsernamePasswordAuthenticationToken auth= new UsernamePasswordAuthenticationToken(userDetails,
+                                null, userDetails.getAuthorities());
+                        auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(auth);
+                    }
                 }
+            } catch (Exception e) {
+                // Log the error and continue without authentication
+                log.warn("Invalid JWT token: " + e.getMessage());
             }
         }
         filterChain.doFilter(request, response);
