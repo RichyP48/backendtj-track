@@ -107,7 +107,18 @@ export function CheckoutModal({ isOpen, onClose }: CheckoutModalProps) {
 
     setIsSubmitting(true)
 
-    creerCommande(user.userId, {
+    creerCommande({
+      userId: user.userId,
+      adresseLivraison: {
+        nom: formData.lastName,
+        prenom: formData.firstName,
+        telephone: formData.phone,
+        adresse: formData.address,
+        ville: formData.city,
+        codePostal: formData.postalCode
+      },
+      modePaiement: formData.paymentMethod
+    }, {
       onSuccess: (response) => {
         toast({
           title: "Commande confirmée !",

@@ -1,5 +1,6 @@
 package com.track.stock.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(org.springframework.data.jpa.domain.support.AuditingEntityListener.class)
 public class Article {
     
     @Id
@@ -40,14 +42,17 @@ public class Article {
     
     @ManyToOne
     @JoinColumn(name = "categorie_id")
+    @JsonIgnoreProperties({"articles", "entreprise"})
     private Categorie categorie;
     
     @ManyToOne
     @JoinColumn(name = "fournisseur_id")
+    @JsonIgnoreProperties({"articles", "entreprise", "adresse"})
     private Fournisseur fournisseur;
     
     @ManyToOne
     @JoinColumn(name = "entreprise_id")
+    @JsonIgnoreProperties({"articles", "fournisseurs", "adresse"})
     private Entreprise entreprise;
     
     @Column(nullable = false)
@@ -68,6 +73,10 @@ public class Article {
     
     @Enumerated(EnumType.STRING)
     private StatutArticle statut = StatutArticle.ACTIF;
+    
+    @org.springframework.data.annotation.CreatedBy
+    @Column(name = "created_by")
+    private String createdBy;
     
     @Column(name = "created_at")
     private LocalDateTime createdAt;

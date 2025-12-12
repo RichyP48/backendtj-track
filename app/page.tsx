@@ -59,7 +59,7 @@ export default function HomePage() {
   const { data: apiProducts, isLoading, error } = useEcommerceProducts()
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
 
-  console.log('HomePage - Auth state:', { user, isAuthenticated })
+  console.log('HomePage - Auth state:', { user: user ? 'logged in' : 'not logged in', isAuthenticated })
   
   const products = apiProducts || []
 

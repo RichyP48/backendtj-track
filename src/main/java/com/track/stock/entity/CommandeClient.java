@@ -56,4 +56,29 @@ public class CommandeClient {
     public enum StatutCommande {
         EN_ATTENTE, CONFIRMEE, EXPEDIEE, LIVREE, ANNULEE
     }
+    
+    @PrePersist
+    @PreUpdate
+    public void calculerTotaux() {
+        if (ligneCommandeClients != null && !ligneCommandeClients.isEmpty()) {
+            totalHt = ligneCommandeClients.stream()
+                .map(ligne -> ligne.getPrixUnitaire().multiply(BigDecimal.valueOf(ligne.getQuantite())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+            
+            // Calcul TTC (supposons 20% de TVA)
+            totalTtc = totalHt.multiply(BigDecimal.valueOf(1.20));
+        } else {
+            totalHt = BigDecimal.ZERO;
+            totalTtc = BigDecimal.ZERO;
+        }
+    }
+    
+    public BigDecimal getTotalCalcule() {
+        if (ligneCommandeClients == null || ligneCommandeClients.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+        return ligneCommandeClients.stream()
+            .map(ligne -> ligne.getPrixUnitaire().multiply(BigDecimal.valueOf(ligne.getQuantite())))
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 }

@@ -1,5 +1,6 @@
 package com.track.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.track.stock.entity.Article;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class CommandeItem {
     
     @ManyToOne
     @JoinColumn(name = "commande_id", nullable = false)
+    @JsonBackReference
     private Commande commande;
     
     @ManyToOne

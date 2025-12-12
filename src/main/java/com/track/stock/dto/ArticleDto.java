@@ -55,6 +55,8 @@ public class ArticleDto {
     
     private Boolean stockFaible;
     
+    private String createdBy;
+    
     private String createdAt;
     
     private String updatedAt;

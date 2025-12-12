@@ -32,7 +32,7 @@ public class CommandeService {
     public Commande creerCommandeDepuisPanier(String userId) {
         SecurityUtils.validateUserAccess(userId);
         var panier = panierService.getPanier(userId);
-        var user = userRepository.findByUserId(userId)
+        var user = userRepository.findByEmail(userId)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         
         if (panier.getItems().isEmpty()) {
@@ -106,7 +106,28 @@ public class CommandeService {
         return commandeRepository.save(commande);
     }
     
+    @Transactional(rollbackFor = Exception.class)
+    public Commande updateStatut(Long commandeId, String statutStr) {
+        Commande commande = commandeRepository.findById(commandeId)
+                .orElseThrow(() -> new RuntimeException("Commande non trouvée"));
+        
+        try {
+            Commande.StatutCommande statut = Commande.StatutCommande.valueOf(statutStr);
+            commande.setStatut(statut);
+            return commandeRepository.save(commande);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Statut invalide: " + statutStr);
+        }
+    }
+    
     public List<Commande> getCommandesByMerchant(String merchantUserId) {
         return commandeRepository.findCommandesByMerchantUserId(merchantUserId);
+    }
+    
+    @Transactional
+    public void creerCommandeClientDepuisCommande(Commande commande) {
+        // Cette méthode sera appelée après création d'une commande e-commerce
+        // pour créer la CommandeClient correspondante dans le système stock
+        // TODO: Implémenter la logique de création CommandeClient
     }
 }

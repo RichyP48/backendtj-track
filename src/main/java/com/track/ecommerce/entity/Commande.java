@@ -1,5 +1,6 @@
 package com.track.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.track.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,6 +32,7 @@ public class Commande {
     private UserEntity client;
     
     @OneToMany(mappedBy = "commande", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<CommandeItem> items;
     
     @Enumerated(EnumType.STRING)

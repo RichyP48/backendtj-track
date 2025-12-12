@@ -135,19 +135,19 @@ export default function AdminUsersPage() {
                 const primaryRole = userItem.roles?.[0] || 'CLIENT'
                 const roleInfo = roleConfig[primaryRole as keyof typeof roleConfig] || roleConfig.CLIENT
                 return (
-                  <TableRow key={userItem.userId || userItem.email}>
+                  <TableRow key={String(userItem.userId || userItem.email)}>
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
                           <span className="text-sm font-medium">
-                            {(userItem.name || userItem.email || "U").charAt(0).toUpperCase()}
+                            {String(userItem.name || userItem.email || "U").charAt(0).toUpperCase()}
                           </span>
                         </div>
                         <div>
-                          <p className="font-medium">{userItem.name || "N/A"}</p>
+                          <p className="font-medium">{String(userItem.name || "N/A")}</p>
                           <p className="text-xs text-muted-foreground flex items-center gap-1">
                             <Mail className="h-3 w-3" />
-                            {userItem.email}
+                            {String(userItem.email || "")}
                           </p>
                         </div>
                       </div>
@@ -155,9 +155,9 @@ export default function AdminUsersPage() {
                     <TableCell>
                       <div className="flex flex-wrap gap-1">
                         {userItem.roles?.map((role) => {
-                          const config = roleConfig[role as keyof typeof roleConfig] || roleConfig.CLIENT
+                          const config = roleConfig[String(role) as keyof typeof roleConfig] || roleConfig.CLIENT
                           return (
-                            <Badge key={role} variant="secondary" className="gap-1">
+                            <Badge key={String(role)} variant="secondary" className="gap-1">
                               <config.icon className="h-3 w-3" />
                               {config.label}
                             </Badge>
@@ -182,7 +182,7 @@ export default function AdminUsersPage() {
                       )}
                     </TableCell>
                     <TableCell>
-                      N/A
+                      {userItem.createdAt ? new Date(String(userItem.createdAt)).toLocaleDateString() : "N/A"}
                     </TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
@@ -197,7 +197,7 @@ export default function AdminUsersPage() {
                           {!userItem.isApproved && (
                             <DropdownMenuItem
                               className="text-green-600"
-                              onClick={() => handleApprove(userItem.userId || userItem.email)}
+                              onClick={() => handleApprove(String(userItem.userId || userItem.email))}
                             >
                               Approuver
                             </DropdownMenuItem>

@@ -45,7 +45,6 @@ public class SecurityConfig {
                                 "/send-reset-otp",
                                 "/register-otp",
                                 "/verify-otp",
-                                "/login-verify-otp",
                                 "/reset-password",
                                 "/logout",
                                 "/swagger-ui/**",

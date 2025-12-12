@@ -21,9 +21,14 @@ public class CommandeController {
     
     @PostMapping("/creer")
     public ResponseEntity<ApiResponse<Commande>> creerCommande(
-            @CurrentSecurityContext(expression = "authentication?.name") String userId) {
+            @RequestParam(required = false) String userId,
+            @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
         try {
-            Commande commande = commandeService.creerCommandeDepuisPanier(userId);
+            String userEmail = userId != null ? userId : currentUser;
+            if (userEmail == null || userEmail.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(ApiResponse.error("Utilisateur non authentifié"));
+            }
+            Commande commande = commandeService.creerCommandeDepuisPanier(userEmail);
             return ResponseEntity.ok(ApiResponse.success("Commande créée", commande));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
@@ -52,6 +57,18 @@ public class CommandeController {
         }
     }
     
+    @PutMapping("/{id}/statut")
+    public ResponseEntity<ApiResponse<Commande>> updateStatutCommande(
+            @PathVariable Long id,
+            @RequestBody StatutUpdateRequest request) {
+        try {
+            Commande commande = commandeService.updateStatut(id, request.getStatut());
+            return ResponseEntity.ok(ApiResponse.success("Statut mis à jour", commande));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+    
     @GetMapping("/merchant")
     public ResponseEntity<ApiResponse<List<Commande>>> getCommandesMerchant(
             @CurrentSecurityContext(expression = "authentication?.name") String merchantUserId) {
@@ -67,5 +84,10 @@ public class CommandeController {
     public static class PaiementRequest {
         private Paiement.ModePaiement mode;
         private String reference;
+    }
+    
+    @Data
+    public static class StatutUpdateRequest {
+        private String statut;
     }
 }

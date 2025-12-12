@@ -170,15 +170,20 @@ public class AuthController {
         }
     }
     
-    @PostMapping("/login-verify-otp")
-    public ResponseEntity<?> loginVerifyOtp(@RequestBody Map<String, Object> request) {
+    @PostMapping("/verify-otp")
+    public ResponseEntity<?> verifyOtp(@RequestBody Map<String, Object> request) {
+        log.info("Verify OTP request received: {}", request);
+        
         if (request.get("otp") == null || request.get("email") == null) {
+            log.error("Missing required fields - email: {}, otp: {}", request.get("email"), request.get("otp"));
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email and OTP required");
         }
         try {
             String email = request.get("email").toString();
             String otp = request.get("otp").toString();
+            log.info("Attempting OTP verification for email: {}", email);
             profileService.verifyOtp(email, otp);
+            log.info("OTP verification successful for email: {}", email);
             
             final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
             final String jwtToken = jwtUtil.generateToken(userDetails);
@@ -199,6 +204,7 @@ public class AuthController {
             
             return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(response);
         } catch (Exception e) {
+            log.error("OTP verification failed for email: {}, error: {}", request.get("email"), e.getMessage(), e);
             return ResponseEntity.badRequest().body(Map.of("error", true, "message", e.getMessage()));
         }
     }

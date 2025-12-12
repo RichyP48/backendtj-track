@@ -49,7 +49,7 @@ public class ProduitEcommerceService {
                     .orElseThrow(() -> new RuntimeException("Profil commerçant non trouvé pour l'email: " + cleanEmail));
         }
         
-        // Créer l'article de base
+        // Créer l'article de base (createdBy sera automatiquement défini)
         var articleDto = com.track.stock.dto.ArticleDto.builder()
                 .codeArticle(genererCodeArticle())
                 .designation(produitDto.getNom())
@@ -62,9 +62,13 @@ public class ProduitEcommerceService {
         
         var articleDtoCreated = articleService.createArticle(articleDto);
         
-        // Récupérer l'entité Article depuis la base de données
+        // Récupérer l'entité Article et la lier au commerçant
         Article article = articleRepository.findById(articleDtoCreated.getId())
                 .orElseThrow(() -> new RuntimeException("Article créé non trouvé"));
+        
+        // Pour que l'article apparaisse dans le stock du commerçant,
+        // il faut s'assurer qu'il soit lié à son contexte
+        // (via entreprise ou autre mécanisme de filtrage)
         
         // Traiter les images
         List<String> imageUrls = new ArrayList<>();

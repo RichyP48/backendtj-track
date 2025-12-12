@@ -18,6 +18,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useCart } from "@/contexts/cart-context"
 import { useAuth } from "@/contexts/auth-context"
 import { cn } from "@/lib/utils"
+import { safeUserName } from "@/lib/safe-render"
 
 const navigation = [
   { name: "Catalogue", href: "/catalogue" },
@@ -106,7 +107,7 @@ export function Header() {
                     <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
                       <User className="h-4 w-4 text-primary" />
                     </div>
-                    <span className="hidden md:inline">{user.name}</span>
+                    <span className="hidden md:inline">{safeUserName(user)}</span>
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </DropdownMenuTrigger>

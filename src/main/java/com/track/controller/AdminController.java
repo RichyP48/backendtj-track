@@ -2,6 +2,7 @@ package com.track.controller;
 
 import com.track.dto.ProfileResponse;
 import com.track.service.ProfileService;
+import com.track.stock.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,14 @@ import java.util.Map;
 public class AdminController {
     
     private final ProfileService profileService;
+    private final ArticleService articleService;
 
     @GetMapping("/pending-users")
     public ResponseEntity<List<ProfileResponse>> getPendingUsers() {
         return ResponseEntity.ok(profileService.getPendingUsers());
     }
 
-    @GetMapping("/all-users")
+    @GetMapping(" /all-users")
     public ResponseEntity<List<ProfileResponse>> getAllUsers() {
         return ResponseEntity.ok(profileService.getAllUsers());
     }
@@ -111,6 +113,30 @@ public class AdminController {
         try {
             Map<String, Object> stats = profileService.getUserStats();
             return ResponseEntity.ok(stats);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", true, "message", e.getMessage()));
+        }
+    }
+    
+    @GetMapping("/stock/statistiques")
+    public ResponseEntity<?> getStatistiquesStock() {
+        try {
+            Map<String, Object> stats = Map.of(
+                "totalArticles", articleService.getAllArticles().size(),
+                "totalQuantiteStock", articleService.getTotalQuantiteStockGlobal(),
+                "valeurTotaleStock", articleService.getValeurTotaleStockGlobal(),
+                "articlesStockFaible", articleService.getArticlesStockFaibleGlobal()
+            );
+            return ResponseEntity.ok(Map.of("success", true, "data", stats));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", true, "message", e.getMessage()));
+        }
+    }
+    
+    @GetMapping("/articles")
+    public ResponseEntity<?> getTousLesArticles() {
+        try {
+            return ResponseEntity.ok(Map.of("success", true, "data", articleService.getAllArticles()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Map.of("error", true, "message", e.getMessage()));
         }

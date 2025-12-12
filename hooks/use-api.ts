@@ -227,9 +227,21 @@ export function useCreerCommande() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (userId: string) => apiClient.post<ApiResponse<Commande>>("/commandes/creer", undefined, { userId }),
+    mutationFn: ({ userId, adresseLivraison, modePaiement }: { 
+      userId: string
+      adresseLivraison?: {
+        nom: string
+        prenom: string
+        telephone: string
+        adresse: string
+        ville: string
+        codePostal?: string
+      }
+      modePaiement?: string
+    }) => apiClient.post<ApiResponse<Commande>>("/commandes/creer", { adresseLivraison, modePaiement }, { userId }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["commandes"] })
+      queryClient.invalidateQueries({ queryKey: ["commandesMerchant"] })
     },
   })
 }
@@ -730,6 +742,7 @@ export function useDeleteCommandeClient() {
     mutationFn: (id: number) => apiClient.delete<void>(`/api/v1.0/commandes-client/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.commandesClient })
+      queryClient.invalidateQueries({ queryKey: ["commandesMerchant"] })
     },
   })
 }
@@ -751,6 +764,19 @@ export function useExpedierCommande() {
     mutationFn: (id: number) => apiClient.post<ApiResponse<Commande>>(`/commandes/${id}/expedier`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["commandes"] })
+      queryClient.invalidateQueries({ queryKey: ["commandesMerchant"] })
+    },
+  })
+}
+
+export function useUpdateCommandeStatus() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ id, statut }: { id: number; statut: string }) => 
+      apiClient.put<ApiResponse<Commande>>(`/commandes/${id}/statut`, { statut }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["commandes"] })
+      queryClient.invalidateQueries({ queryKey: ["commandesMerchant"] })
     },
   })
 }
@@ -758,7 +784,11 @@ export function useExpedierCommande() {
 export function useCommandesMerchant(merchantUserId: string) {
   return useQuery({
     queryKey: ["commandesMerchant", merchantUserId],
-    queryFn: () => apiClient.get<ApiResponse<Commande[]>>("/commandes/merchant", { merchantUserId }),
+    queryFn: async () => {
+      const response = await apiClient.get<ApiResponse<Commande[]>>("/commandes/merchant", { merchantUserId })
+      console.log('Merchant orders API response:', JSON.stringify(response, null, 2))
+      return response
+    },
     enabled: !!merchantUserId,
   })
 }

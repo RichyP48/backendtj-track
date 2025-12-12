@@ -35,22 +35,31 @@ export function ProductCard({ product, variant = "default" }: ProductCardProps) 
   const rating = !isArticle ? product.noteMoyenne : undefined
   const reviews = !isArticle ? product.nombreEvaluations : undefined
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
 
-    addItem({
-      articleId: id,
-      articleCode: isArticle ? product.codeArticle : String(id),
-      articleNom: name,
-      articlePhoto: image,
-      quantite: 1,
-      prixUnitaire: price,
-      sousTotal: price,
-      stockDisponible: stockCount || 0,
-      disponible: inStock,
-    })
-    openCart()
+    if (!inStock) {
+      return
+    }
+
+    try {
+      await addItem({
+        articleId: id,
+        articleCode: isArticle ? product.codeArticle : String(id),
+        articleNom: name,
+        articlePhoto: image,
+        quantite: 1,
+        prixUnitaire: price,
+        sousTotal: price,
+        stockDisponible: stockCount || 0,
+        disponible: inStock,
+      })
+      openCart()
+    } catch (error) {
+      console.error('Erreur ajout au panier:', error)
+      // L'erreur sera affichée par le toast du contexte
+    }
   }
 
   const handleLike = (e: React.MouseEvent) => {

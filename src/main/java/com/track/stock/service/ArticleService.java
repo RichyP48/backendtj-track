@@ -78,6 +78,50 @@ public class ArticleService {
     }
     
     @Transactional(readOnly = true)
+    public List<ArticleDto> getMyArticles(String userEmail) {
+        return articleRepository.findByCreatedBy(userEmail).stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+    
+    @Transactional(readOnly = true)
+    public Long getMyTotalQuantiteStock(String userEmail) {
+        Long total = articleRepository.getTotalQuantiteStockByCreatedBy(userEmail);
+        return total != null ? total : 0L;
+    }
+    
+    @Transactional(readOnly = true)
+    public Double getMyValeurTotaleStock(String userEmail) {
+        Double valeur = articleRepository.getValeurTotaleStockByCreatedBy(userEmail);
+        return valeur != null ? valeur : 0.0;
+    }
+    
+    @Transactional(readOnly = true)
+    public Long getMyArticlesStockFaible(String userEmail) {
+        Long count = articleRepository.countArticlesStockFaibleByCreatedBy(userEmail);
+        return count != null ? count : 0L;
+    }
+    
+    // Méthodes pour ADMIN - Accès global
+    @Transactional(readOnly = true)
+    public Long getTotalQuantiteStockGlobal() {
+        Long total = articleRepository.getTotalQuantiteStock();
+        return total != null ? total : 0L;
+    }
+    
+    @Transactional(readOnly = true)
+    public Double getValeurTotaleStockGlobal() {
+        Double valeur = articleRepository.getValeurTotaleStock();
+        return valeur != null ? valeur : 0.0;
+    }
+    
+    @Transactional(readOnly = true)
+    public Long getArticlesStockFaibleGlobal() {
+        Long count = articleRepository.countArticlesStockFaible();
+        return count != null ? count : 0L;
+    }
+    
+    @Transactional(readOnly = true)
     public List<ArticleDto> getArticlesByCategorie(Long categorieId) {
         return articleRepository.findByCategorieId(categorieId).stream()
                 .map(this::mapToDto)
@@ -94,6 +138,13 @@ public class ArticleService {
     @Transactional(readOnly = true)
     public List<ArticleDto> rechercherArticles(String searchTerm) {
         return articleRepository.searchByDesignationOrCode(searchTerm).stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+    
+    @Transactional(readOnly = true)
+    public List<ArticleDto> getArticlesByCreatedBy(String createdBy) {
+        return articleRepository.findByCreatedBy(createdBy).stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
     }
@@ -179,6 +230,7 @@ public class ArticleService {
                 .quantiteStock(article.getQuantiteStock())
                 .seuilAlerte(article.getSeuilAlerte())
                 .stockFaible(article.getQuantiteStock() <= article.getSeuilAlerte())
+                .createdBy(article.getCreatedBy())
                 .build();
     }
 }

@@ -391,6 +391,8 @@ __turbopack_context__.s([
     ()=>useUpdateArticle,
     "useUpdateCategorie",
     ()=>useUpdateCategorie,
+    "useUpdateCommandeStatus",
+    ()=>useUpdateCommandeStatus,
     "useUpdateFournisseur",
     ()=>useUpdateFournisseur,
     "useVente",
@@ -689,13 +691,21 @@ function useFavorisProduit() {
 function useCreerCommande() {
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
-        mutationFn: (userId)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/commandes/creer", undefined, {
+        mutationFn: ({ userId, adresseLivraison, modePaiement })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/commandes/creer", {
+                adresseLivraison,
+                modePaiement
+            }, {
                 userId
             }),
         onSuccess: ()=>{
             queryClient.invalidateQueries({
                 queryKey: [
                     "commandes"
+                ]
+            });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
                 ]
             });
         }
@@ -1233,6 +1243,11 @@ function useDeleteCommandeClient() {
             queryClient.invalidateQueries({
                 queryKey: queryKeys.commandesClient
             });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
+                ]
+            });
         }
     });
 }
@@ -1259,6 +1274,31 @@ function useExpedierCommande() {
                     "commandes"
                 ]
             });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
+                ]
+            });
+        }
+    });
+}
+function useUpdateCommandeStatus() {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: ({ id, statut })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].put(`/commandes/${id}/statut`, {
+                statut
+            }),
+        onSuccess: ()=>{
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandes"
+                ]
+            });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
+                ]
+            });
         }
     });
 }
@@ -1268,9 +1308,13 @@ function useCommandesMerchant(merchantUserId) {
             "commandesMerchant",
             merchantUserId
         ],
-        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/commandes/merchant", {
+        queryFn: async ()=>{
+            const response = await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/commandes/merchant", {
                 merchantUserId
-            }),
+            });
+            console.log('Merchant orders API response:', JSON.stringify(response, null, 2));
+            return response;
+        },
         enabled: !!merchantUserId
     });
 }

@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         apiClient.setToken(token)
         setUser(parsedUser)
         document.cookie = `tj-track-token=${token}; path=/; max-age=${7 * 24 * 60 * 60}`
-        console.log('Auth restored:', parsedUser)
+        console.log('Auth restored:', parsedUser.email)
       } catch {
         localStorage.removeItem("tj-track-token")
         localStorage.removeItem("tj-track-user")
@@ -49,7 +49,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Debug: Log user state changes
   useEffect(() => {
-    console.log('Auth state changed - user:', user, 'isAuthenticated:', !!user)
+    console.log('Auth state changed - user:', user ? user.email : 'not logged in', 'isAuthenticated:', !!user)
   }, [user])
 
   const login = useCallback(async (credentials: AuthRequest) => {

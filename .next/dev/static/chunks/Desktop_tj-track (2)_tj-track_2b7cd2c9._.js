@@ -2224,6 +2224,8 @@ __turbopack_context__.s([
     ()=>useUpdateArticle,
     "useUpdateCategorie",
     ()=>useUpdateCategorie,
+    "useUpdateCommandeStatus",
+    ()=>useUpdateCommandeStatus,
     "useUpdateFournisseur",
     ()=>useUpdateFournisseur,
     "useVente",
@@ -2242,7 +2244,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/lib/api.ts [app-client] (ecmascript)");
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature(), _s3 = __turbopack_context__.k.signature(), _s4 = __turbopack_context__.k.signature(), _s5 = __turbopack_context__.k.signature(), _s6 = __turbopack_context__.k.signature(), _s7 = __turbopack_context__.k.signature(), _s8 = __turbopack_context__.k.signature(), _s9 = __turbopack_context__.k.signature(), _s10 = __turbopack_context__.k.signature(), _s11 = __turbopack_context__.k.signature(), _s12 = __turbopack_context__.k.signature(), _s13 = __turbopack_context__.k.signature(), _s14 = __turbopack_context__.k.signature(), _s15 = __turbopack_context__.k.signature(), _s16 = __turbopack_context__.k.signature(), _s17 = __turbopack_context__.k.signature(), _s18 = __turbopack_context__.k.signature(), _s19 = __turbopack_context__.k.signature(), _s20 = __turbopack_context__.k.signature(), _s21 = __turbopack_context__.k.signature(), _s22 = __turbopack_context__.k.signature(), _s23 = __turbopack_context__.k.signature(), _s24 = __turbopack_context__.k.signature(), _s25 = __turbopack_context__.k.signature(), _s26 = __turbopack_context__.k.signature(), _s27 = __turbopack_context__.k.signature(), _s28 = __turbopack_context__.k.signature(), _s29 = __turbopack_context__.k.signature(), _s30 = __turbopack_context__.k.signature(), _s31 = __turbopack_context__.k.signature(), _s32 = __turbopack_context__.k.signature(), _s33 = __turbopack_context__.k.signature(), _s34 = __turbopack_context__.k.signature(), _s35 = __turbopack_context__.k.signature(), _s36 = __turbopack_context__.k.signature(), _s37 = __turbopack_context__.k.signature(), _s38 = __turbopack_context__.k.signature(), _s39 = __turbopack_context__.k.signature(), _s40 = __turbopack_context__.k.signature(), _s41 = __turbopack_context__.k.signature(), _s42 = __turbopack_context__.k.signature(), _s43 = __turbopack_context__.k.signature(), _s44 = __turbopack_context__.k.signature(), _s45 = __turbopack_context__.k.signature(), _s46 = __turbopack_context__.k.signature(), _s47 = __turbopack_context__.k.signature(), _s48 = __turbopack_context__.k.signature(), _s49 = __turbopack_context__.k.signature(), _s50 = __turbopack_context__.k.signature(), _s51 = __turbopack_context__.k.signature(), _s52 = __turbopack_context__.k.signature(), _s53 = __turbopack_context__.k.signature(), _s54 = __turbopack_context__.k.signature(), _s55 = __turbopack_context__.k.signature(), _s56 = __turbopack_context__.k.signature(), _s57 = __turbopack_context__.k.signature(), _s58 = __turbopack_context__.k.signature(), _s59 = __turbopack_context__.k.signature(), _s60 = __turbopack_context__.k.signature(), _s61 = __turbopack_context__.k.signature(), _s62 = __turbopack_context__.k.signature(), _s63 = __turbopack_context__.k.signature(), _s64 = __turbopack_context__.k.signature(), _s65 = __turbopack_context__.k.signature(), _s66 = __turbopack_context__.k.signature(), _s67 = __turbopack_context__.k.signature(), _s68 = __turbopack_context__.k.signature(), _s69 = __turbopack_context__.k.signature(), _s70 = __turbopack_context__.k.signature(), _s71 = __turbopack_context__.k.signature(), _s72 = __turbopack_context__.k.signature(), _s73 = __turbopack_context__.k.signature(), _s74 = __turbopack_context__.k.signature(), _s75 = __turbopack_context__.k.signature(), _s76 = __turbopack_context__.k.signature(), _s77 = __turbopack_context__.k.signature(), _s78 = __turbopack_context__.k.signature(), _s79 = __turbopack_context__.k.signature(), _s80 = __turbopack_context__.k.signature(), _s81 = __turbopack_context__.k.signature(), _s82 = __turbopack_context__.k.signature(), _s83 = __turbopack_context__.k.signature(), _s84 = __turbopack_context__.k.signature(), _s85 = __turbopack_context__.k.signature(), _s86 = __turbopack_context__.k.signature(), _s87 = __turbopack_context__.k.signature(), _s88 = __turbopack_context__.k.signature(), _s89 = __turbopack_context__.k.signature(), _s90 = __turbopack_context__.k.signature(), _s91 = __turbopack_context__.k.signature(), _s92 = __turbopack_context__.k.signature(), _s93 = __turbopack_context__.k.signature(), _s94 = __turbopack_context__.k.signature(), _s95 = __turbopack_context__.k.signature(), _s96 = __turbopack_context__.k.signature(), _s97 = __turbopack_context__.k.signature(), _s98 = __turbopack_context__.k.signature(), _s99 = __turbopack_context__.k.signature(), _s100 = __turbopack_context__.k.signature(), _s101 = __turbopack_context__.k.signature(), _s102 = __turbopack_context__.k.signature(), _s103 = __turbopack_context__.k.signature(), _s104 = __turbopack_context__.k.signature(), _s105 = __turbopack_context__.k.signature(), _s106 = __turbopack_context__.k.signature(), _s107 = __turbopack_context__.k.signature(), _s108 = __turbopack_context__.k.signature(), _s109 = __turbopack_context__.k.signature(), _s110 = __turbopack_context__.k.signature(), _s111 = __turbopack_context__.k.signature(), _s112 = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature(), _s3 = __turbopack_context__.k.signature(), _s4 = __turbopack_context__.k.signature(), _s5 = __turbopack_context__.k.signature(), _s6 = __turbopack_context__.k.signature(), _s7 = __turbopack_context__.k.signature(), _s8 = __turbopack_context__.k.signature(), _s9 = __turbopack_context__.k.signature(), _s10 = __turbopack_context__.k.signature(), _s11 = __turbopack_context__.k.signature(), _s12 = __turbopack_context__.k.signature(), _s13 = __turbopack_context__.k.signature(), _s14 = __turbopack_context__.k.signature(), _s15 = __turbopack_context__.k.signature(), _s16 = __turbopack_context__.k.signature(), _s17 = __turbopack_context__.k.signature(), _s18 = __turbopack_context__.k.signature(), _s19 = __turbopack_context__.k.signature(), _s20 = __turbopack_context__.k.signature(), _s21 = __turbopack_context__.k.signature(), _s22 = __turbopack_context__.k.signature(), _s23 = __turbopack_context__.k.signature(), _s24 = __turbopack_context__.k.signature(), _s25 = __turbopack_context__.k.signature(), _s26 = __turbopack_context__.k.signature(), _s27 = __turbopack_context__.k.signature(), _s28 = __turbopack_context__.k.signature(), _s29 = __turbopack_context__.k.signature(), _s30 = __turbopack_context__.k.signature(), _s31 = __turbopack_context__.k.signature(), _s32 = __turbopack_context__.k.signature(), _s33 = __turbopack_context__.k.signature(), _s34 = __turbopack_context__.k.signature(), _s35 = __turbopack_context__.k.signature(), _s36 = __turbopack_context__.k.signature(), _s37 = __turbopack_context__.k.signature(), _s38 = __turbopack_context__.k.signature(), _s39 = __turbopack_context__.k.signature(), _s40 = __turbopack_context__.k.signature(), _s41 = __turbopack_context__.k.signature(), _s42 = __turbopack_context__.k.signature(), _s43 = __turbopack_context__.k.signature(), _s44 = __turbopack_context__.k.signature(), _s45 = __turbopack_context__.k.signature(), _s46 = __turbopack_context__.k.signature(), _s47 = __turbopack_context__.k.signature(), _s48 = __turbopack_context__.k.signature(), _s49 = __turbopack_context__.k.signature(), _s50 = __turbopack_context__.k.signature(), _s51 = __turbopack_context__.k.signature(), _s52 = __turbopack_context__.k.signature(), _s53 = __turbopack_context__.k.signature(), _s54 = __turbopack_context__.k.signature(), _s55 = __turbopack_context__.k.signature(), _s56 = __turbopack_context__.k.signature(), _s57 = __turbopack_context__.k.signature(), _s58 = __turbopack_context__.k.signature(), _s59 = __turbopack_context__.k.signature(), _s60 = __turbopack_context__.k.signature(), _s61 = __turbopack_context__.k.signature(), _s62 = __turbopack_context__.k.signature(), _s63 = __turbopack_context__.k.signature(), _s64 = __turbopack_context__.k.signature(), _s65 = __turbopack_context__.k.signature(), _s66 = __turbopack_context__.k.signature(), _s67 = __turbopack_context__.k.signature(), _s68 = __turbopack_context__.k.signature(), _s69 = __turbopack_context__.k.signature(), _s70 = __turbopack_context__.k.signature(), _s71 = __turbopack_context__.k.signature(), _s72 = __turbopack_context__.k.signature(), _s73 = __turbopack_context__.k.signature(), _s74 = __turbopack_context__.k.signature(), _s75 = __turbopack_context__.k.signature(), _s76 = __turbopack_context__.k.signature(), _s77 = __turbopack_context__.k.signature(), _s78 = __turbopack_context__.k.signature(), _s79 = __turbopack_context__.k.signature(), _s80 = __turbopack_context__.k.signature(), _s81 = __turbopack_context__.k.signature(), _s82 = __turbopack_context__.k.signature(), _s83 = __turbopack_context__.k.signature(), _s84 = __turbopack_context__.k.signature(), _s85 = __turbopack_context__.k.signature(), _s86 = __turbopack_context__.k.signature(), _s87 = __turbopack_context__.k.signature(), _s88 = __turbopack_context__.k.signature(), _s89 = __turbopack_context__.k.signature(), _s90 = __turbopack_context__.k.signature(), _s91 = __turbopack_context__.k.signature(), _s92 = __turbopack_context__.k.signature(), _s93 = __turbopack_context__.k.signature(), _s94 = __turbopack_context__.k.signature(), _s95 = __turbopack_context__.k.signature(), _s96 = __turbopack_context__.k.signature(), _s97 = __turbopack_context__.k.signature(), _s98 = __turbopack_context__.k.signature(), _s99 = __turbopack_context__.k.signature(), _s100 = __turbopack_context__.k.signature(), _s101 = __turbopack_context__.k.signature(), _s102 = __turbopack_context__.k.signature(), _s103 = __turbopack_context__.k.signature(), _s104 = __turbopack_context__.k.signature(), _s105 = __turbopack_context__.k.signature(), _s106 = __turbopack_context__.k.signature(), _s107 = __turbopack_context__.k.signature(), _s108 = __turbopack_context__.k.signature(), _s109 = __turbopack_context__.k.signature(), _s110 = __turbopack_context__.k.signature(), _s111 = __turbopack_context__.k.signature(), _s112 = __turbopack_context__.k.signature(), _s113 = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
@@ -2658,7 +2660,10 @@ function useCreerCommande() {
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
-            "useCreerCommande.useMutation": (userId)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/commandes/creer", undefined, {
+            "useCreerCommande.useMutation": ({ userId, adresseLivraison, modePaiement })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/commandes/creer", {
+                    adresseLivraison,
+                    modePaiement
+                }, {
                     userId
                 })
         }["useCreerCommande.useMutation"],
@@ -2667,6 +2672,11 @@ function useCreerCommande() {
                 queryClient.invalidateQueries({
                     queryKey: [
                         "commandes"
+                    ]
+                });
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "commandesMerchant"
                     ]
                 });
             }
@@ -3712,6 +3722,11 @@ function useDeleteCommandeClient() {
                 queryClient.invalidateQueries({
                     queryKey: queryKeys.commandesClient
                 });
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "commandesMerchant"
+                    ]
+                });
             }
         }["useDeleteCommandeClient.useMutation"]
     });
@@ -3760,6 +3775,11 @@ function useExpedierCommande() {
                         "commandes"
                     ]
                 });
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "commandesMerchant"
+                    ]
+                });
             }
         }["useExpedierCommande.useMutation"]
     });
@@ -3770,80 +3790,115 @@ _s73(useExpedierCommande, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
-function useCommandesMerchant(merchantUserId) {
+function useUpdateCommandeStatus() {
     _s74();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useUpdateCommandeStatus.useMutation": ({ id, statut })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].put(`/commandes/${id}/statut`, {
+                    statut
+                })
+        }["useUpdateCommandeStatus.useMutation"],
+        onSuccess: {
+            "useUpdateCommandeStatus.useMutation": ()=>{
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "commandes"
+                    ]
+                });
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "commandesMerchant"
+                    ]
+                });
+            }
+        }["useUpdateCommandeStatus.useMutation"]
+    });
+}
+_s74(useUpdateCommandeStatus, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
+function useCommandesMerchant(merchantUserId) {
+    _s75();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "commandesMerchant",
             merchantUserId
         ],
         queryFn: {
-            "useCommandesMerchant.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/commandes/merchant", {
+            "useCommandesMerchant.useQuery": async ()=>{
+                const response = await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/commandes/merchant", {
                     merchantUserId
-                })
+                });
+                console.log('Merchant orders API response:', JSON.stringify(response, null, 2));
+                return response;
+            }
         }["useCommandesMerchant.useQuery"],
         enabled: !!merchantUserId
     });
 }
-_s74(useCommandesMerchant, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s75(useCommandesMerchant, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useLogin() {
-    _s75();
+    _s76();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useLogin.useMutation": (data)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/login", data)
         }["useLogin.useMutation"]
     });
 }
-_s75(useLogin, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s76(useLogin, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useRegister() {
-    _s76();
+    _s77();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useRegister.useMutation": (data)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/register", data)
         }["useRegister.useMutation"]
     });
 }
-_s76(useRegister, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s77(useRegister, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useVerifyOtp() {
-    _s77();
+    _s78();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useVerifyOtp.useMutation": (data)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/verify-otp", data)
         }["useVerifyOtp.useMutation"]
     });
 }
-_s77(useVerifyOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s78(useVerifyOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useRegisterOtp() {
-    _s78();
+    _s79();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useRegisterOtp.useMutation": (data)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/register-otp", data)
         }["useRegisterOtp.useMutation"]
     });
 }
-_s78(useRegisterOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s79(useRegisterOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useSendOtp() {
-    _s79();
+    _s80();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useSendOtp.useMutation": (email)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/send-otp", undefined, {
@@ -3852,13 +3907,13 @@ function useSendOtp() {
         }["useSendOtp.useMutation"]
     });
 }
-_s79(useSendOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s80(useSendOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useSendResetOtp() {
-    _s80();
+    _s81();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useSendResetOtp.useMutation": (email)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/send-reset-otp", undefined, {
@@ -3867,26 +3922,26 @@ function useSendResetOtp() {
         }["useSendResetOtp.useMutation"]
     });
 }
-_s80(useSendResetOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s81(useSendResetOtp, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useResetPassword() {
-    _s81();
+    _s82();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useResetPassword.useMutation": (data)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/reset-password", data)
         }["useResetPassword.useMutation"]
     });
 }
-_s81(useResetPassword, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s82(useResetPassword, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useIsAuthenticated(email) {
-    _s82();
+    _s83();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "isAuthenticated",
@@ -3900,13 +3955,13 @@ function useIsAuthenticated(email) {
         enabled: !!email
     });
 }
-_s82(useIsAuthenticated, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s83(useIsAuthenticated, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useProfile(email) {
-    _s83();
+    _s84();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.profile(email),
         queryFn: {
@@ -3917,13 +3972,13 @@ function useProfile(email) {
         enabled: !!email
     });
 }
-_s83(useProfile, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s84(useProfile, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function usePendingUsers() {
-    _s84();
+    _s85();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.pendingUsers,
         queryFn: {
@@ -3931,13 +3986,13 @@ function usePendingUsers() {
         }["usePendingUsers.useQuery"]
     });
 }
-_s84(usePendingUsers, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s85(usePendingUsers, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useAllUsers() {
-    _s85();
+    _s86();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.allUsers,
         queryFn: {
@@ -3945,13 +4000,13 @@ function useAllUsers() {
         }["useAllUsers.useQuery"]
     });
 }
-_s85(useAllUsers, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s86(useAllUsers, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useApproveUser() {
-    _s86();
+    _s87();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -3971,14 +4026,14 @@ function useApproveUser() {
         }["useApproveUser.useMutation"]
     });
 }
-_s86(useApproveUser, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s87(useApproveUser, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useRejectUser() {
-    _s87();
+    _s88();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -3998,14 +4053,14 @@ function useRejectUser() {
         }["useRejectUser.useMutation"]
     });
 }
-_s87(useRejectUser, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s88(useRejectUser, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useCategorie(id) {
-    _s88();
+    _s89();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "categorie",
@@ -4017,13 +4072,13 @@ function useCategorie(id) {
         enabled: id > 0
     });
 }
-_s88(useCategorie, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s89(useCategorie, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useAllCategories() {
-    _s89();
+    _s90();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "allCategories"
@@ -4033,13 +4088,13 @@ function useAllCategories() {
         }["useAllCategories.useQuery"]
     });
 }
-_s89(useAllCategories, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s90(useAllCategories, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useCreateCategorie() {
-    _s90();
+    _s91();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4059,14 +4114,14 @@ function useCreateCategorie() {
         }["useCreateCategorie.useMutation"]
     });
 }
-_s90(useCreateCategorie, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s91(useCreateCategorie, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useUpdateCategorie() {
-    _s91();
+    _s92();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4086,14 +4141,14 @@ function useUpdateCategorie() {
         }["useUpdateCategorie.useMutation"]
     });
 }
-_s91(useUpdateCategorie, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s92(useUpdateCategorie, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useDeleteCategorie() {
-    _s92();
+    _s93();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4113,14 +4168,14 @@ function useDeleteCategorie() {
         }["useDeleteCategorie.useMutation"]
     });
 }
-_s92(useDeleteCategorie, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s93(useDeleteCategorie, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useMerchantProduits(merchantUserId) {
-    _s93();
+    _s94();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.merchantProduits(merchantUserId),
         queryFn: {
@@ -4131,13 +4186,13 @@ function useMerchantProduits(merchantUserId) {
         enabled: !!merchantUserId
     });
 }
-_s93(useMerchantProduits, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s94(useMerchantProduits, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useAjouterProduitMerchant() {
-    _s94();
+    _s95();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4184,14 +4239,14 @@ function useAjouterProduitMerchant() {
         }["useAjouterProduitMerchant.useMutation"]
     });
 }
-_s94(useAjouterProduitMerchant, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s95(useAjouterProduitMerchant, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useModifierVisibiliteProduit() {
-    _s95();
+    _s96();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4211,14 +4266,14 @@ function useModifierVisibiliteProduit() {
         }["useModifierVisibiliteProduit.useMutation"]
     });
 }
-_s95(useModifierVisibiliteProduit, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s96(useModifierVisibiliteProduit, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useMerchantArticles(userId) {
-    _s96();
+    _s97();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.merchantArticles(userId),
         queryFn: {
@@ -4229,13 +4284,13 @@ function useMerchantArticles(userId) {
         enabled: !!userId
     });
 }
-_s96(useMerchantArticles, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s97(useMerchantArticles, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useMerchantStockFaible(userId) {
-    _s97();
+    _s98();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "merchantStockFaible",
@@ -4249,13 +4304,13 @@ function useMerchantStockFaible(userId) {
         enabled: !!userId
     });
 }
-_s97(useMerchantStockFaible, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s98(useMerchantStockFaible, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useAjouterArticleMerchant() {
-    _s98();
+    _s99();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4274,14 +4329,14 @@ function useAjouterArticleMerchant() {
         }["useAjouterArticleMerchant.useMutation"]
     });
 }
-_s98(useAjouterArticleMerchant, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s99(useAjouterArticleMerchant, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useAjusterStockMerchant() {
-    _s99();
+    _s100();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4302,14 +4357,14 @@ function useAjusterStockMerchant() {
         }["useAjusterStockMerchant.useMutation"]
     });
 }
-_s99(useAjusterStockMerchant, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s100(useAjusterStockMerchant, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useSupplierArticles(userId) {
-    _s100();
+    _s101();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.supplierArticles(userId),
         queryFn: {
@@ -4320,13 +4375,13 @@ function useSupplierArticles(userId) {
         enabled: !!userId
     });
 }
-_s100(useSupplierArticles, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s101(useSupplierArticles, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useAjouterArticleSupplier() {
-    _s101();
+    _s102();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4345,14 +4400,14 @@ function useAjouterArticleSupplier() {
         }["useAjouterArticleSupplier.useMutation"]
     });
 }
-_s101(useAjouterArticleSupplier, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s102(useAjouterArticleSupplier, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useAjusterStockSupplier() {
-    _s102();
+    _s103();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4373,14 +4428,14 @@ function useAjusterStockSupplier() {
         }["useAjusterStockSupplier.useMutation"]
     });
 }
-_s102(useAjusterStockSupplier, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s103(useAjusterStockSupplier, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useSupplierCommandesMerchants(userId) {
-    _s103();
+    _s104();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.supplierCommandes(userId),
         queryFn: {
@@ -4391,13 +4446,13 @@ function useSupplierCommandesMerchants(userId) {
         enabled: !!userId
     });
 }
-_s103(useSupplierCommandesMerchants, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s104(useSupplierCommandesMerchants, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function usePubliciteProduitsEnAvant() {
-    _s104();
+    _s105();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "publiciteProduitsEnAvant"
@@ -4407,13 +4462,13 @@ function usePubliciteProduitsEnAvant() {
         }["usePubliciteProduitsEnAvant.useQuery"]
     });
 }
-_s104(usePubliciteProduitsEnAvant, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s105(usePubliciteProduitsEnAvant, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function usePubliciteProduitsEnAvantParType(type) {
-    _s105();
+    _s106();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "publiciteProduitsEnAvant",
@@ -4425,13 +4480,13 @@ function usePubliciteProduitsEnAvantParType(type) {
         enabled: !!type
     });
 }
-_s105(usePubliciteProduitsEnAvantParType, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s106(usePubliciteProduitsEnAvantParType, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useCalculerTarif(type, periode) {
-    _s106();
+    _s107();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "tarif",
@@ -4447,39 +4502,39 @@ function useCalculerTarif(type, periode) {
         enabled: !!type && !!periode
     });
 }
-_s106(useCalculerTarif, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s107(useCalculerTarif, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useIncrementerVues() {
-    _s107();
+    _s108();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useIncrementerVues.useMutation": (campagneId)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post(`/api/publicite/campagne/${campagneId}/vue`)
         }["useIncrementerVues.useMutation"]
     });
 }
-_s107(useIncrementerVues, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s108(useIncrementerVues, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useIncrementerClics() {
-    _s108();
+    _s109();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useIncrementerClics.useMutation": (campagneId)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post(`/api/publicite/campagne/${campagneId}/clic`)
         }["useIncrementerClics.useMutation"]
     });
 }
-_s108(useIncrementerClics, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s109(useIncrementerClics, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useMesCampagnes(userId) {
-    _s109();
+    _s110();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: queryKeys.campagnes(userId),
         queryFn: {
@@ -4490,13 +4545,13 @@ function useMesCampagnes(userId) {
         enabled: !!userId
     });
 }
-_s109(useMesCampagnes, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s110(useMesCampagnes, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useMerchantCalculerTarif(type, periode) {
-    _s110();
+    _s111();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
         queryKey: [
             "merchantTarif",
@@ -4512,13 +4567,13 @@ function useMerchantCalculerTarif(type, periode) {
         enabled: !!type && !!periode
     });
 }
-_s110(useMerchantCalculerTarif, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+_s111(useMerchantCalculerTarif, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
 function useCreerCampagne() {
-    _s111();
+    _s112();
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
@@ -4537,21 +4592,21 @@ function useCreerCampagne() {
         }["useCreerCampagne.useMutation"]
     });
 }
-_s111(useCreerCampagne, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+_s112(useCreerCampagne, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 function useAddRole() {
-    _s112();
+    _s113();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: {
             "useAddRole.useMutation": (name)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/roles", name)
         }["useAddRole.useMutation"]
     });
 }
-_s112(useAddRole, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
+_s113(useAddRole, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
@@ -4675,7 +4730,18 @@ function CheckoutModal({ isOpen, onClose }) {
             return;
         }
         setIsSubmitting(true);
-        creerCommande(user.userId, {
+        creerCommande({
+            userId: user.userId,
+            adresseLivraison: {
+                nom: formData.lastName,
+                prenom: formData.firstName,
+                telephone: formData.phone,
+                adresse: formData.address,
+                ville: formData.city,
+                codePostal: formData.postalCode
+            },
+            modePaiement: formData.paymentMethod
+        }, {
             onSuccess: (response)=>{
                 toast({
                     title: "Commande confirmée !",
@@ -4707,12 +4773,12 @@ function CheckoutModal({ isOpen, onClose }) {
                         children: "Confirmation de la commande"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                        lineNumber: 133,
+                        lineNumber: 144,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                    lineNumber: 132,
+                    lineNumber: 143,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4730,12 +4796,12 @@ function CheckoutModal({ isOpen, onClose }) {
                                             children: errors.submit
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                            lineNumber: 141,
+                                            lineNumber: 152,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 151,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4746,7 +4812,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                 children: "Informations de livraison"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 157,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4760,7 +4826,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Prénom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 150,
+                                                                lineNumber: 161,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4772,7 +4838,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "Votre prénom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 151,
+                                                                lineNumber: 162,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.firstName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4780,13 +4846,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.firstName
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 159,
+                                                                lineNumber: 170,
                                                                 columnNumber: 42
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 149,
+                                                        lineNumber: 160,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4797,7 +4863,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Nom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 162,
+                                                                lineNumber: 173,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4809,7 +4875,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "Votre nom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 163,
+                                                                lineNumber: 174,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.lastName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4817,19 +4883,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.lastName
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 171,
+                                                                lineNumber: 182,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 161,
+                                                        lineNumber: 172,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 148,
+                                                lineNumber: 159,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4843,7 +4909,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Email"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 177,
+                                                                lineNumber: 188,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4856,7 +4922,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "exemple@email.com"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 178,
+                                                                lineNumber: 189,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.email && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4864,13 +4930,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.email
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 187,
+                                                                lineNumber: 198,
                                                                 columnNumber: 38
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 176,
+                                                        lineNumber: 187,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4881,7 +4947,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Téléphone"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 190,
+                                                                lineNumber: 201,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4893,7 +4959,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "+237 6 XX XX XX XX"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 191,
+                                                                lineNumber: 202,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.phone && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4901,19 +4967,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.phone
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 199,
+                                                                lineNumber: 210,
                                                                 columnNumber: 38
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 189,
+                                                        lineNumber: 200,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 175,
+                                                lineNumber: 186,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4924,7 +4990,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: "Adresse"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 204,
+                                                        lineNumber: 215,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4936,7 +5002,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         placeholder: "Rue, bâtiment, etc."
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 205,
+                                                        lineNumber: 216,
                                                         columnNumber: 19
                                                     }, this),
                                                     errors.address && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4944,13 +5010,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: errors.address
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 213,
+                                                        lineNumber: 224,
                                                         columnNumber: 38
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 203,
+                                                lineNumber: 214,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4964,7 +5030,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Ville"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 218,
+                                                                lineNumber: 229,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
@@ -4977,12 +5043,12 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
                                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
                                                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                            lineNumber: 224,
+                                                                            lineNumber: 235,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 223,
+                                                                        lineNumber: 234,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4991,18 +5057,18 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                                 children: city
                                                                             }, city, false, {
                                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                                lineNumber: 228,
+                                                                                lineNumber: 239,
                                                                                 columnNumber: 27
                                                                             }, this))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 226,
+                                                                        lineNumber: 237,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 219,
+                                                                lineNumber: 230,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.city && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5010,13 +5076,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.city
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 234,
+                                                                lineNumber: 245,
                                                                 columnNumber: 37
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 228,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5027,7 +5093,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Code postal"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 237,
+                                                                lineNumber: 248,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -5038,32 +5104,32 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "Code postal (optionnel)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 238,
+                                                                lineNumber: 249,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 236,
+                                                        lineNumber: 247,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 216,
+                                                lineNumber: 227,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 156,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "border-t border-border my-6"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 249,
+                                        lineNumber: 260,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5076,14 +5142,14 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         className: "h-5 w-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 253,
+                                                        lineNumber: 264,
                                                         columnNumber: 19
                                                     }, this),
                                                     "Méthode de paiement"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 252,
+                                                lineNumber: 263,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$radio$2d$group$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["RadioGroup"], {
@@ -5101,7 +5167,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 id: "cash"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 261,
+                                                                lineNumber: 272,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
@@ -5113,7 +5179,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Paiement à la livraison"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 263,
+                                                                        lineNumber: 274,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5121,19 +5187,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Payez en espèces lors de la livraison"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 264,
+                                                                        lineNumber: 275,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 262,
+                                                                lineNumber: 273,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 260,
+                                                        lineNumber: 271,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5145,7 +5211,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 disabled: true
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 268,
+                                                                lineNumber: 279,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
@@ -5157,7 +5223,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Carte bancaire"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 270,
+                                                                        lineNumber: 281,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5165,31 +5231,31 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Indisponible pour le moment"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 271,
+                                                                        lineNumber: 282,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 269,
+                                                                lineNumber: 280,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 267,
+                                                        lineNumber: 278,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 256,
+                                                lineNumber: 267,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 251,
+                                        lineNumber: 262,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -5203,7 +5269,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     className: "mr-2 h-4 w-4 animate-spin"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 280,
+                                                    lineNumber: 291,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Création de la commande..."
@@ -5214,7 +5280,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     className: "mr-2 h-4 w-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 285,
+                                                    lineNumber: 296,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Confirmer la commande (",
@@ -5224,18 +5290,18 @@ function CheckoutModal({ isOpen, onClose }) {
                                         }, void 0, true)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 277,
+                                        lineNumber: 288,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                lineNumber: 138,
+                                lineNumber: 149,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                            lineNumber: 137,
+                            lineNumber: 148,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5248,7 +5314,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                         children: "Résumé de la commande"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 295,
+                                        lineNumber: 306,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5263,7 +5329,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: item.articleNom
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 301,
+                                                                lineNumber: 312,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5274,13 +5340,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 302,
+                                                                lineNumber: 313,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 300,
+                                                        lineNumber: 311,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5291,25 +5357,25 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 304,
+                                                        lineNumber: 315,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, item.articleId, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 299,
+                                                lineNumber: 310,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 297,
+                                        lineNumber: 308,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "border-t border-border mb-4"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 309,
+                                        lineNumber: 320,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5323,7 +5389,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: "Sous-total"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 313,
+                                                        lineNumber: 324,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5333,13 +5399,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 314,
+                                                        lineNumber: 325,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 312,
+                                                lineNumber: 323,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5350,7 +5416,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: "Livraison"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 317,
+                                                        lineNumber: 328,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5358,19 +5424,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: shippingCost === 0 ? "Gratuite" : `${shippingCost.toLocaleString()} FCFA`
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 318,
+                                                        lineNumber: 329,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 316,
+                                                lineNumber: 327,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 311,
+                                        lineNumber: 322,
                                         columnNumber: 15
                                     }, this),
                                     shippingCost > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5378,7 +5444,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                         children: "Livraison gratuite à partir de 50 000 FCFA"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 325,
+                                        lineNumber: 336,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5390,7 +5456,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     children: "Total"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 332,
+                                                    lineNumber: 343,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5401,46 +5467,46 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 333,
+                                                    lineNumber: 344,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                            lineNumber: 331,
+                                            lineNumber: 342,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 330,
+                                        lineNumber: 341,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                lineNumber: 294,
+                                lineNumber: 305,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                            lineNumber: 293,
+                            lineNumber: 304,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                    lineNumber: 136,
+                    lineNumber: 147,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-            lineNumber: 131,
+            lineNumber: 142,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-        lineNumber: 130,
+        lineNumber: 141,
         columnNumber: 5
     }, this);
 }
@@ -5561,7 +5627,7 @@ function HomePage() {
     const { data: apiProducts, isLoading, error } = useEcommerceProducts();
     const [isCheckoutOpen, setIsCheckoutOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     console.log('HomePage - Auth state:', {
-        user,
+        user: user ? 'logged in' : 'not logged in',
         isAuthenticated
     });
     const products = apiProducts || [];

@@ -23,9 +23,16 @@ public class PanierController {
     public ResponseEntity<PanierDto> getPanier(
             @RequestParam(required = false) String userEmail,
             @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
-        String userId = userEmail != null ? userEmail : currentUser;
-        PanierDto panier = panierService.getPanier(userId);
-        return ResponseEntity.ok(panier);
+        try {
+            String userId = userEmail != null ? userEmail : currentUser;
+            if (userId == null || userId.trim().isEmpty()) {
+                return ResponseEntity.ok(PanierDto.builder().items(java.util.List.of()).totalItems(0).montantTotal(java.math.BigDecimal.ZERO).build());
+            }
+            PanierDto panier = panierService.getPanier(userId);
+            return ResponseEntity.ok(panier);
+        } catch (Exception e) {
+            return ResponseEntity.ok(PanierDto.builder().items(java.util.List.of()).totalItems(0).montantTotal(java.math.BigDecimal.ZERO).build());
+        }
     }
     
     @PostMapping("/ajouter")
@@ -34,20 +41,18 @@ public class PanierController {
             @RequestParam(required = false) String userEmail,
             @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
         try {
-            System.out.println("=== DEBUG PANIER AJOUTER ===");
-            System.out.println("userEmail param: " + userEmail);
-            System.out.println("currentUser: " + currentUser);
-            System.out.println("request: " + request);
-            
             String userId = userEmail != null ? userEmail : currentUser;
-            System.out.println("userId final: " + userId);
+            
+            if (userId == null || userId.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(ApiResponse.error("Utilisateur non authentifié"));
+            }
             
             PanierDto panier = panierService.ajouterArticle(userId, request.getArticleId(), request.getQuantite());
-            return ResponseEntity.ok(ApiResponse.success("Article ajouté", panier));
-        } catch (Exception e) {
-            System.out.println("Erreur dans ajouterArticle: " + e.getMessage());
-            e.printStackTrace();
+            return ResponseEntity.ok(ApiResponse.success("Article ajouté au panier", panier));
+        } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error("Erreur interne du serveur"));
         }
     }
     
@@ -58,10 +63,17 @@ public class PanierController {
             @CurrentSecurityContext(expression = "authentication?.name") String currentUser) {
         try {
             String userId = userEmail != null ? userEmail : currentUser;
+            
+            if (userId == null || userId.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body(ApiResponse.error("Utilisateur non authentifié"));
+            }
+            
             PanierDto panier = panierService.modifierQuantite(userId, request.getArticleId(), request.getQuantite());
             return ResponseEntity.ok(ApiResponse.success("Quantité modifiée", panier));
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(ApiResponse.error("Erreur interne du serveur"));
         }
     }
     

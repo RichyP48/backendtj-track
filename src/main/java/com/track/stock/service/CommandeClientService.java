@@ -16,12 +16,30 @@ public class CommandeClientService {
     private final CommandeClientRepository commandeClientRepository;
     
     public List<CommandeClient> findAll() {
-        return commandeClientRepository.findAll();
+        List<CommandeClient> commandes = commandeClientRepository.findAll();
+        
+        // Calculer les totaux pour chaque commande si nécessaire
+        commandes.forEach(commande -> {
+            if (commande.getTotalHt() == null || commande.getTotalTtc() == null) {
+                commande.calculerTotaux();
+                commandeClientRepository.save(commande);
+            }
+        });
+        
+        return commandes;
     }
     
     public CommandeClient findById(Long id) {
-        return commandeClientRepository.findById(id)
+        CommandeClient commande = commandeClientRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Commande client non trouvée"));
+        
+        // Calculer les totaux si ils sont null
+        if (commande.getTotalHt() == null || commande.getTotalTtc() == null) {
+            commande.calculerTotaux();
+            commande = commandeClientRepository.save(commande);
+        }
+        
+        return commande;
     }
     
     public CommandeClient findByCode(String code) {
@@ -31,6 +49,9 @@ public class CommandeClientService {
     
     @Transactional
     public CommandeClient save(CommandeClient commande) {
+        // Calculer les totaux avant sauvegarde
+        commande.calculerTotaux();
+        
         CommandeClient savedCommande = commandeClientRepository.save(commande);
         
         // Process stock movements for order lines
@@ -61,4 +82,13 @@ public class CommandeClientService {
         CommandeClient commande = findById(commandeId);
         return commande.getLigneCommandeClients();
     }
+    
+    @Transactional
+    public CommandeClient calculerEtSauvegarderTotaux(Long commandeId) {
+        CommandeClient commande = findById(commandeId);
+        commande.calculerTotaux();
+        return commandeClientRepository.save(commande);
+    }
+    
+
 }

@@ -30,18 +30,18 @@ public class PanierService {
     private final UserRepository userRepository;
     
     public PanierDto ajouterArticle(String userEmail, Long articleId, Integer quantite) {
-        System.out.println("=== PanierService.ajouterArticle ===");
-        System.out.println("userEmail: " + userEmail);
-        System.out.println("articleId: " + articleId);
-        System.out.println("quantite: " + quantite);
+        if (userEmail == null || userEmail.trim().isEmpty()) {
+            throw new RuntimeException("Email utilisateur requis");
+        }
+        if (articleId == null || articleId <= 0) {
+            throw new RuntimeException("ID article invalide");
+        }
+        if (quantite == null || quantite <= 0) {
+            throw new RuntimeException("Quantité invalide");
+        }
         
         Article article = articleRepository.findById(articleId)
-                .orElseThrow(() -> new RuntimeException("Article non trouvé"));
-        
-        // Vérification ET réservation atomique du stock
-        if (article.getStockDisponible() < quantite) {
-            throw new RuntimeException("Stock disponible insuffisant");
-        }
+                .orElseThrow(() -> new RuntimeException("Article non trouvé avec l'ID: " + articleId));
         
         Panier panier = obtenirOuCreerPanier(userEmail);
         
@@ -49,8 +49,18 @@ public class PanierService {
                 .findByPanierIdAndArticleId(panier.getId(), articleId)
                 .orElse(null);
         
+        int quantiteTotale = quantite;
         if (existingItem != null) {
-            existingItem.setQuantite(existingItem.getQuantite() + quantite);
+            quantiteTotale += existingItem.getQuantite();
+        }
+        
+        // Vérification stock avec quantité totale
+        if (article.getQuantiteStock() < quantiteTotale) {
+            throw new RuntimeException("Stock insuffisant. Disponible: " + article.getQuantiteStock() + ", Demandé: " + quantiteTotale);
+        }
+        
+        if (existingItem != null) {
+            existingItem.setQuantite(quantiteTotale);
             panierItemRepository.save(existingItem);
         } else {
             PanierItem newItem = PanierItem.builder()
@@ -60,24 +70,21 @@ public class PanierService {
                     .prixUnitaire(article.getPrixUnitaireTtc())
                     .build();
             panierItemRepository.save(newItem);
-            
-            // Réserver temporairement le stock (session panier)
-            // inventoryService.reserverStock(articleId, quantite);
         }
         
         return getPanier(userEmail);
     }
     
     public PanierDto modifierQuantite(String userEmail, Long articleId, Integer nouvelleQuantite) {
-        if (nouvelleQuantite <= 0) {
+        if (nouvelleQuantite == null || nouvelleQuantite <= 0) {
             return supprimerArticle(userEmail, articleId);
         }
         
         Article article = articleRepository.findById(articleId)
-                .orElseThrow(() -> new RuntimeException("Article non trouvé"));
+                .orElseThrow(() -> new RuntimeException("Article non trouvé avec l'ID: " + articleId));
         
         if (article.getQuantiteStock() < nouvelleQuantite) {
-            throw new RuntimeException("Stock insuffisant");
+            throw new RuntimeException("Stock insuffisant. Disponible: " + article.getQuantiteStock() + ", Demandé: " + nouvelleQuantite);
         }
         
         Panier panier = obtenirOuCreerPanier(userEmail);
@@ -123,38 +130,30 @@ public class PanierService {
     }
     
     private Panier obtenirOuCreerPanier(String userEmail) {
-        System.out.println("obtenirOuCreerPanier pour: " + userEmail);
+        if (userEmail == null || userEmail.trim().isEmpty()) {
+            throw new RuntimeException("Email utilisateur requis");
+        }
         
         try {
             Optional<Panier> existingPanier = panierRepository.findByUserEmail(userEmail);
-            System.out.println("Recherche panier existant: " + existingPanier.isPresent());
             
             return existingPanier.orElseGet(() -> {
-                System.out.println("Panier non trouvé, création d'un nouveau panier");
-                
                 Optional<UserEntity> userOpt = userRepository.findByEmail(userEmail);
-                System.out.println("Recherche utilisateur: " + userOpt.isPresent());
                 
                 if (!userOpt.isPresent()) {
-                    System.out.println("Utilisateur non trouvé pour email: " + userEmail);
                     throw new RuntimeException("Utilisateur non trouvé pour email: " + userEmail);
                 }
                 
                 UserEntity user = userOpt.get();
-                System.out.println("Utilisateur trouvé: " + user.getEmail() + ", ID: " + user.getId());
                 
                 Panier nouveauPanier = Panier.builder()
                         .user(user)
                         .build();
                         
-                Panier savedPanier = panierRepository.save(nouveauPanier);
-                System.out.println("Nouveau panier créé avec ID: " + savedPanier.getId());
-                return savedPanier;
+                return panierRepository.save(nouveauPanier);
             });
         } catch (Exception e) {
-            System.out.println("Erreur dans obtenirOuCreerPanier: " + e.getMessage());
-            e.printStackTrace();
-            throw e;
+            throw new RuntimeException("Erreur lors de la récupération/création du panier: " + e.getMessage(), e);
         }
     }
     

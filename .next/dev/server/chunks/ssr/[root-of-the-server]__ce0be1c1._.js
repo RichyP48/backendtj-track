@@ -172,7 +172,7 @@ function AuthProvider({ children }) {
     }, []);
     // Debug: Log user state changes
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
-        console.log('Auth state changed - user:', user, 'isAuthenticated:', !!user);
+        console.log('Auth state changed - user:', user ? 'logged in' : 'not logged in', 'isAuthenticated:', !!user);
     }, [
         user
     ]);
@@ -337,8 +337,24 @@ function CartProvider({ children }) {
                 setLocalItems([]);
             }
         } catch (error) {
-            console.error('Erreur chargement panier:', error);
-            setLocalItems([]);
+            // If user not found (400 error), work offline
+            if (error?.message?.includes('400')) {
+                console.warn('User not found in database, working offline');
+                setLocalItems([]);
+                return;
+            }
+            console.warn('Backend non disponible, utilisation du cache local:', error);
+            try {
+                const cached = localStorage.getItem(LOCAL_CART_KEY);
+                if (cached) {
+                    const cachedItems = JSON.parse(cached);
+                    setLocalItems(cachedItems);
+                } else {
+                    setLocalItems([]);
+                }
+            } catch  {
+                setLocalItems([]);
+            }
         } finally{
             setIsLoading(false);
         }
@@ -370,9 +386,18 @@ function CartProvider({ children }) {
     const montantHT = totalAmount * 0.8095;
     const montantTVA = totalAmount * 0.1905;
     const addItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (articleIdOrItem, quantite, productInfo)=>{
+        if (!isAuthenticated || !user?.email) {
+            throw new Error('Vous devez être connecté pour ajouter au panier');
+        }
         // Handle object parameter (PanierItemDto)
         if (typeof articleIdOrItem === 'object') {
             const item = articleIdOrItem;
+            if (!item.articleId || !item.quantite || !item.prixUnitaire) {
+                throw new Error('Données article incomplètes');
+            }
+            const previousItems = [
+                ...localItems
+            ];
             setLocalItems((prev)=>{
                 const existingIndex = prev.findIndex((i)=>i.articleId === item.articleId);
                 if (existingIndex >= 0) {
@@ -395,13 +420,45 @@ function CartProvider({ children }) {
                     }
                 ];
             });
+            try {
+                const request = {
+                    articleId: item.articleId,
+                    quantite: item.quantite
+                };
+                await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/panier/ajouter", request, {
+                    userEmail: user.email
+                });
+            } catch (error) {
+                if (error?.message?.includes('400')) {
+                    console.warn('User not found, working offline');
+                    return; // Keep local changes
+                }
+                console.error('Erreur ajout panier:', error);
+                setLocalItems(previousItems);
+                throw error;
+            }
             return;
         }
         // Handle separate parameters
         const articleId = articleIdOrItem;
-        if (!quantite || !productInfo) {
-            throw new Error("Quantity and product info required");
+        if (!quantite || !productInfo || quantite <= 0) {
+            throw new Error("Quantité et informations produit requises");
         }
+        const previousItems = [
+            ...localItems
+        ];
+        const newItem = {
+            id: Date.now(),
+            articleId,
+            articleCode: `ART-${articleId}`,
+            articleNom: productInfo.name,
+            articlePhoto: productInfo.image,
+            quantite,
+            prixUnitaire: productInfo.price,
+            sousTotal: quantite * productInfo.price,
+            stockDisponible: 100,
+            disponible: true
+        };
         setLocalItems((prev)=>{
             const existingIndex = prev.findIndex((i)=>i.articleId === articleId);
             if (existingIndex >= 0) {
@@ -418,82 +475,86 @@ function CartProvider({ children }) {
             }
             return [
                 ...prev,
-                {
-                    id: Date.now(),
-                    articleId,
-                    articleCode: `ART-${articleId}`,
-                    articleNom: productInfo.name,
-                    articlePhoto: productInfo.image,
-                    quantite,
-                    prixUnitaire: productInfo.price,
-                    sousTotal: quantite * productInfo.price,
-                    stockDisponible: 100,
-                    disponible: true
-                }
+                newItem
             ];
         });
-        if (isAuthenticated && user?.email) {
-            try {
-                const request = {
-                    articleId,
-                    quantite
-                };
-                await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/panier/ajouter", request, {
-                    userEmail: user.email
-                });
-            } catch (error) {
-                console.error('Erreur ajout panier:', error);
-                // Revert local changes on API failure
-                setLocalItems((prev)=>prev.filter((item)=>item.articleId !== articleId));
-                throw error;
+        try {
+            const request = {
+                articleId,
+                quantite
+            };
+            await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/panier/ajouter", request, {
+                userEmail: user.email
+            });
+        } catch (error) {
+            if (error?.message?.includes('400')) {
+                console.warn('User not found, working offline');
+                return; // Keep local changes
             }
-        } else {
-            throw new Error('Vous devez être connecté pour ajouter au panier');
+            console.error('Erreur ajout panier:', error);
+            setLocalItems(previousItems);
+            throw error;
         }
     }, [
         isAuthenticated,
-        user?.email
+        user?.email,
+        localItems
+    ]);
+    const removeItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (articleId)=>{
+        if (!isAuthenticated || !user?.email) {
+            throw new Error('Vous devez être connecté');
+        }
+        const previousItems = [
+            ...localItems
+        ];
+        setLocalItems((prev)=>prev.filter((i)=>i.articleId !== articleId));
+        try {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].delete(`/panier/supprimer/${articleId}`, {
+                userEmail: user.email
+            });
+        } catch (error) {
+            console.error('Erreur suppression article:', error);
+            setLocalItems(previousItems);
+            throw error;
+        }
+    }, [
+        isAuthenticated,
+        user?.email,
+        localItems
     ]);
     const updateQuantity = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (articleId, quantite)=>{
         if (quantite <= 0) {
             return removeItem(articleId);
         }
+        if (!isAuthenticated || !user?.email) {
+            throw new Error('Vous devez être connecté');
+        }
+        const previousItems = [
+            ...localItems
+        ];
         setLocalItems((prev)=>prev.map((item)=>item.articleId === articleId ? {
                     ...item,
                     quantite,
                     sousTotal: quantite * item.prixUnitaire
                 } : item));
-        if (isAuthenticated && user?.email) {
-            try {
-                const request = {
-                    articleId,
-                    quantite
-                };
-                await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].put("/panier/modifier", request, {
-                    userEmail: user.email
-                });
-            } catch (error) {
-            // API sync failed
-            }
+        try {
+            const request = {
+                articleId,
+                quantite
+            };
+            await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].put("/panier/modifier", request, {
+                userEmail: user.email
+            });
+        } catch (error) {
+            console.error('Erreur modification quantité:', error);
+            setLocalItems(previousItems);
+            throw error;
         }
     }, [
         isAuthenticated,
-        user?.email
-    ]);
-    const removeItem = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (articleId)=>{
-        setLocalItems((prev)=>prev.filter((i)=>i.articleId !== articleId));
-        if (isAuthenticated && user?.email) {
-            try {
-                await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].delete(`/panier/supprimer/${articleId}`, {
-                    userEmail: user.email
-                });
-            } catch (error) {
-            // API sync failed
-            }
-        }
-    }, [
-        isAuthenticated,
-        user?.email
+        user?.email,
+        localItems,
+        removeItem
     ]);
     const clearCart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async ()=>{
         setLocalItems([]);
@@ -535,7 +596,7 @@ function CartProvider({ children }) {
         children: children
     }, void 0, false, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/contexts/cart-context.tsx",
-        lineNumber: 224,
+        lineNumber: 271,
         columnNumber: 5
     }, this);
 }
@@ -1245,7 +1306,7 @@ function Providers({ children }) {
                             children,
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$toaster$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Toaster"], {}, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/providers.tsx",
-                                lineNumber: 20,
+                                lineNumber: 21,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Toaster"], {
@@ -1253,34 +1314,34 @@ function Providers({ children }) {
                                 richColors: true
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/providers.tsx",
-                                lineNumber: 21,
+                                lineNumber: 22,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/providers.tsx",
-                        lineNumber: 18,
+                        lineNumber: 19,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/providers.tsx",
-                    lineNumber: 17,
+                    lineNumber: 18,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/providers.tsx",
-                lineNumber: 16,
+                lineNumber: 17,
                 columnNumber: 7
             }, this),
             ("TURBOPACK compile-time value", "development") === 'development' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2d$devtools$2f$build$2f$modern$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ReactQueryDevtools"], {}, void 0, false, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/providers.tsx",
-                lineNumber: 25,
+                lineNumber: 26,
                 columnNumber: 50
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/providers.tsx",
-        lineNumber: 15,
+        lineNumber: 16,
         columnNumber: 5
     }, this);
 }

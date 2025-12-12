@@ -45,7 +45,7 @@ export default function AdminValidationsPage() {
     if (!selectedUser) return
     try {
       await rejectUserMutation.mutateAsync({
-        userId: (selectedUser.id as string) || (selectedUser.email as string),
+        userId: String(selectedUser.id || selectedUser.email),
         rejectedBy: user?.email || "admin",
       })
       toast({
@@ -148,7 +148,7 @@ export default function AdminValidationsPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {pendingUsers.map((pendingUser) => (
             <Card
-              key={pendingUser.id || pendingUser.email}
+              key={String(pendingUser.id || pendingUser.email)}
               className="glass-card hover:border-primary/50 transition-colors"
             >
               <CardHeader className="pb-2">
@@ -158,27 +158,27 @@ export default function AdminValidationsPage() {
                     {pendingUser.role === "COMMERCANT" ? "Commerçant" : "Fournisseur"}
                   </Badge>
                   <span className="text-xs text-muted-foreground">
-                    {pendingUser.createdAt ? new Date(pendingUser.createdAt).toLocaleDateString("fr-FR") : "N/A"}
+                    {pendingUser.createdAt ? new Date(String(pendingUser.createdAt)).toLocaleDateString("fr-FR") : "N/A"}
                   </span>
                 </div>
-                <CardTitle className="text-lg mt-2">{pendingUser.shopName || pendingUser.name || "N/A"}</CardTitle>
+                <CardTitle className="text-lg mt-2">{String(pendingUser.shopName || pendingUser.name || "N/A")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Mail className="h-4 w-4" />
-                    <span>{pendingUser.email}</span>
+                    <span>{String(pendingUser.email || "")}</span>
                   </div>
                   {pendingUser.phone && (
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Phone className="h-4 w-4" />
-                      <span>{pendingUser.phone}</span>
+                      <span>{String(pendingUser.phone || "")}</span>
                     </div>
                   )}
                   {pendingUser.town && (
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <MapPin className="h-4 w-4" />
-                      <span>{pendingUser.town}</span>
+                      <span>{String(pendingUser.town || "")}</span>
                     </div>
                   )}
                 </div>
@@ -197,7 +197,7 @@ export default function AdminValidationsPage() {
                   </Button>
                   <Button
                     className="flex-1 gradient-primary text-white"
-                    onClick={() => handleApprove((pendingUser.id as string) || pendingUser.email)}
+                    onClick={() => handleApprove(String(pendingUser.id || pendingUser.email))}
                     disabled={approveUserMutation.isPending}
                   >
                     {approveUserMutation.isPending ? (
@@ -222,8 +222,8 @@ export default function AdminValidationsPage() {
           </DialogHeader>
           <div className="space-y-4">
             <div className="p-3 rounded-lg bg-muted">
-              <p className="font-medium">{(selectedUser?.shopName as string) || (selectedUser?.name as string)}</p>
-              <p className="text-sm text-muted-foreground">{selectedUser?.email as string}</p>
+              <p className="font-medium">{String(selectedUser?.shopName || selectedUser?.name || "")}</p>
+              <p className="text-sm text-muted-foreground">{String(selectedUser?.email || "")}</p>
             </div>
             <div className="space-y-2">
               <Label>Motif du rejet</Label>

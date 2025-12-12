@@ -43,8 +43,13 @@ export const authService = {
 
   // Vérification email
   async verifyEmail(data: { email: string; otp: string }) {
-    const response = await api.post('/verify-otp', data)
-    return response.data
+    try {
+      const response = await api.post('/verify-otp', data)
+      return response.data
+    } catch (error: any) {
+      console.error('Verify OTP error:', error.response?.data || error.message)
+      throw error
+    }
   },
 
   // Envoi OTP de vérification

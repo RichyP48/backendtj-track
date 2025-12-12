@@ -457,7 +457,7 @@ function Sidebar() {
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-sm font-medium text-sidebar-foreground truncate",
-                                                children: user.name
+                                                children: String(user.name || "")
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/layout/sidebar.tsx",
                                                 lineNumber: 231,
@@ -465,7 +465,7 @@ function Sidebar() {
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-xs text-muted-foreground truncate",
-                                                children: user.roles?.[0] || "Client"
+                                                children: String(user.roles?.[0] || "Client")
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/layout/sidebar.tsx",
                                                 lineNumber: 232,

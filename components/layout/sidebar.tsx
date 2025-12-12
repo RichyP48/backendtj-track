@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { useAuth } from "@/contexts/auth-context"
 import { Button } from "@/components/ui/button"
+import { safeUserName, safeUserRole } from "@/lib/safe-render"
 
 const getMenuItems = (role?: string) => {
   const baseItems = [
@@ -228,8 +229,8 @@ export function Sidebar() {
                   <Users className="h-4 w-4 text-sidebar-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-sidebar-foreground truncate">{user.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">{user.roles?.[0] || "Client"}</p>
+                  <p className="text-sm font-medium text-sidebar-foreground truncate">{safeUserName(user)}</p>
+                  <p className="text-xs text-muted-foreground truncate">{safeUserRole(user)}</p>
                 </div>
               </div>
               <Button

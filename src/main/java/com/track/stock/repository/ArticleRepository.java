@@ -55,4 +55,15 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     
     @Query("SELECT a FROM Article a ORDER BY a.quantiteStock DESC LIMIT 10")
     List<Article> findTopStockedArticles();
+    
+    List<Article> findByCreatedBy(String createdBy);
+    
+    @Query("SELECT SUM(a.quantiteStock) FROM Article a WHERE a.createdBy = :createdBy AND a.statut = 'ACTIF'")
+    Long getTotalQuantiteStockByCreatedBy(String createdBy);
+    
+    @Query("SELECT SUM(a.quantiteStock * a.prixUnitaireHt) FROM Article a WHERE a.createdBy = :createdBy AND a.statut = 'ACTIF'")
+    Double getValeurTotaleStockByCreatedBy(String createdBy);
+    
+    @Query("SELECT COUNT(a) FROM Article a WHERE a.createdBy = :createdBy AND a.quantiteStock <= a.seuilAlerte AND a.statut = 'ACTIF'")
+    Long countArticlesStockFaibleByCreatedBy(String createdBy);
 }

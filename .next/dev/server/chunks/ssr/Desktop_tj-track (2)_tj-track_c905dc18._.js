@@ -2040,6 +2040,8 @@ __turbopack_context__.s([
     ()=>useUpdateArticle,
     "useUpdateCategorie",
     ()=>useUpdateCategorie,
+    "useUpdateCommandeStatus",
+    ()=>useUpdateCommandeStatus,
     "useUpdateFournisseur",
     ()=>useUpdateFournisseur,
     "useVente",
@@ -2338,13 +2340,21 @@ function useFavorisProduit() {
 function useCreerCommande() {
     const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
-        mutationFn: (userId)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/commandes/creer", undefined, {
+        mutationFn: ({ userId, adresseLivraison, modePaiement })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/commandes/creer", {
+                adresseLivraison,
+                modePaiement
+            }, {
                 userId
             }),
         onSuccess: ()=>{
             queryClient.invalidateQueries({
                 queryKey: [
                     "commandes"
+                ]
+            });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
                 ]
             });
         }
@@ -2882,6 +2892,11 @@ function useDeleteCommandeClient() {
             queryClient.invalidateQueries({
                 queryKey: queryKeys.commandesClient
             });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
+                ]
+            });
         }
     });
 }
@@ -2908,6 +2923,31 @@ function useExpedierCommande() {
                     "commandes"
                 ]
             });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
+                ]
+            });
+        }
+    });
+}
+function useUpdateCommandeStatus() {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: ({ id, statut })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].put(`/commandes/${id}/statut`, {
+                statut
+            }),
+        onSuccess: ()=>{
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandes"
+                ]
+            });
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "commandesMerchant"
+                ]
+            });
         }
     });
 }
@@ -2917,9 +2957,13 @@ function useCommandesMerchant(merchantUserId) {
             "commandesMerchant",
             merchantUserId
         ],
-        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/commandes/merchant", {
+        queryFn: async ()=>{
+            const response = await __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/commandes/merchant", {
                 merchantUserId
-            }),
+            });
+            console.log('Merchant orders API response:', JSON.stringify(response, null, 2));
+            return response;
+        },
         enabled: !!merchantUserId
     });
 }
@@ -3461,7 +3505,18 @@ function CheckoutModal({ isOpen, onClose }) {
             return;
         }
         setIsSubmitting(true);
-        creerCommande(user.userId, {
+        creerCommande({
+            userId: user.userId,
+            adresseLivraison: {
+                nom: formData.lastName,
+                prenom: formData.firstName,
+                telephone: formData.phone,
+                adresse: formData.address,
+                ville: formData.city,
+                codePostal: formData.postalCode
+            },
+            modePaiement: formData.paymentMethod
+        }, {
             onSuccess: (response)=>{
                 toast({
                     title: "Commande confirmée !",
@@ -3493,12 +3548,12 @@ function CheckoutModal({ isOpen, onClose }) {
                         children: "Confirmation de la commande"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                        lineNumber: 133,
+                        lineNumber: 144,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                    lineNumber: 132,
+                    lineNumber: 143,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3516,12 +3571,12 @@ function CheckoutModal({ isOpen, onClose }) {
                                             children: errors.submit
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                            lineNumber: 141,
+                                            lineNumber: 152,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 151,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3532,7 +3587,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                 children: "Informations de livraison"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 157,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3546,7 +3601,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Prénom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 150,
+                                                                lineNumber: 161,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3558,7 +3613,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "Votre prénom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 151,
+                                                                lineNumber: 162,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.firstName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3566,13 +3621,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.firstName
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 159,
+                                                                lineNumber: 170,
                                                                 columnNumber: 42
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 149,
+                                                        lineNumber: 160,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3583,7 +3638,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Nom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 162,
+                                                                lineNumber: 173,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3595,7 +3650,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "Votre nom"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 163,
+                                                                lineNumber: 174,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.lastName && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3603,19 +3658,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.lastName
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 171,
+                                                                lineNumber: 182,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 161,
+                                                        lineNumber: 172,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 148,
+                                                lineNumber: 159,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3629,7 +3684,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Email"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 177,
+                                                                lineNumber: 188,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3642,7 +3697,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "exemple@email.com"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 178,
+                                                                lineNumber: 189,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.email && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3650,13 +3705,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.email
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 187,
+                                                                lineNumber: 198,
                                                                 columnNumber: 38
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 176,
+                                                        lineNumber: 187,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3667,7 +3722,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Téléphone"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 190,
+                                                                lineNumber: 201,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3679,7 +3734,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "+237 6 XX XX XX XX"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 191,
+                                                                lineNumber: 202,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.phone && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3687,19 +3742,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.phone
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 199,
+                                                                lineNumber: 210,
                                                                 columnNumber: 38
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 189,
+                                                        lineNumber: 200,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 175,
+                                                lineNumber: 186,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3710,7 +3765,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: "Adresse"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 204,
+                                                        lineNumber: 215,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3722,7 +3777,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         placeholder: "Rue, bâtiment, etc."
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 205,
+                                                        lineNumber: 216,
                                                         columnNumber: 19
                                                     }, this),
                                                     errors.address && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3730,13 +3785,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: errors.address
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 213,
+                                                        lineNumber: 224,
                                                         columnNumber: 38
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 203,
+                                                lineNumber: 214,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3750,7 +3805,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Ville"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 218,
+                                                                lineNumber: 229,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -3763,12 +3818,12 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectTrigger"], {
                                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
                                                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                            lineNumber: 224,
+                                                                            lineNumber: 235,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 223,
+                                                                        lineNumber: 234,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -3777,18 +3832,18 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                                 children: city
                                                                             }, city, false, {
                                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                                lineNumber: 228,
+                                                                                lineNumber: 239,
                                                                                 columnNumber: 27
                                                                             }, this))
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 226,
+                                                                        lineNumber: 237,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 219,
+                                                                lineNumber: 230,
                                                                 columnNumber: 21
                                                             }, this),
                                                             errors.city && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3796,13 +3851,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: errors.city
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 234,
+                                                                lineNumber: 245,
                                                                 columnNumber: 37
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 228,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3813,7 +3868,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: "Code postal"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 237,
+                                                                lineNumber: 248,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -3824,32 +3879,32 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 placeholder: "Code postal (optionnel)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 238,
+                                                                lineNumber: 249,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 236,
+                                                        lineNumber: 247,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 216,
+                                                lineNumber: 227,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 156,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "border-t border-border my-6"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 249,
+                                        lineNumber: 260,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3862,14 +3917,14 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         className: "h-5 w-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 253,
+                                                        lineNumber: 264,
                                                         columnNumber: 19
                                                     }, this),
                                                     "Méthode de paiement"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 252,
+                                                lineNumber: 263,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$radio$2d$group$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RadioGroup"], {
@@ -3887,7 +3942,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 id: "cash"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 261,
+                                                                lineNumber: 272,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
@@ -3899,7 +3954,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Paiement à la livraison"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 263,
+                                                                        lineNumber: 274,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3907,19 +3962,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Payez en espèces lors de la livraison"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 264,
+                                                                        lineNumber: 275,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 262,
+                                                                lineNumber: 273,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 260,
+                                                        lineNumber: 271,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3931,7 +3986,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 disabled: true
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 268,
+                                                                lineNumber: 279,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
@@ -3943,7 +3998,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Carte bancaire"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 270,
+                                                                        lineNumber: 281,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3951,31 +4006,31 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                         children: "Indisponible pour le moment"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                        lineNumber: 271,
+                                                                        lineNumber: 282,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 269,
+                                                                lineNumber: 280,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 267,
+                                                        lineNumber: 278,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 256,
+                                                lineNumber: 267,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 251,
+                                        lineNumber: 262,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -3989,7 +4044,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     className: "mr-2 h-4 w-4 animate-spin"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 280,
+                                                    lineNumber: 291,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Création de la commande..."
@@ -4000,7 +4055,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     className: "mr-2 h-4 w-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 285,
+                                                    lineNumber: 296,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Confirmer la commande (",
@@ -4010,18 +4065,18 @@ function CheckoutModal({ isOpen, onClose }) {
                                         }, void 0, true)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 277,
+                                        lineNumber: 288,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                lineNumber: 138,
+                                lineNumber: 149,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                            lineNumber: 137,
+                            lineNumber: 148,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4034,7 +4089,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                         children: "Résumé de la commande"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 295,
+                                        lineNumber: 306,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4049,7 +4104,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 children: item.articleNom
                                                             }, void 0, false, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 301,
+                                                                lineNumber: 312,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4060,13 +4115,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                                lineNumber: 302,
+                                                                lineNumber: 313,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 300,
+                                                        lineNumber: 311,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4077,25 +4132,25 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 304,
+                                                        lineNumber: 315,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, item.articleId, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 299,
+                                                lineNumber: 310,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 297,
+                                        lineNumber: 308,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "border-t border-border mb-4"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 309,
+                                        lineNumber: 320,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4109,7 +4164,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: "Sous-total"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 313,
+                                                        lineNumber: 324,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4119,13 +4174,13 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 314,
+                                                        lineNumber: 325,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 312,
+                                                lineNumber: 323,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4136,7 +4191,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: "Livraison"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 317,
+                                                        lineNumber: 328,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4144,19 +4199,19 @@ function CheckoutModal({ isOpen, onClose }) {
                                                         children: shippingCost === 0 ? "Gratuite" : `${shippingCost.toLocaleString()} FCFA`
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                        lineNumber: 318,
+                                                        lineNumber: 329,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                lineNumber: 316,
+                                                lineNumber: 327,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 311,
+                                        lineNumber: 322,
                                         columnNumber: 15
                                     }, this),
                                     shippingCost > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4164,7 +4219,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                         children: "Livraison gratuite à partir de 50 000 FCFA"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 325,
+                                        lineNumber: 336,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4176,7 +4231,7 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     children: "Total"
                                                 }, void 0, false, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 332,
+                                                    lineNumber: 343,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4187,46 +4242,46 @@ function CheckoutModal({ isOpen, onClose }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                                    lineNumber: 333,
+                                                    lineNumber: 344,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                            lineNumber: 331,
+                                            lineNumber: 342,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                        lineNumber: 330,
+                                        lineNumber: 341,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                                lineNumber: 294,
+                                lineNumber: 305,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                            lineNumber: 293,
+                            lineNumber: 304,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-                    lineNumber: 136,
+                    lineNumber: 147,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-            lineNumber: 131,
+            lineNumber: 142,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/checkout/checkout-modal.tsx",
-        lineNumber: 130,
+        lineNumber: 141,
         columnNumber: 5
     }, this);
 }
@@ -4323,7 +4378,7 @@ function HomePage() {
     const { data: apiProducts, isLoading, error } = useEcommerceProducts();
     const [isCheckoutOpen, setIsCheckoutOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     console.log('HomePage - Auth state:', {
-        user,
+        user: user ? 'logged in' : 'not logged in',
         isAuthenticated
     });
     const products = apiProducts || [];

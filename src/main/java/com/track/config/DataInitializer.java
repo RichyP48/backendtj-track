@@ -99,16 +99,16 @@ public class DataInitializer implements CommandLineRunner {
 
         // Test Client
         createUserIfNotExists(
-                "Client Test",
-                "client@test.com",
+                "Client Mogou",
+                "richardmogou48@gmail.com",
                 "password123",
                 clientRole
         );
 
         // Test Merchant
         createUserIfNotExists(
-                "Marchand Test",
-                "merchant@test.com",
+                "Marchand nchifor",
+                "job.nchifor@gmail.com",
                 "password123",
                 merchantRole
         );
@@ -177,7 +177,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void initializeMerchantProfiles() {
-        UserEntity merchantUser = userRepository.findByEmail("merchant@test.com").orElse(null);
+        UserEntity merchantUser = userRepository.findByEmail("job.nchifor@gmail.com").orElse(null);
         if (merchantUser == null) {
             log.error("Merchant user not found!");
             return;
