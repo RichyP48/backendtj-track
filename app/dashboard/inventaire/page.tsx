@@ -29,6 +29,7 @@ import { Spinner } from "@/components/ui/spinner"
 import { useArticles, useAjusterStock } from "@/hooks/use-api"
 import { cn } from "@/lib/utils"
 import type { ArticleDto } from "@/types/api"
+import { StockAnalytics } from "@/components/stock/stock-analytics"
 
 // Mock data
 const mockArticles: ArticleDto[] = [
@@ -226,6 +227,9 @@ export default function InventairePage() {
           </Button>
         </div>
       </div>
+
+      {/* Analytics intégrés */}
+      <StockAnalytics articles={articles} />
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

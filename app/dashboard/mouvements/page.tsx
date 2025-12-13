@@ -20,6 +20,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { useMouvementsStock } from "@/hooks/use-api"
+import { MovementAnalytics } from "@/components/stock/movement-analytics"
 
 const typeStyles = {
   ENTREE: { label: "Entrée", icon: ArrowUpRight, className: "bg-emerald-500/10 text-emerald-500" },
@@ -100,6 +101,9 @@ export default function MouvementsPage() {
           Période
         </Button>
       </div>
+
+      {/* Analytics intégrés */}
+      <MovementAnalytics mouvements={mouvements as any[]} />
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

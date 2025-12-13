@@ -10,10 +10,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Package, Search, AlertTriangle, TrendingUp, TrendingDown, ArrowUpDown, Loader2, Plus } from "lucide-react"
+import { Package, Search, AlertTriangle, TrendingUp, TrendingDown, ArrowUpDown, Loader2, Plus, BarChart3, ShoppingCart } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { useMerchantArticles, useAjusterStockMerchant, useAjouterArticleMerchant, useAllCategories } from "@/hooks/use-api"
 import { useAuth } from "@/contexts/auth-context"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { StockAnalytics } from "@/components/stock/stock-analytics"
+import { ReorderSuggestions } from "@/components/stock/reorder-suggestions"
+import { MovementAnalytics } from "@/components/stock/movement-analytics"
 
 export default function MerchantStockPage() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -177,7 +181,7 @@ export default function MerchantStockPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold">Mon Stock</h1>
-        <p className="text-muted-foreground">Gérez votre inventaire</p>
+        <p className="text-muted-foreground">Gérez votre inventaire avec des outils avancés</p>
       </div>
 
       {/* Stats */}
@@ -257,12 +261,33 @@ export default function MerchantStockPage() {
         </CardContent>
       </Card>
 
-      {/* Stock Table */}
-      <Card className="glass-card">
-        <CardHeader>
-          <CardTitle>Inventaire</CardTitle>
-        </CardHeader>
-        <CardContent>
+      {/* Tabs pour différentes vues */}
+      <Tabs defaultValue="inventory" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="inventory" className="flex items-center gap-2">
+            <Package className="h-4 w-4" />
+            Inventaire
+          </TabsTrigger>
+          <TabsTrigger value="analytics" className="flex items-center gap-2">
+            <BarChart3 className="h-4 w-4" />
+            Analytics
+          </TabsTrigger>
+          <TabsTrigger value="reorder" className="flex items-center gap-2">
+            <ShoppingCart className="h-4 w-4" />
+            Réappro
+          </TabsTrigger>
+          <TabsTrigger value="movements" className="flex items-center gap-2">
+            <ArrowUpDown className="h-4 w-4" />
+            Mouvements
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="inventory">
+          <Card className="glass-card">
+            <CardHeader>
+              <CardTitle>Inventaire</CardTitle>
+            </CardHeader>
+            <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
@@ -327,8 +352,22 @@ export default function MerchantStockPage() {
               )}
             </TableBody>
           </Table>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="analytics">
+          <StockAnalytics articles={filteredStock} />
+        </TabsContent>
+
+        <TabsContent value="reorder">
+          <ReorderSuggestions articles={filteredStock} />
+        </TabsContent>
+
+        <TabsContent value="movements">
+          <MovementAnalytics mouvements={[]} />
+        </TabsContent>
+      </Tabs>
 
       {/* Adjust Dialog */}
       <Dialog open={adjustDialog.open} onOpenChange={(open) => setAdjustDialog({ ...adjustDialog, open })}>
