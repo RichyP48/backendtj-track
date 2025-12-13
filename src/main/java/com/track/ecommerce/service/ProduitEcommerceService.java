@@ -49,7 +49,7 @@ public class ProduitEcommerceService {
                     .orElseThrow(() -> new RuntimeException("Profil commerçant non trouvé pour l'email: " + cleanEmail));
         }
         
-        // Créer l'article de base (createdBy sera automatiquement défini)
+        // Créer l'article de base avec le bon utilisateur
         var articleDto = com.track.stock.dto.ArticleDto.builder()
                 .codeArticle(genererCodeArticle())
                 .designation(produitDto.getNom())
@@ -62,13 +62,23 @@ public class ProduitEcommerceService {
         
         var articleDtoCreated = articleService.createArticle(articleDto);
         
-        // Récupérer l'entité Article et la lier au commerçant
+        // Récupérer l'entité Article et forcer l'association au commerçant
         Article article = articleRepository.findById(articleDtoCreated.getId())
                 .orElseThrow(() -> new RuntimeException("Article créé non trouvé"));
         
-        // Pour que l'article apparaisse dans le stock du commerçant,
-        // il faut s'assurer qu'il soit lié à son contexte
-        // (via entreprise ou autre mécanisme de filtrage)
+        // Forcer l'association de l'article au commerçant
+        String userEmail = merchant.getUser().getEmail();
+        System.out.println("=== DEBUG ARTICLE CREATION ===");
+        System.out.println("Merchant User Email: " + userEmail);
+        System.out.println("Article ID: " + article.getId());
+        System.out.println("Article CreatedBy avant: " + article.getCreatedBy());
+        
+        article.setCreatedBy(userEmail);
+        article = articleRepository.save(article);
+        
+        System.out.println("Article CreatedBy après: " + article.getCreatedBy());
+        System.out.println("=== FIN DEBUG ===");
+
         
         // Traiter les images
         List<String> imageUrls = new ArrayList<>();
@@ -136,6 +146,10 @@ public class ProduitEcommerceService {
         // Nettoyer l'email
         String cleanEmail = merchantUserId.replace("mailto:", "").trim();
         
+        System.out.println("=== DEBUG getMesProduits ===");
+        System.out.println("merchantUserId: " + merchantUserId);
+        System.out.println("cleanEmail: " + cleanEmail);
+        
         // Récupérer le profil commerçant
         MerchantProfile merchant;
         try {
@@ -147,11 +161,15 @@ public class ProduitEcommerceService {
         
         // Si pas de profil, retourner liste vide
         if (merchant == null) {
+            System.out.println("Merchant non trouvé pour: " + cleanEmail);
             return new ArrayList<>();
         }
         
+        System.out.println("Merchant trouvé: " + merchant.getUser().getEmail());
+        
         // Récupérer tous les produits du commerçant
         List<ProduitEcommerce> produits = produitRepository.findByMerchantId(merchant.getId());
+        System.out.println("Produits trouvés: " + produits.size());
         
         // Convertir en DTO
         final MerchantProfile finalMerchant = merchant;

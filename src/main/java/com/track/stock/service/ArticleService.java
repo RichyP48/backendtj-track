@@ -79,7 +79,17 @@ public class ArticleService {
     
     @Transactional(readOnly = true)
     public List<ArticleDto> getMyArticles(String userEmail) {
-        return articleRepository.findByCreatedBy(userEmail).stream()
+        System.out.println("=== DEBUG getMyArticles ===");
+        System.out.println("userEmail: " + userEmail);
+        
+        List<Article> articles = articleRepository.findByCreatedBy(userEmail);
+        System.out.println("Articles trouvés: " + articles.size());
+        
+        for (Article article : articles) {
+            System.out.println("Article: " + article.getDesignation() + ", CreatedBy: " + article.getCreatedBy());
+        }
+        
+        return articles.stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
     }

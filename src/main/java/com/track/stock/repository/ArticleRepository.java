@@ -3,6 +3,7 @@ package com.track.stock.repository;
 import com.track.stock.entity.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -59,11 +60,14 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findByCreatedBy(String createdBy);
     
     @Query("SELECT SUM(a.quantiteStock) FROM Article a WHERE a.createdBy = :createdBy AND a.statut = 'ACTIF'")
-    Long getTotalQuantiteStockByCreatedBy(String createdBy);
+    Long getTotalQuantiteStockByCreatedBy(@Param("createdBy") String createdBy);
     
     @Query("SELECT SUM(a.quantiteStock * a.prixUnitaireHt) FROM Article a WHERE a.createdBy = :createdBy AND a.statut = 'ACTIF'")
-    Double getValeurTotaleStockByCreatedBy(String createdBy);
+    Double getValeurTotaleStockByCreatedBy(@Param("createdBy") String createdBy);
     
     @Query("SELECT COUNT(a) FROM Article a WHERE a.createdBy = :createdBy AND a.quantiteStock <= a.seuilAlerte AND a.statut = 'ACTIF'")
-    Long countArticlesStockFaibleByCreatedBy(String createdBy);
+    Long countArticlesStockFaibleByCreatedBy(@Param("createdBy") String createdBy);
+    
+    @Query("SELECT CASE WHEN COUNT(pe) > 0 THEN true ELSE false END FROM ProduitEcommerce pe WHERE pe.article.id = :articleId AND pe.merchant.id = :merchantId")
+    boolean existsArticleLinkedToMerchant(@Param("articleId") Long articleId, @Param("merchantId") Long merchantId);
 }

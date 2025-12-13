@@ -30,10 +30,43 @@ public class MerchantStockService {
     private final MouvementStockService mouvementStockService;
     
     public List<ArticleDto> getArticlesByMerchant(String userEmail) {
-        MerchantProfile merchant = getMerchantProfile(userEmail);
-        // Pour l'instant, retourner une liste vide si pas d'entreprise associée
-        // TODO: Implémenter la relation correcte MerchantProfile -> Entreprise
-        return List.of();
+        System.out.println("=== DEBUG getArticlesByMerchant ===");
+        System.out.println("userEmail: " + userEmail);
+        
+        // Corriger les articles existants sans createdBy
+        corrigerArticlesExistants(userEmail);
+        
+        // Utiliser directement ArticleService qui filtre par createdBy
+        return articleService.getMyArticles(userEmail);
+    }
+    
+    private void corrigerArticlesExistants(String userEmail) {
+        try {
+            MerchantProfile merchant = getMerchantProfile(userEmail);
+            
+            // Trouver tous les articles liés aux produits de ce merchant
+            List<Article> articlesACorreger = articleRepository.findAll().stream()
+                .filter(article -> {
+                    // Vérifier si l'article est lié à un ProduitEcommerce de ce merchant
+                    return article.getCreatedBy() == null || article.getCreatedBy().isEmpty();
+                })
+                .collect(Collectors.toList());
+            
+            System.out.println("Articles à corriger: " + articlesACorreger.size());
+            
+            for (Article article : articlesACorreger) {
+                // Vérifier si cet article appartient à ce merchant via ProduitEcommerce
+                boolean appartientAuMerchant = articleRepository.existsArticleLinkedToMerchant(article.getId(), merchant.getId());
+                
+                if (appartientAuMerchant) {
+                    System.out.println("Correction article: " + article.getDesignation() + " pour " + userEmail);
+                    article.setCreatedBy(userEmail);
+                    articleRepository.save(article);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la correction: " + e.getMessage());
+        }
     }
     
     public ArticleDto ajouterArticle(String userEmail, ArticleDto articleDto) {
@@ -43,7 +76,16 @@ public class MerchantStockService {
         String codeArticle = "MCH-" + merchant.getId() + "-" + System.currentTimeMillis();
         articleDto.setCodeArticle(codeArticle);
         
-        return articleService.createArticle(articleDto);
+        // Créer l'article
+        ArticleDto createdArticle = articleService.createArticle(articleDto);
+        
+        // Forcer l'association au merchant
+        Article article = articleRepository.findById(createdArticle.getId())
+                .orElseThrow(() -> new RuntimeException("Article créé non trouvé"));
+        article.setCreatedBy(userEmail);
+        articleRepository.save(article);
+        
+        return createdArticle;
     }
     
     public void ajusterStock(String userEmail, Long articleId, Integer quantite, String motif) {
@@ -58,10 +100,14 @@ public class MerchantStockService {
     }
     
     public List<ArticleDto> getArticlesStockFaible(String userEmail) {
-        MerchantProfile merchant = getMerchantProfile(userEmail);
-        // Pour l'instant, retourner une liste vide si pas d'entreprise associée
-        // TODO: Implémenter la relation correcte MerchantProfile -> Entreprise
-        return List.of();
+        System.out.println("=== DEBUG getArticlesStockFaible ===");
+        System.out.println("userEmail: " + userEmail);
+        
+        // Utiliser directement ArticleService qui filtre par createdBy
+        List<ArticleDto> mesArticles = articleService.getMyArticles(userEmail);
+        return mesArticles.stream()
+                .filter(article -> Boolean.TRUE.equals(article.getStockFaible()))
+                .collect(Collectors.toList());
     }
     
     private MerchantProfile getMerchantProfile(String userEmail) {

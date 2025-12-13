@@ -9,9 +9,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Package, Search, AlertTriangle, TrendingUp, TrendingDown, ArrowUpDown, Loader2 } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Package, Search, AlertTriangle, TrendingUp, TrendingDown, ArrowUpDown, Loader2, Plus } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { useMerchantArticles, useAjusterStockMerchant } from "@/hooks/use-api"
+import { useMerchantArticles, useAjusterStockMerchant, useAjouterArticleMerchant, useAllCategories } from "@/hooks/use-api"
 import { useAuth } from "@/contexts/auth-context"
 
 export default function MerchantStockPage() {
@@ -23,11 +24,24 @@ export default function MerchantStockPage() {
   }>({ open: false, article: null, type: "add" })
   const [adjustQuantity, setAdjustQuantity] = useState("")
   const [adjustMotif, setAdjustMotif] = useState("")
+  const [addDialog, setAddDialog] = useState(false)
+  const [newArticle, setNewArticle] = useState({
+    designation: "",
+    description: "",
+    prixUnitaireHt: "",
+    quantiteStock: "",
+    seuilAlerte: "5",
+    categorieId: ""
+  })
   const { toast } = useToast()
   const { user } = useAuth()
 
   const { data: stockResponse, isLoading, error, refetch } = useMerchantArticles(user?.id || user?.email || "")
+  const { data: categoriesResponse } = useAllCategories()
   const adjustStockMutation = useAjusterStockMerchant()
+  const addArticleMutation = useAjouterArticleMerchant()
+  
+  const categories = categoriesResponse?.data || []
 
   // Extract stock from response
   const stock = stockResponse?.data || stockResponse || []
@@ -68,6 +82,54 @@ export default function MerchantStockPage() {
         title: "Erreur",
         description: "Impossible d'ajuster le stock",
         variant: "destructive",
+      })
+    }
+  }
+
+  const handleAddArticle = async () => {
+    if (!newArticle.designation || !newArticle.prixUnitaireHt || !newArticle.quantiteStock) {
+      toast({
+        title: "Erreur",
+        description: "Veuillez remplir tous les champs obligatoires",
+        variant: "destructive"
+      })
+      return
+    }
+
+    try {
+      await addArticleMutation.mutateAsync({
+        userId: user?.id || user?.email || "",
+        data: {
+          designation: newArticle.designation,
+          description: newArticle.description,
+          prixUnitaireHt: parseFloat(newArticle.prixUnitaireHt),
+          prixUnitaireTtc: parseFloat(newArticle.prixUnitaireHt) * 1.2,
+          quantiteStock: parseInt(newArticle.quantiteStock),
+          seuilAlerte: parseInt(newArticle.seuilAlerte),
+          categorieId: newArticle.categorieId ? parseInt(newArticle.categorieId) : null
+        }
+      })
+
+      toast({
+        title: "Article ajouté",
+        description: "L'article a été ajouté avec succès"
+      })
+
+      setAddDialog(false)
+      setNewArticle({
+        designation: "",
+        description: "",
+        prixUnitaireHt: "",
+        quantiteStock: "",
+        seuilAlerte: "5",
+        categorieId: ""
+      })
+      refetch()
+    } catch (err) {
+      toast({
+        title: "Erreur",
+        description: "Impossible d'ajouter l'article",
+        variant: "destructive"
       })
     }
   }
@@ -174,17 +236,23 @@ export default function MerchantStockPage() {
         </Card>
       </div>
 
-      {/* Search */}
+      {/* Search & Add */}
       <Card className="glass-card">
         <CardContent className="p-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Rechercher un article..."
-              className="pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+          <div className="flex gap-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Rechercher un article..."
+                className="pl-10"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            <Button onClick={() => setAddDialog(true)}>
+              <Plus className="h-4 w-4 mr-2" />
+              Ajouter Article
+            </Button>
           </div>
         </CardContent>
       </Card>
@@ -302,6 +370,93 @@ export default function MerchantStockPage() {
               {adjustStockMutation.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
               <ArrowUpDown className="h-4 w-4 mr-2" />
               Confirmer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Article Dialog */}
+      <Dialog open={addDialog} onOpenChange={setAddDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Ajouter un Article</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Désignation *</Label>
+                <Input
+                  value={newArticle.designation}
+                  onChange={(e) => setNewArticle({ ...newArticle, designation: e.target.value })}
+                  placeholder="Nom de l'article"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Catégorie</Label>
+                <Select value={newArticle.categorieId} onValueChange={(value) => setNewArticle({ ...newArticle, categorieId: value })}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Sélectionner une catégorie" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((cat: any) => (
+                      <SelectItem key={cat.id} value={cat.id.toString()}>
+                        {cat.designation}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Description</Label>
+              <Textarea
+                value={newArticle.description}
+                onChange={(e) => setNewArticle({ ...newArticle, description: e.target.value })}
+                placeholder="Description de l'article"
+              />
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label>Prix HT (XAF) *</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={newArticle.prixUnitaireHt}
+                  onChange={(e) => setNewArticle({ ...newArticle, prixUnitaireHt: e.target.value })}
+                  placeholder="0.00"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Quantité initiale *</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  value={newArticle.quantiteStock}
+                  onChange={(e) => setNewArticle({ ...newArticle, quantiteStock: e.target.value })}
+                  placeholder="0"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Seuil d'alerte</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  value={newArticle.seuilAlerte}
+                  onChange={(e) => setNewArticle({ ...newArticle, seuilAlerte: e.target.value })}
+                  placeholder="5"
+                />
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setAddDialog(false)}>
+              Annuler
+            </Button>
+            <Button onClick={handleAddArticle} disabled={addArticleMutation.isPending}>
+              {addArticleMutation.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+              <Plus className="h-4 w-4 mr-2" />
+              Ajouter
             </Button>
           </DialogFooter>
         </DialogContent>

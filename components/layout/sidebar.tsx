@@ -89,6 +89,7 @@ const getMenuItems = (role?: string) => {
         title: "Ventes",
         items: [
           { name: "Commandes Clients", href: "/dashboard/commandes", icon: ShoppingBag },
+          { name: "Livraisons", href: "/dashboard/merchant/livraisons", icon: Truck },
           { name: "Statistiques", href: "/dashboard/statistiques", icon: BarChart3 },
         ],
       },

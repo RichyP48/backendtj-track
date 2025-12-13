@@ -1766,8 +1766,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$progress$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/components/ui/progress.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$spinner$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/components/ui/spinner.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$hooks$2f$use$2d$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/hooks/use-api.ts [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$contexts$2f$auth$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/contexts/auth-context.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/lib/utils.ts [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -1798,12 +1800,12 @@ function KpiCard({ title, value, change, changeLabel, icon: Icon, color }) {
                                 className: "h-6 w-6"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 47,
+                                lineNumber: 48,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 46,
+                            lineNumber: 47,
                             columnNumber: 11
                         }, this),
                         change !== undefined && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
@@ -1814,13 +1816,13 @@ function KpiCard({ title, value, change, changeLabel, icon: Icon, color }) {
                                     className: "h-3 w-3"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 57,
+                                    lineNumber: 58,
                                     columnNumber: 30
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$down$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowDownRight$3e$__["ArrowDownRight"], {
                                     className: "h-3 w-3"
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 57,
+                                    lineNumber: 58,
                                     columnNumber: 69
                                 }, this),
                                 Math.abs(change),
@@ -1828,13 +1830,13 @@ function KpiCard({ title, value, change, changeLabel, icon: Icon, color }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 50,
+                            lineNumber: 51,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                    lineNumber: 45,
+                    lineNumber: 46,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1845,7 +1847,7 @@ function KpiCard({ title, value, change, changeLabel, icon: Icon, color }) {
                             children: title
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 63,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1853,7 +1855,7 @@ function KpiCard({ title, value, change, changeLabel, icon: Icon, color }) {
                             children: value
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 64,
+                            lineNumber: 65,
                             columnNumber: 11
                         }, this),
                         changeLabel && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1861,24 +1863,24 @@ function KpiCard({ title, value, change, changeLabel, icon: Icon, color }) {
                             children: changeLabel
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 65,
+                            lineNumber: 66,
                             columnNumber: 27
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                    lineNumber: 62,
+                    lineNumber: 63,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-            lineNumber: 44,
+            lineNumber: 45,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-        lineNumber: 43,
+        lineNumber: 44,
         columnNumber: 5
     }, this);
 }
@@ -1905,7 +1907,7 @@ function AlertItem({ alert }) {
                 className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("h-2 w-2 rounded-full", config.color === "warning" && "bg-warning", config.color === "destructive" && "bg-destructive", config.color === "primary" && "bg-primary")
             }, void 0, false, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 87,
+                lineNumber: 88,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1916,7 +1918,7 @@ function AlertItem({ alert }) {
                         children: alert.article.designation
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 96,
+                        lineNumber: 97,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1929,13 +1931,13 @@ function AlertItem({ alert }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 97,
+                        lineNumber: 98,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 95,
+                lineNumber: 96,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
@@ -1944,13 +1946,13 @@ function AlertItem({ alert }) {
                 children: config.label
             }, void 0, false, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 101,
+                lineNumber: 102,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-        lineNumber: 86,
+        lineNumber: 87,
         columnNumber: 5
     }, this);
 }
@@ -1969,7 +1971,7 @@ function LowStockItem({ article }) {
                             children: article.designation
                         }, void 0, false, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 126,
+                            lineNumber: 127,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1981,13 +1983,13 @@ function LowStockItem({ article }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 127,
+                            lineNumber: 128,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                    lineNumber: 125,
+                    lineNumber: 126,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$progress$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Progress"], {
@@ -1995,27 +1997,46 @@ function LowStockItem({ article }) {
                     className: "h-2"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                    lineNumber: 131,
+                    lineNumber: 132,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-            lineNumber: 124,
+            lineNumber: 125,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-        lineNumber: 123,
+        lineNumber: 124,
         columnNumber: 5
     }, this);
 }
 function StockDashboard() {
+    const { user } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$contexts$2f$auth$2d$context$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
     const { data: stockStats, isLoading: isLoadingStats, refetch: refetchStats } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$hooks$2f$use$2d$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useStockStats"])();
     const { data: ecommerceStats, isLoading: isLoadingEcommerce } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$hooks$2f$use$2d$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEcommerceStats"])();
     const { data: lowStockArticles, isLoading: isLoadingLowStock } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$hooks$2f$use$2d$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useLowStockArticles"])();
     const { data: alerts, isLoading: isLoadingAlerts } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$hooks$2f$use$2d$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useUnreadAlerts"])();
-    const isLoading = isLoadingStats || isLoadingEcommerce;
+    const { data: commandesResponse, isLoading: isLoadingCommandes } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$hooks$2f$use$2d$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCommandesMerchant"])(user?.userId || "");
+    const isLoading = isLoadingStats || isLoadingEcommerce || isLoadingCommandes;
+    // Calculer les statistiques réelles à partir des commandes
+    const commandesData = Array.isArray(commandesResponse?.data) ? commandesResponse.data : [];
+    const commandes = commandesData.map((cmd)=>{
+        const c = cmd;
+        return {
+            statut: String(c.statut || "EN_ATTENTE"),
+            montantTotal: Number(c.montantTotal || c.totalTtc) || 0
+        };
+    });
+    const totalCommandes = commandes.length;
+    const commandesEnCours = commandes.filter((c)=>[
+            'CONFIRMEE',
+            'EN_PREPARATION',
+            'EXPEDIEE'
+        ].includes(c.statut)).length;
+    const chiffreAffaires = commandes.reduce((sum, c)=>sum + c.montantTotal, 0);
+    const panierMoyen = totalCommandes > 0 ? chiffreAffaires / totalCommandes : 0;
     if (isLoading) {
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex items-center justify-center h-64",
@@ -2023,12 +2044,12 @@ function StockDashboard() {
                 size: "lg"
             }, void 0, false, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 148,
+                lineNumber: 166,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-            lineNumber: 147,
+            lineNumber: 165,
             columnNumber: 7
         }, this);
     }
@@ -2041,7 +2062,7 @@ function StockDashboard() {
                     children: "Erreur lors du chargement des données"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                    lineNumber: 156,
+                    lineNumber: 174,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2051,13 +2072,13 @@ function StockDashboard() {
                     children: "Réessayer"
                 }, void 0, false, {
                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                    lineNumber: 157,
+                    lineNumber: 175,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-            lineNumber: 155,
+            lineNumber: 173,
             columnNumber: 7
         }, this);
     }
@@ -2074,7 +2095,7 @@ function StockDashboard() {
                                 children: "Tableau de bord"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 169,
+                                lineNumber: 187,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2082,13 +2103,13 @@ function StockDashboard() {
                                 children: "Vue d'ensemble de votre activité"
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 170,
+                                lineNumber: 188,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 168,
+                        lineNumber: 186,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2101,20 +2122,20 @@ function StockDashboard() {
                                 className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])("h-4 w-4 mr-2", isLoading && "animate-spin")
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 173,
+                                lineNumber: 191,
                                 columnNumber: 11
                             }, this),
                             "Actualiser"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 172,
+                        lineNumber: 190,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 167,
+                lineNumber: 185,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2122,24 +2143,24 @@ function StockDashboard() {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
                         title: "Chiffre d'Affaires",
-                        value: `${(Number(ecommerceStats.chiffreAffaires) / 1000000).toFixed(1)}M FCFA`,
+                        value: `${(chiffreAffaires / 1000).toFixed(0)}k FCFA`,
                         changeLabel: "vs mois dernier",
                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$dollar$2d$sign$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__DollarSign$3e$__["DollarSign"],
                         color: "primary"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 180,
+                        lineNumber: 198,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
                         title: "Commandes",
-                        value: ecommerceStats.totalCommandes,
-                        changeLabel: `${ecommerceStats.commandesEnCours} en cours`,
+                        value: totalCommandes,
+                        changeLabel: `${commandesEnCours} en cours`,
                         icon: __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shopping$2d$cart$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShoppingCart$3e$__["ShoppingCart"],
                         color: "success"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 187,
+                        lineNumber: 205,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
@@ -2150,7 +2171,7 @@ function StockDashboard() {
                         color: "primary"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 194,
+                        lineNumber: 212,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(KpiCard, {
@@ -2161,13 +2182,13 @@ function StockDashboard() {
                         color: stockStats.articlesRupture > 0 ? "destructive" : "warning"
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 201,
+                        lineNumber: 219,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 179,
+                lineNumber: 197,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2188,27 +2209,27 @@ function StockDashboard() {
                                                         className: "h-5 w-5 text-warning"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 235,
                                                         columnNumber: 17
                                                     }, this),
                                                     "Alertes Stock"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                                lineNumber: 216,
+                                                lineNumber: 234,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
                                                 children: "Articles nécessitant attention"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                                lineNumber: 220,
+                                                lineNumber: 238,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 215,
+                                        lineNumber: 233,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2220,18 +2241,18 @@ function StockDashboard() {
                                             children: "Voir tout"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 223,
+                                            lineNumber: 241,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 222,
+                                        lineNumber: 240,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 214,
+                                lineNumber: 232,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -2239,12 +2260,12 @@ function StockDashboard() {
                                     className: "flex items-center justify-center h-40",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$spinner$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Spinner"], {}, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 229,
+                                        lineNumber: 247,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 228,
+                                    lineNumber: 246,
                                     columnNumber: 15
                                 }, this) : alerts && alerts.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-3",
@@ -2252,12 +2273,12 @@ function StockDashboard() {
                                             alert: alert
                                         }, alert.id, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 234,
+                                            lineNumber: 252,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 232,
+                                    lineNumber: 250,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center py-8 text-muted-foreground",
@@ -2266,31 +2287,31 @@ function StockDashboard() {
                                             className: "h-12 w-12 mx-auto mb-2 opacity-50"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 239,
+                                            lineNumber: 257,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "Aucune alerte active"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 240,
+                                            lineNumber: 258,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 256,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 226,
+                                lineNumber: 244,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 213,
+                        lineNumber: 231,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -2308,27 +2329,27 @@ function StockDashboard() {
                                                         className: "h-5 w-5 text-destructive"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                                        lineNumber: 251,
+                                                        lineNumber: 269,
                                                         columnNumber: 17
                                                     }, this),
                                                     "Stock Critique"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                                lineNumber: 250,
+                                                lineNumber: 268,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
                                                 children: "Articles en dessous du seuil"
                                             }, void 0, false, {
                                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                                lineNumber: 254,
+                                                lineNumber: 272,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 249,
+                                        lineNumber: 267,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -2340,18 +2361,18 @@ function StockDashboard() {
                                             children: "Gérer"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 257,
+                                            lineNumber: 275,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 256,
+                                        lineNumber: 274,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 248,
+                                lineNumber: 266,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -2359,12 +2380,12 @@ function StockDashboard() {
                                     className: "flex items-center justify-center h-40",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$spinner$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Spinner"], {}, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 263,
+                                        lineNumber: 281,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 262,
+                                    lineNumber: 280,
                                     columnNumber: 15
                                 }, this) : lowStockArticles && lowStockArticles.length > 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-3",
@@ -2372,12 +2393,12 @@ function StockDashboard() {
                                             article: article
                                         }, article.id, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 268,
+                                            lineNumber: 286,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 266,
+                                    lineNumber: 284,
                                     columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "text-center py-8 text-muted-foreground",
@@ -2386,37 +2407,37 @@ function StockDashboard() {
                                             className: "h-12 w-12 mx-auto mb-2 opacity-50"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 273,
+                                            lineNumber: 291,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "Tous les stocks sont à niveau"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 274,
+                                            lineNumber: 292,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 272,
+                                    lineNumber: 290,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                lineNumber: 260,
+                                lineNumber: 278,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 247,
+                        lineNumber: 265,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 211,
+                lineNumber: 229,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2433,12 +2454,12 @@ function StockDashboard() {
                                         className: "h-4 w-4 text-primary"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 286,
+                                        lineNumber: 304,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 285,
+                                    lineNumber: 303,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2448,35 +2469,35 @@ function StockDashboard() {
                                             children: "Panier moyen"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 289,
+                                            lineNumber: 307,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-lg font-semibold",
                                             children: [
-                                                Number(ecommerceStats.panierMoyen).toLocaleString(),
+                                                Math.round(panierMoyen).toLocaleString(),
                                                 " FCFA"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 290,
+                                            lineNumber: 308,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 288,
+                                    lineNumber: 306,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 284,
+                            lineNumber: 302,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 283,
+                        lineNumber: 301,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -2490,12 +2511,12 @@ function StockDashboard() {
                                         className: "h-4 w-4 text-success"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 297,
+                                        lineNumber: 315,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 296,
+                                    lineNumber: 314,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2505,35 +2526,32 @@ function StockDashboard() {
                                             children: "Taux conversion"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 300,
+                                            lineNumber: 318,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             className: "text-lg font-semibold",
-                                            children: [
-                                                ecommerceStats.tauxConversion,
-                                                "%"
-                                            ]
-                                        }, void 0, true, {
+                                            children: "2.5%"
+                                        }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 301,
+                                            lineNumber: 319,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 299,
+                                    lineNumber: 317,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 295,
+                            lineNumber: 313,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 294,
+                        lineNumber: 312,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -2547,12 +2565,12 @@ function StockDashboard() {
                                         className: "h-4 w-4 text-warning"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 308,
+                                        lineNumber: 326,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 307,
+                                    lineNumber: 325,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2562,7 +2580,7 @@ function StockDashboard() {
                                             children: "Valeur stock"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 311,
+                                            lineNumber: 329,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2573,24 +2591,24 @@ function StockDashboard() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 312,
+                                            lineNumber: 330,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 310,
+                                    lineNumber: 328,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 306,
+                            lineNumber: 324,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 305,
+                        lineNumber: 323,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -2604,12 +2622,12 @@ function StockDashboard() {
                                         className: "h-4 w-4 text-destructive"
                                     }, void 0, false, {
                                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                        lineNumber: 319,
+                                        lineNumber: 337,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 318,
+                                    lineNumber: 336,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2619,7 +2637,7 @@ function StockDashboard() {
                                             children: "Ruptures"
                                         }, void 0, false, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 322,
+                                            lineNumber: 340,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2630,36 +2648,36 @@ function StockDashboard() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                            lineNumber: 323,
+                                            lineNumber: 341,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                                    lineNumber: 321,
+                                    lineNumber: 339,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                            lineNumber: 317,
+                            lineNumber: 335,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                        lineNumber: 316,
+                        lineNumber: 334,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-                lineNumber: 282,
+                lineNumber: 300,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Desktop/tj-track (2)/tj-track/components/dashboard/stock-dashboard.tsx",
-        lineNumber: 165,
+        lineNumber: 183,
         columnNumber: 5
     }, this);
 }

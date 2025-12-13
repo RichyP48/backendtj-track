@@ -3,6 +3,7 @@ package com.track.ecommerce.controller;
 import com.track.dto.ApiResponse;
 import com.track.ecommerce.entity.Commande;
 import com.track.ecommerce.service.CommandeService;
+import com.track.ecommerce.service.CommandeLivraisonService;
 import com.track.finance.entity.Paiement;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,10 @@ import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/commandes")
@@ -18,6 +23,7 @@ import java.util.List;
 public class CommandeController {
     
     private final CommandeService commandeService;
+    private final CommandeLivraisonService commandeLivraisonService;
     
     @PostMapping("/creer")
     public ResponseEntity<ApiResponse<Commande>> creerCommande(
@@ -75,6 +81,30 @@ public class CommandeController {
         try {
             List<Commande> commandes = commandeService.getCommandesByMerchant(merchantUserId);
             return ResponseEntity.ok(ApiResponse.success("Commandes récupérées", commandes));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+    
+    @GetMapping("/livreurs-disponibles")
+    public ResponseEntity<ApiResponse<List<Map<String, Object>>>> getLivreursDisponibles(
+            @RequestParam double lat, @RequestParam double lon) {
+        try {
+            var livreurs = commandeLivraisonService.getLivreursDisponibles(lat, lon);
+            return ResponseEntity.ok(ApiResponse.success("Livreurs disponibles", livreurs));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
+    }
+    
+    @PostMapping("/{id}/assigner-livreur")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> assignerLivreur(
+            @PathVariable Long id,
+            @RequestParam Long clientId,
+            @RequestParam Long merchantId) {
+        try {
+            var result = commandeLivraisonService.assignerLivreur(id, clientId, merchantId);
+            return ResponseEntity.ok(ApiResponse.success("Livreur assigné", result));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
         }
