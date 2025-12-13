@@ -211,6 +211,8 @@ __turbopack_context__.s([
     ()=>useArticlesPopulaires,
     "useBannierePrincipale",
     ()=>useBannierePrincipale,
+    "useBulkUserActions",
+    ()=>useBulkUserActions,
     "useCalculerTarif",
     ()=>useCalculerTarif,
     "useCarrouselAccueil",
@@ -245,6 +247,10 @@ __turbopack_context__.s([
     ()=>useCommandesFournisseur,
     "useCommandesMerchant",
     ()=>useCommandesMerchant,
+    "useContentItems",
+    ()=>useContentItems,
+    "useConversations",
+    ()=>useConversations,
     "useCreateArticle",
     ()=>useCreateArticle,
     "useCreateCategorie",
@@ -263,6 +269,8 @@ __turbopack_context__.s([
     ()=>useCreerCampagne,
     "useCreerCommande",
     ()=>useCreerCommande,
+    "useDashboardStats",
+    ()=>useDashboardStats,
     "useDeleteArticle",
     ()=>useDeleteArticle,
     "useDeleteCategorie",
@@ -321,6 +329,8 @@ __turbopack_context__.s([
     ()=>useMerchantOrders,
     "useMerchantProduits",
     ()=>useMerchantProduits,
+    "useMerchantRelations",
+    ()=>useMerchantRelations,
     "useMerchantStockFaible",
     ()=>useMerchantStockFaible,
     "useMesCampagnes",
@@ -337,6 +347,8 @@ __turbopack_context__.s([
     ()=>useMouvementsStock,
     "useNouveautes",
     ()=>useNouveautes,
+    "useOrderAnalytics",
+    ()=>useOrderAnalytics,
     "useOutOfStockArticles",
     ()=>useOutOfStockArticles,
     "usePanier",
@@ -345,6 +357,8 @@ __turbopack_context__.s([
     ()=>usePayerCommande,
     "usePendingUsers",
     ()=>usePendingUsers,
+    "usePerformanceMetrics",
+    ()=>usePerformanceMetrics,
     "useProduitDetail",
     ()=>useProduitDetail,
     "useProduitsEnAvant",
@@ -367,8 +381,12 @@ __turbopack_context__.s([
     ()=>useReserveStock,
     "useResetPassword",
     ()=>useResetPassword,
+    "useRevenueAnalytics",
+    ()=>useRevenueAnalytics,
     "useSearchFournisseurs",
     ()=>useSearchFournisseurs,
+    "useSendMessage",
+    ()=>useSendMessage,
     "useSendOtp",
     ()=>useSendOtp,
     "useSendResetOtp",
@@ -383,8 +401,14 @@ __turbopack_context__.s([
     ()=>useSupplierCommandesMerchants,
     "useSupplierOrders",
     ()=>useSupplierOrders,
+    "useSupportTickets",
+    ()=>useSupportTickets,
     "useSupprimerDuPanier",
     ()=>useSupprimerDuPanier,
+    "useSystemAlerts",
+    ()=>useSystemAlerts,
+    "useTopProducts",
+    ()=>useTopProducts,
     "useUnreadAlerts",
     ()=>useUnreadAlerts,
     "useUpdateArticle",
@@ -395,6 +419,12 @@ __turbopack_context__.s([
     ()=>useUpdateCommandeStatus,
     "useUpdateFournisseur",
     ()=>useUpdateFournisseur,
+    "useUpdateMerchantStatus",
+    ()=>useUpdateMerchantStatus,
+    "useUpdateTicketStatus",
+    ()=>useUpdateTicketStatus,
+    "useUserAnalytics",
+    ()=>useUserAnalytics,
     "useVente",
     ()=>useVente,
     "useVenteByCode",
@@ -1384,10 +1414,13 @@ function usePendingUsers() {
         queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/pending-users")
     });
 }
-function useAllUsers() {
+function useAllUsers(params) {
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
-        queryKey: queryKeys.allUsers,
-        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/all-users")
+        queryKey: [
+            ...queryKeys.allUsers,
+            params
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/all-users", params)
     });
 }
 function useApproveUser() {
@@ -1740,6 +1773,164 @@ function useCreerCampagne() {
 function useAddRole() {
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
         mutationFn: (name)=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/roles", name)
+    });
+}
+function useDashboardStats() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "dashboardStats"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/api/admin/dashboard-stats")
+    });
+}
+function useRevenueAnalytics(timeRange) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "revenueAnalytics",
+            timeRange
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/api/admin/analytics/revenue", {
+                timeRange
+            })
+    });
+}
+function useTopProducts(limit = 10) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "topProducts",
+            limit
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/api/admin/analytics/top-products", {
+                limit
+            })
+    });
+}
+function useOrderAnalytics() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "orderAnalytics"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/api/admin/analytics/orders")
+    });
+}
+function useUserAnalytics() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "userAnalytics"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/api/admin/analytics/users")
+    });
+}
+function usePerformanceMetrics() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "performanceMetrics"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/api/admin/analytics/performance")
+    });
+}
+function useSystemAlerts() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "systemAlerts"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/alerts")
+    });
+}
+function useContentItems() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "contentItems"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/content")
+    });
+}
+function useBulkUserActions() {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: ({ userIds, action })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/admin/bulk-user-actions", {
+                userIds,
+                action
+            }),
+        onSuccess: ()=>{
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.allUsers
+            });
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.pendingUsers
+            });
+        }
+    });
+}
+function useConversations() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "conversations"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/conversations")
+    });
+}
+function useSendMessage() {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: ({ userId, message, type })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].post("/admin/send-message", {
+                userId,
+                message,
+                type
+            }),
+        onSuccess: ()=>{
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "conversations"
+                ]
+            });
+        }
+    });
+}
+function useMerchantRelations() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "merchantRelations"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/merchant-relations")
+    });
+}
+function useUpdateMerchantStatus() {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: ({ merchantId, status })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].put(`/admin/merchants/${merchantId}/status`, {
+                status
+            }),
+        onSuccess: ()=>{
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "merchantRelations"
+                ]
+            });
+        }
+    });
+}
+function useSupportTickets() {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "supportTickets"
+        ],
+        queryFn: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/support-tickets")
+    });
+}
+function useUpdateTicketStatus() {
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: ({ ticketId, status })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["apiClient"].put(`/admin/tickets/${ticketId}/status`, {
+                status
+            }),
+        onSuccess: ()=>{
+            queryClient.invalidateQueries({
+                queryKey: [
+                    "supportTickets"
+                ]
+            });
+        }
     });
 }
 }),

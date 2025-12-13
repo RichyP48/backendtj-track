@@ -10,8 +10,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Ticket, Clock, AlertCircle, CheckCircle, MoreVertical, MessageSquare, User, Store, Truck } from "lucide-react"
 
 export function SupportTickets() {
-  const [priorityFilter, setPriorityFilter] = useState("")
-  const [statusFilter, setStatusFilter] = useState("")
+  const [priorityFilter, setPriorityFilter] = useState("all")
+  const [statusFilter, setStatusFilter] = useState("all")
 
   const tickets = [
     {
@@ -98,7 +98,7 @@ export function SupportTickets() {
               <SelectValue placeholder="Priorité" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Toutes</SelectItem>
+              <SelectItem value="all">Toutes</SelectItem>
               <SelectItem value="high">Haute</SelectItem>
               <SelectItem value="medium">Moyenne</SelectItem>
               <SelectItem value="low">Basse</SelectItem>
@@ -109,7 +109,7 @@ export function SupportTickets() {
               <SelectValue placeholder="Statut" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Tous</SelectItem>
+              <SelectItem value="all">Tous</SelectItem>
               <SelectItem value="open">Ouvert</SelectItem>
               <SelectItem value="in_progress">En cours</SelectItem>
               <SelectItem value="resolved">Résolu</SelectItem>

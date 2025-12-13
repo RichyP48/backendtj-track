@@ -141,4 +141,46 @@ public class AdminController {
             return ResponseEntity.badRequest().body(Map.of("error", true, "message", e.getMessage()));
         }
     }
+    
+    @GetMapping("/stats/global")
+    public ResponseEntity<?> getGlobalStats() {
+        try {
+            List<ProfileResponse> allUsers = profileService.getAllUsers();
+            long merchantCount = allUsers.stream().filter(u -> u.getRoles().contains("COMMERCANT")).count();
+            long clientCount = allUsers.stream().filter(u -> u.getRoles().contains("CLIENT")).count();
+            long supplierCount = allUsers.stream().filter(u -> u.getRoles().contains("FOURNISSEUR")).count();
+            long pendingCount = allUsers.stream().filter(u -> !u.getIsApproved()).count();
+            
+            Map<String, Object> stats = Map.of(
+                "orders", Map.of("total", 0, "pending", 0, "processing", 0, "completed", 0, "cancelled", 0),
+                "products", Map.of("total", articleService.getAllArticles().size(), "active", 0, "outOfStock", 0),
+                "merchants", Map.of("total", merchantCount, "active", merchantCount, "pending", 0),
+                "clients", Map.of("total", clientCount, "active", clientCount, "new", 0),
+                "suppliers", Map.of("total", supplierCount, "active", supplierCount, "pending", 0)
+            );
+            return ResponseEntity.ok(stats);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", true, "message", e.getMessage()));
+        }
+    }
+    
+    @GetMapping("/orders/merchants")
+    public ResponseEntity<?> getOrdersByMerchant() {
+        return ResponseEntity.ok(List.of());
+    }
+    
+    @GetMapping("/orders/clients")
+    public ResponseEntity<?> getOrdersByClient() {
+        return ResponseEntity.ok(List.of());
+    }
+    
+    @GetMapping("/stock/merchants")
+    public ResponseEntity<?> getStockByMerchant() {
+        return ResponseEntity.ok(List.of());
+    }
+    
+    @GetMapping("/suppliers/stats")
+    public ResponseEntity<?> getSupplierStats() {
+        return ResponseEntity.ok(List.of());
+    }
 }

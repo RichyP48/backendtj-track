@@ -67,8 +67,10 @@ const getMenuItems = (role?: string) => {
       {
         title: "Analytics & Rapports",
         items: [
-          { name: "Analytics", href: "/dashboard/admin/analytics", icon: BarChart3 },
-          { name: "Statistiques", href: "/dashboard/statistiques", icon: TrendingUp },
+          { name: "Dashboard Complet", href: "/dashboard/admin/dashboard", icon: BarChart3 },
+          { name: "Vue Globale", href: "/dashboard/admin/global", icon: Globe },
+          { name: "Analytics", href: "/dashboard/admin/analytics", icon: TrendingUp },
+          { name: "Statistiques", href: "/dashboard/statistiques", icon: FileText },
           { name: "Rapports", href: "/dashboard/rapports", icon: FileText },
         ],
       },

@@ -41,6 +41,9 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT COUNT(a) FROM Article a WHERE a.quantiteStock <= a.seuilAlerte AND a.statut = 'ACTIF'")
     Long countArticlesStockFaible();
     
+    @Query("SELECT COUNT(a) FROM Article a WHERE a.quantiteStock <= a.seuilAlerte AND a.statut = 'ACTIF'")
+    Long countLowStockArticles();
+    
     @Query("SELECT COUNT(a) FROM Article a WHERE a.quantiteStock <= 0 AND a.statut = 'ACTIF'")
     Long countArticlesRuptureStock();
     

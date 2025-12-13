@@ -15,10 +15,11 @@ import { BarChart3, Users, Package, ShoppingCart, Settings, FileText, TrendingUp
 
 export default function AdminDashboard() {
   const quickActions = [
+    { label: "Dashboard Complet", icon: BarChart3, href: "/dashboard/admin/dashboard" },
     { label: "Gérer les utilisateurs", icon: Users, href: "/dashboard/admin/utilisateurs" },
     { label: "Gérer les produits", icon: Package, href: "/dashboard/admin/produits" },
     { label: "Voir les commandes", icon: ShoppingCart, href: "/dashboard/admin/commandes" },
-    { label: "Analytics", icon: BarChart3, href: "/dashboard/admin/analytics" },
+    { label: "Analytics", icon: TrendingUp, href: "/dashboard/admin/analytics" },
     { label: "Communication", icon: MessageSquare, href: "/dashboard/admin/communication" },
     { label: "Contenu", icon: FileText, href: "/dashboard/admin/contenu" },
     { label: "Paramètres", icon: Settings, href: "/dashboard/admin/parametres" },

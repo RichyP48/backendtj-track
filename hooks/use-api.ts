@@ -858,7 +858,7 @@ export function usePendingUsers() {
   })
 }
 
-export function useAllUsers(params?: { page?: number; limit?: number; role?: string; status?: string }) {
+export function useAllUsers(params?: { page?: number; limit?: number; role?: string; status?: string; search?: string }) {
   return useQuery({
     queryKey: [...queryKeys.allUsers, params],
     queryFn: () => apiClient.get<{ users: ProfileResponse[]; total: number; page: number }>("/admin/all-users", params),
@@ -1164,8 +1164,70 @@ export function useDashboardStats() {
       totalOrders: number
       totalProducts: number
       lowStockAlerts: number
+      outOfStockProducts: number
       recentActivity: Array<{ id: string; message: string; time: string }>
-    }>("/admin/dashboard-stats"),
+    }>("/api/admin/dashboard-stats"),
+  })
+}
+
+export function useRevenueAnalytics(timeRange: string) {
+  return useQuery({
+    queryKey: ["revenueAnalytics", timeRange],
+    queryFn: () => apiClient.get<Array<{
+      period: string
+      revenue: number
+      orders: number
+      growth: number
+    }>>("/api/admin/analytics/revenue", { timeRange }),
+  })
+}
+
+export function useTopProducts(limit: number = 10) {
+  return useQuery({
+    queryKey: ["topProducts", limit],
+    queryFn: () => apiClient.get<Array<{
+      id: number
+      name: string
+      sales: number
+      revenue: number
+      growth: number
+    }>>("/api/admin/analytics/top-products", { limit }),
+  })
+}
+
+export function useOrderAnalytics() {
+  return useQuery({
+    queryKey: ["orderAnalytics"],
+    queryFn: () => apiClient.get<{
+      statusDistribution: Array<{ status: string; count: number; percentage: number }>
+      dailyOrders: Array<{ date: string; orders: number }>
+      averageOrderValue: number
+    }>("/api/admin/analytics/orders"),
+  })
+}
+
+export function useUserAnalytics() {
+  return useQuery({
+    queryKey: ["userAnalytics"],
+    queryFn: () => apiClient.get<{
+      roleDistribution: Array<{ role: string; count: number; percentage: number }>
+      registrationTrend: Array<{ date: string; registrations: number }>
+      activeUsers: number
+      retentionRate: number
+    }>("/api/admin/analytics/users"),
+  })
+}
+
+export function usePerformanceMetrics() {
+  return useQuery({
+    queryKey: ["performanceMetrics"],
+    queryFn: () => apiClient.get<{
+      conversionRate: number
+      averageOrderValue: number
+      customerLifetimeValue: number
+      returnCustomerRate: number
+      cartAbandonmentRate: number
+    }>("/api/admin/analytics/performance"),
   })
 }
 
