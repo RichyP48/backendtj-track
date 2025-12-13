@@ -10,9 +10,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Package, Search, AlertTriangle, TrendingUp, TrendingDown, ArrowUpDown, Loader2, Plus, BarChart3, ShoppingCart } from "lucide-react"
+import { Package, Search, AlertTriangle, TrendingUp, TrendingDown, ArrowUpDown, Loader2, Plus, BarChart3, ShoppingCart, Store, Upload, X } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import { useMerchantArticles, useAjusterStockMerchant, useAjouterArticleMerchant, useAllCategories } from "@/hooks/use-api"
+import { useMerchantArticles, useAjusterStockMerchant, useAjouterArticleMerchant, useAllCategories, useAjouterProduitMerchant } from "@/hooks/use-api"
 import { useAuth } from "@/contexts/auth-context"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { StockAnalytics } from "@/components/stock/stock-analytics"
@@ -35,17 +35,36 @@ export default function MerchantStockPage() {
     prixUnitaireHt: "",
     quantiteStock: "",
     seuilAlerte: "5",
-    categorieId: ""
+    categorieId: "",
+    couleur: "",
+    taille: "",
+    capacite: "",
+    marque: "",
+    modele: ""
+  })
+  const [articleImages, setArticleImages] = useState<File[]>([])
+  const [productDialog, setProductDialog] = useState<{
+    open: boolean
+    article: Record<string, unknown> | null
+  }>({ open: false, article: null })
+  const [productData, setProductData] = useState({
+    nom: "",
+    description: "",
+    descriptionLongue: "",
+    prix: "",
+    quantite: "",
+    visibleEnLigne: true
   })
   const { toast } = useToast()
   const { user } = useAuth()
 
-  const { data: stockResponse, isLoading, error, refetch } = useMerchantArticles(user?.id || user?.email || "")
+  const { data: stockResponse, isLoading, error, refetch } = useMerchantArticles(user?.email || "")
   const { data: categoriesResponse } = useAllCategories()
   const adjustStockMutation = useAjusterStockMerchant()
   const addArticleMutation = useAjouterArticleMerchant()
+  const addProductMutation = useAjouterProduitMerchant()
   
-  const categories = categoriesResponse?.data || []
+  const categories = categoriesResponse || []
 
   // Extract stock from response
   const stock = stockResponse?.data || stockResponse || []
@@ -69,7 +88,7 @@ export default function MerchantStockPage() {
         id: adjustDialog.article.id as number,
         quantite: finalQty,
         motif: adjustMotif,
-        userId: user?.id || user?.email || "",
+        userId: user?.email || "",
       })
 
       toast({
@@ -102,15 +121,16 @@ export default function MerchantStockPage() {
 
     try {
       await addArticleMutation.mutateAsync({
-        userId: user?.id || user?.email || "",
+        userId: user?.email || "",
         data: {
+          codeArticle: `ART-${Date.now()}`,
           designation: newArticle.designation,
           description: newArticle.description,
           prixUnitaireHt: parseFloat(newArticle.prixUnitaireHt),
           prixUnitaireTtc: parseFloat(newArticle.prixUnitaireHt) * 1.2,
           quantiteStock: parseInt(newArticle.quantiteStock),
           seuilAlerte: parseInt(newArticle.seuilAlerte),
-          categorieId: newArticle.categorieId ? parseInt(newArticle.categorieId) : null
+          categorieId: newArticle.categorieId ? parseInt(newArticle.categorieId) : undefined
         }
       })
 
@@ -126,8 +146,14 @@ export default function MerchantStockPage() {
         prixUnitaireHt: "",
         quantiteStock: "",
         seuilAlerte: "5",
-        categorieId: ""
+        categorieId: "",
+        couleur: "",
+        taille: "",
+        capacite: "",
+        marque: "",
+        modele: ""
       })
+      setArticleImages([])
       refetch()
     } catch (err) {
       toast({
@@ -136,6 +162,98 @@ export default function MerchantStockPage() {
         variant: "destructive"
       })
     }
+  }
+
+  const handleCreateProduct = async () => {
+    if (!productDialog.article || !productData.nom || !productData.prix) {
+      toast({
+        title: "Erreur",
+        description: "Veuillez remplir tous les champs obligatoires",
+        variant: "destructive"
+      })
+      return
+    }
+
+    try {
+      const article = productDialog.article
+      await addProductMutation.mutateAsync({
+        produitDto: {
+          nom: productData.nom,
+          description: productData.description,
+          descriptionLongue: productData.descriptionLongue,
+          prix: parseFloat(productData.prix),
+          quantite: parseInt(productData.quantite) || (article.quantiteStock as number),
+          categorieId: 1,
+          visibleEnLigne: productData.visibleEnLigne
+        },
+        images: [],
+        merchantUserId: user?.email || ""
+      })
+
+      toast({
+        title: "Produit créé",
+        description: "L'article a été converti en produit avec succès"
+      })
+
+      setProductDialog({ open: false, article: null })
+      setProductData({
+        nom: "",
+        description: "",
+        descriptionLongue: "",
+        prix: "",
+        quantite: "",
+        visibleEnLigne: true
+      })
+    } catch (err) {
+      toast({
+        title: "Erreur",
+        description: "Impossible de créer le produit",
+        variant: "destructive"
+      })
+    }
+  }
+
+  const openProductDialog = (article: Record<string, unknown>) => {
+    setProductData({
+      nom: article.designation as string,
+      description: article.description as string || "",
+      descriptionLongue: "",
+      prix: (article.prixUnitaireHt as number)?.toString() || "",
+      quantite: (article.quantiteStock as number)?.toString() || "",
+      visibleEnLigne: true
+    })
+    setProductDialog({ open: true, article })
+  }
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || [])
+    setArticleImages(prev => [...prev, ...files].slice(0, 5))
+  }
+
+  const removeImage = (index: number) => {
+    setArticleImages(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const getSelectedCategory = () => {
+    return categories.find((cat: any) => cat.id.toString() === newArticle.categorieId)
+  }
+
+  const getCategorySpecificFields = () => {
+    const category = getSelectedCategory()
+    if (!category) return []
+    
+    const categoryName = category.designation?.toLowerCase() || ""
+    
+    if (categoryName.includes("électronique") || categoryName.includes("smartphone") || categoryName.includes("ordinateur")) {
+      return ["capacite", "couleur", "marque", "modele"]
+    }
+    if (categoryName.includes("vêtement") || categoryName.includes("textile")) {
+      return ["taille", "couleur", "marque"]
+    }
+    if (categoryName.includes("chaussure")) {
+      return ["taille", "couleur", "marque"]
+    }
+    return ["couleur", "marque"]
   }
 
   const getStockStatus = (item: Record<string, unknown>) => {
@@ -302,15 +420,16 @@ export default function MerchantStockPage() {
             </TableHeader>
             <TableBody>
               {filteredStock.map((item) => {
-                const status = getStockStatus(item)
-                const qty = (item.quantiteStock as number) || 0
-                const threshold = (item.seuilAlerte as number) || 5
-                const max = (item.stockMax as number) || 100
-                const price = (item.prixUnitaireHt as number) || 0
+                const article = item as unknown as Record<string, unknown>
+                const status = getStockStatus(article)
+                const qty = (article.quantiteStock as number) || 0
+                const threshold = (article.seuilAlerte as number) || 5
+                const max = (article.stockMax as number) || 100
+                const price = (article.prixUnitaireHt as number) || 0
                 return (
-                  <TableRow key={item.id as number}>
-                    <TableCell className="font-mono text-sm">{item.codeArticle as string}</TableCell>
-                    <TableCell className="font-medium">{item.designation as string}</TableCell>
+                  <TableRow key={article.id as number}>
+                    <TableCell className="font-mono text-sm">{article.codeArticle as string}</TableCell>
+                    <TableCell className="font-medium">{article.designation as string}</TableCell>
                     <TableCell className="text-center">
                       <span className={qty <= threshold ? "text-orange-500 font-bold" : ""}>{qty}</span>
                       <span className="text-muted-foreground">/{max}</span>
@@ -325,7 +444,15 @@ export default function MerchantStockPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => setAdjustDialog({ open: true, article: item, type: "add" })}
+                          onClick={() => openProductDialog(article)}
+                        >
+                          <Store className="h-3 w-3 mr-1" />
+                          Produit
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setAdjustDialog({ open: true, article: article, type: "add" })}
                         >
                           <TrendingUp className="h-3 w-3 mr-1" />
                           Entrée
@@ -333,7 +460,7 @@ export default function MerchantStockPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => setAdjustDialog({ open: true, article: item, type: "remove" })}
+                          onClick={() => setAdjustDialog({ open: true, article: article, type: "remove" })}
                         >
                           <TrendingDown className="h-3 w-3 mr-1" />
                           Sortie
@@ -357,11 +484,11 @@ export default function MerchantStockPage() {
         </TabsContent>
 
         <TabsContent value="analytics">
-          <StockAnalytics articles={filteredStock} />
+          <StockAnalytics articles={filteredStock as any[]} />
         </TabsContent>
 
         <TabsContent value="reorder">
-          <ReorderSuggestions articles={filteredStock} />
+          <ReorderSuggestions articles={filteredStock as any[]} />
         </TabsContent>
 
         <TabsContent value="movements">
@@ -416,11 +543,55 @@ export default function MerchantStockPage() {
 
       {/* Add Article Dialog */}
       <Dialog open={addDialog} onOpenChange={setAddDialog}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Ajouter un Article</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 py-4">
+          <div className="space-y-6 py-4">
+            {/* Images */}
+            <div className="space-y-2">
+              <Label>Images de l'article</Label>
+              <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-4">
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  id="article-images"
+                />
+                <label htmlFor="article-images" className="cursor-pointer">
+                  <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                    <Upload className="h-8 w-8" />
+                    <p>Cliquez pour ajouter des images (max 5)</p>
+                  </div>
+                </label>
+                {articleImages.length > 0 && (
+                  <div className="grid grid-cols-5 gap-2 mt-4">
+                    {articleImages.map((file, index) => (
+                      <div key={index} className="relative">
+                        <img
+                          src={URL.createObjectURL(file)}
+                          alt={`Preview ${index}`}
+                          className="w-full h-20 object-cover rounded"
+                        />
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="sm"
+                          className="absolute -top-2 -right-2 h-6 w-6 p-0"
+                          onClick={() => removeImage(index)}
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Informations de base */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>Désignation *</Label>
@@ -431,7 +602,7 @@ export default function MerchantStockPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label>Catégorie</Label>
+                <Label>Catégorie *</Label>
                 <Select value={newArticle.categorieId} onValueChange={(value) => setNewArticle({ ...newArticle, categorieId: value })}>
                   <SelectTrigger>
                     <SelectValue placeholder="Sélectionner une catégorie" />
@@ -446,14 +617,77 @@ export default function MerchantStockPage() {
                 </Select>
               </div>
             </div>
+
             <div className="space-y-2">
               <Label>Description</Label>
               <Textarea
                 value={newArticle.description}
                 onChange={(e) => setNewArticle({ ...newArticle, description: e.target.value })}
-                placeholder="Description de l'article"
+                placeholder="Description détaillée de l'article"
+                rows={3}
               />
             </div>
+
+            {/* Caractéristiques spécifiques à la catégorie */}
+            {getCategorySpecificFields().length > 0 && (
+              <div className="space-y-4">
+                <Label className="text-base font-semibold">Caractéristiques spécifiques</Label>
+                <div className="grid grid-cols-2 gap-4">
+                  {getCategorySpecificFields().includes("couleur") && (
+                    <div className="space-y-2">
+                      <Label>Couleur</Label>
+                      <Input
+                        value={newArticle.couleur}
+                        onChange={(e) => setNewArticle({ ...newArticle, couleur: e.target.value })}
+                        placeholder="Ex: Rouge, Bleu, Noir"
+                      />
+                    </div>
+                  )}
+                  {getCategorySpecificFields().includes("taille") && (
+                    <div className="space-y-2">
+                      <Label>Taille</Label>
+                      <Input
+                        value={newArticle.taille}
+                        onChange={(e) => setNewArticle({ ...newArticle, taille: e.target.value })}
+                        placeholder="Ex: S, M, L, XL ou 38, 40, 42"
+                      />
+                    </div>
+                  )}
+                  {getCategorySpecificFields().includes("capacite") && (
+                    <div className="space-y-2">
+                      <Label>Capacité</Label>
+                      <Input
+                        value={newArticle.capacite}
+                        onChange={(e) => setNewArticle({ ...newArticle, capacite: e.target.value })}
+                        placeholder="Ex: 128GB, 256GB, 1TB"
+                      />
+                    </div>
+                  )}
+                  {getCategorySpecificFields().includes("marque") && (
+                    <div className="space-y-2">
+                      <Label>Marque</Label>
+                      <Input
+                        value={newArticle.marque}
+                        onChange={(e) => setNewArticle({ ...newArticle, marque: e.target.value })}
+                        placeholder="Ex: Apple, Samsung, Nike"
+                      />
+                    </div>
+                  )}
+                  {getCategorySpecificFields().includes("modele") && (
+                    <div className="space-y-2">
+                      <Label>Modèle</Label>
+                      <Input
+                        value={newArticle.modele}
+                        onChange={(e) => setNewArticle({ ...newArticle, modele: e.target.value })}
+                        placeholder="Ex: iPhone 15 Pro, Galaxy S24"
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Prix et stock */}
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label>Prix HT (XAF) *</Label>
@@ -495,7 +729,99 @@ export default function MerchantStockPage() {
             <Button onClick={handleAddArticle} disabled={addArticleMutation.isPending}>
               {addArticleMutation.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
               <Plus className="h-4 w-4 mr-2" />
-              Ajouter
+              Ajouter Article
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Create Product Dialog */}
+      <Dialog open={productDialog.open} onOpenChange={(open) => setProductDialog({ ...productDialog, open })}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Convertir en Produit E-commerce</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="p-3 rounded-lg bg-muted">
+              <p className="font-medium">{productDialog.article?.designation as string}</p>
+              <p className="text-sm text-muted-foreground">
+                Stock disponible: {(productDialog.article?.quantiteStock as number) || 0} unités
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Nom du produit *</Label>
+                <Input
+                  value={productData.nom}
+                  onChange={(e) => setProductData({ ...productData, nom: e.target.value })}
+                  placeholder="Nom pour l'e-commerce"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Prix de vente (XAF) *</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={productData.prix}
+                  onChange={(e) => setProductData({ ...productData, prix: e.target.value })}
+                  placeholder="Prix public"
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Description courte</Label>
+              <Textarea
+                value={productData.description}
+                onChange={(e) => setProductData({ ...productData, description: e.target.value })}
+                placeholder="Description pour l'e-commerce"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Description détaillée</Label>
+              <Textarea
+                value={productData.descriptionLongue}
+                onChange={(e) => setProductData({ ...productData, descriptionLongue: e.target.value })}
+                placeholder="Description complète du produit"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Quantité à mettre en ligne</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  max={(productDialog.article?.quantiteStock as number) || 0}
+                  value={productData.quantite}
+                  onChange={(e) => setProductData({ ...productData, quantite: e.target.value })}
+                  placeholder="Quantité disponible"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Visibilité</Label>
+                <Select 
+                  value={productData.visibleEnLigne.toString()} 
+                  onValueChange={(value) => setProductData({ ...productData, visibleEnLigne: value === "true" })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="true">Visible en ligne</SelectItem>
+                    <SelectItem value="false">Masqué</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setProductDialog({ open: false, article: null })}>
+              Annuler
+            </Button>
+            <Button onClick={handleCreateProduct} disabled={addProductMutation.isPending}>
+              {addProductMutation.isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
+              <Store className="h-4 w-4 mr-2" />
+              Créer Produit
             </Button>
           </DialogFooter>
         </DialogContent>
