@@ -858,10 +858,10 @@ export function usePendingUsers() {
   })
 }
 
-export function useAllUsers() {
+export function useAllUsers(params?: { page?: number; limit?: number; role?: string; status?: string }) {
   return useQuery({
-    queryKey: queryKeys.allUsers,
-    queryFn: () => apiClient.get<ProfileResponse[]>("/admin/all-users"),
+    queryKey: [...queryKeys.allUsers, params],
+    queryFn: () => apiClient.get<{ users: ProfileResponse[]; total: number; page: number }>("/admin/all-users", params),
   })
 }
 
@@ -1152,5 +1152,139 @@ export function useCreerCampagne() {
 export function useAddRole() {
   return useMutation({
     mutationFn: (name: string) => apiClient.post<{ id: number; name: string }>("/roles", name),
+  })
+}
+
+// Analytics & Dashboard
+export function useDashboardStats() {
+  return useQuery({
+    queryKey: ["dashboardStats"],
+    queryFn: () => apiClient.get<{
+      totalRevenue: number
+      totalOrders: number
+      totalProducts: number
+      lowStockAlerts: number
+      recentActivity: Array<{ id: string; message: string; time: string }>
+    }>("/admin/dashboard-stats"),
+  })
+}
+
+export function useSystemAlerts() {
+  return useQuery({
+    queryKey: ["systemAlerts"],
+    queryFn: () => apiClient.get<Array<{
+      id: string
+      type: string
+      message: string
+      priority: 'high' | 'medium' | 'low'
+      time: string
+    }>>("/admin/alerts"),
+  })
+}
+
+// Content Management
+export function useContentItems() {
+  return useQuery({
+    queryKey: ["contentItems"],
+    queryFn: () => apiClient.get<Array<{
+      id: string
+      title: string
+      type: string
+      status: string
+      lastModified: string
+    }>>("/admin/content"),
+  })
+}
+
+export function useBulkUserActions() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ userIds, action }: { userIds: string[]; action: 'approve' | 'reject' | 'suspend' }) =>
+      apiClient.post<void>("/admin/bulk-user-actions", { userIds, action }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.allUsers })
+      queryClient.invalidateQueries({ queryKey: queryKeys.pendingUsers })
+    },
+  })
+}
+
+// Communication & Relations
+export function useConversations() {
+  return useQuery({
+    queryKey: ["conversations"],
+    queryFn: () => apiClient.get<Array<{
+      id: string
+      user: string
+      role: string
+      subject: string
+      status: string
+      lastMessage: string
+      unread: number
+    }>>("/admin/conversations"),
+  })
+}
+
+export function useSendMessage() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ userId, message, type }: { userId: string; message: string; type: 'direct' | 'broadcast' }) =>
+      apiClient.post<void>("/admin/send-message", { userId, message, type }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["conversations"] })
+    },
+  })
+}
+
+export function useMerchantRelations() {
+  return useQuery({
+    queryKey: ["merchantRelations"],
+    queryFn: () => apiClient.get<Array<{
+      id: string
+      name: string
+      status: string
+      products: number
+      revenue: number
+      commission: number
+      rating: number
+      issues: number
+    }>>("/admin/merchant-relations"),
+  })
+}
+
+export function useUpdateMerchantStatus() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ merchantId, status }: { merchantId: string; status: 'active' | 'suspended' | 'pending' }) =>
+      apiClient.put<void>(`/admin/merchants/${merchantId}/status`, { status }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["merchantRelations"] })
+    },
+  })
+}
+
+export function useSupportTickets() {
+  return useQuery({
+    queryKey: ["supportTickets"],
+    queryFn: () => apiClient.get<Array<{
+      id: string
+      title: string
+      user: string
+      userType: string
+      priority: string
+      status: string
+      category: string
+      created: string
+    }>>("/admin/support-tickets"),
+  })
+}
+
+export function useUpdateTicketStatus() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ ticketId, status }: { ticketId: string; status: 'open' | 'in_progress' | 'resolved' }) =>
+      apiClient.put<void>(`/admin/tickets/${ticketId}/status`, { status }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["supportTickets"] })
+    },
   })
 }

@@ -10,12 +10,13 @@ import { Label } from "@/components/ui/label"
 import { Clock, CheckCircle, XCircle, Store, Truck, MapPin, Phone, Mail, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { usePendingUsers, useApproveUser, useRejectUser } from "@/hooks/use-api"
+import type { ProfileResponse } from "@/types/api"
 import { useAuth } from "@/contexts/auth-context"
 
 export default function AdminValidationsPage() {
-  const [selectedUser, setSelectedUser] = useState<Record<string, unknown> | null>(null)
+  const [selectedUser, setSelectedUser] = useState<ProfileResponse | null>(null)
   const [rejectReason, setRejectReason] = useState("")
-  const [showRejectDialog, setShowRejectDialog] = useState(false)
+  const [showRejectDialog, setShowRejectDialog] = useState<boolean>(false)
   const { toast } = useToast()
   const { user } = useAuth()
 
@@ -45,7 +46,7 @@ export default function AdminValidationsPage() {
     if (!selectedUser) return
     try {
       await rejectUserMutation.mutateAsync({
-        userId: String(selectedUser.id || selectedUser.email),
+        userId: String(selectedUser.userId || selectedUser.email),
         rejectedBy: user?.email || "admin",
       })
       toast({
@@ -115,7 +116,7 @@ export default function AdminValidationsPage() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Commerçants</p>
-                <p className="text-2xl font-bold">{pendingUsers.filter((u) => u.role === "COMMERCANT").length}</p>
+                <p className="text-2xl font-bold">{pendingUsers.filter((u) => u.roles?.includes("COMMERCANT")).length}</p>
               </div>
             </div>
           </CardContent>
@@ -128,7 +129,7 @@ export default function AdminValidationsPage() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Fournisseurs</p>
-                <p className="text-2xl font-bold">{pendingUsers.filter((u) => u.role === "FOURNISSEUR").length}</p>
+                <p className="text-2xl font-bold">{pendingUsers.filter((u) => u.roles?.includes("FOURNISSEUR")).length}</p>
               </div>
             </div>
           </CardContent>
@@ -148,20 +149,20 @@ export default function AdminValidationsPage() {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {pendingUsers.map((pendingUser) => (
             <Card
-              key={String(pendingUser.id || pendingUser.email)}
+              key={String(pendingUser.userId || pendingUser.email)}
               className="glass-card hover:border-primary/50 transition-colors"
             >
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between">
                   <Badge variant="outline" className="gap-1">
-                    {pendingUser.role === "COMMERCANT" ? <Store className="h-3 w-3" /> : <Truck className="h-3 w-3" />}
-                    {pendingUser.role === "COMMERCANT" ? "Commerçant" : "Fournisseur"}
+                    {pendingUser.roles?.includes("COMMERCANT") ? <Store className="h-3 w-3" /> : <Truck className="h-3 w-3" />}
+                    {pendingUser.roles?.includes("COMMERCANT") ? "Commerçant" : "Fournisseur"}
                   </Badge>
                   <span className="text-xs text-muted-foreground">
                     {pendingUser.createdAt ? new Date(String(pendingUser.createdAt)).toLocaleDateString("fr-FR") : "N/A"}
                   </span>
                 </div>
-                <CardTitle className="text-lg mt-2">{String(pendingUser.shopName || pendingUser.name || "N/A")}</CardTitle>
+                <CardTitle className="text-lg mt-2">{String(pendingUser.enterpriseName || pendingUser.name || "N/A")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="space-y-2 text-sm">
@@ -169,10 +170,10 @@ export default function AdminValidationsPage() {
                     <Mail className="h-4 w-4" />
                     <span>{String(pendingUser.email || "")}</span>
                   </div>
-                  {pendingUser.phone && (
+                  {pendingUser.phoneNumber && (
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Phone className="h-4 w-4" />
-                      <span>{String(pendingUser.phone || "")}</span>
+                      <span>{String(pendingUser.phoneNumber || "")}</span>
                     </div>
                   )}
                   {pendingUser.town && (
@@ -187,7 +188,7 @@ export default function AdminValidationsPage() {
                     className="flex-1 bg-transparent"
                     variant="outline"
                     onClick={() => {
-                      setSelectedUser(pendingUser as Record<string, unknown>)
+                      setSelectedUser(pendingUser)
                       setShowRejectDialog(true)
                     }}
                     disabled={rejectUserMutation.isPending}
@@ -197,9 +198,8 @@ export default function AdminValidationsPage() {
                   </Button>
                   <Button
                     className="flex-1 gradient-primary text-white"
-                    onClick={() => handleApprove(String(pendingUser.id || pendingUser.email))}
-                    disabled={approveUserMutation.isPending}
-                  >
+                    onClick={() => handleApprove(String(pendingUser.userId || pendingUser.email))} 
+                    disabled={approveUserMutation.isPending} >
                     {approveUserMutation.isPending ? (
                       <Loader2 className="h-4 w-4 mr-1 animate-spin" />
                     ) : (
@@ -222,7 +222,7 @@ export default function AdminValidationsPage() {
           </DialogHeader>
           <div className="space-y-4">
             <div className="p-3 rounded-lg bg-muted">
-              <p className="font-medium">{String(selectedUser?.shopName || selectedUser?.name || "")}</p>
+              <p className="font-medium">{String(selectedUser?.enterpriseName || selectedUser?.name || "")}</p>
               <p className="text-sm text-muted-foreground">{String(selectedUser?.email || "")}</p>
             </div>
             <div className="space-y-2">

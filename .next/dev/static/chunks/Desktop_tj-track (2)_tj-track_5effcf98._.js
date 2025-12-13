@@ -1106,6 +1106,8 @@ __turbopack_context__.s([
     ()=>useArticlesPopulaires,
     "useBannierePrincipale",
     ()=>useBannierePrincipale,
+    "useBulkUserActions",
+    ()=>useBulkUserActions,
     "useCalculerTarif",
     ()=>useCalculerTarif,
     "useCarrouselAccueil",
@@ -1140,6 +1142,10 @@ __turbopack_context__.s([
     ()=>useCommandesFournisseur,
     "useCommandesMerchant",
     ()=>useCommandesMerchant,
+    "useContentItems",
+    ()=>useContentItems,
+    "useConversations",
+    ()=>useConversations,
     "useCreateArticle",
     ()=>useCreateArticle,
     "useCreateCategorie",
@@ -1158,6 +1164,8 @@ __turbopack_context__.s([
     ()=>useCreerCampagne,
     "useCreerCommande",
     ()=>useCreerCommande,
+    "useDashboardStats",
+    ()=>useDashboardStats,
     "useDeleteArticle",
     ()=>useDeleteArticle,
     "useDeleteCategorie",
@@ -1216,6 +1224,8 @@ __turbopack_context__.s([
     ()=>useMerchantOrders,
     "useMerchantProduits",
     ()=>useMerchantProduits,
+    "useMerchantRelations",
+    ()=>useMerchantRelations,
     "useMerchantStockFaible",
     ()=>useMerchantStockFaible,
     "useMesCampagnes",
@@ -1264,6 +1274,8 @@ __turbopack_context__.s([
     ()=>useResetPassword,
     "useSearchFournisseurs",
     ()=>useSearchFournisseurs,
+    "useSendMessage",
+    ()=>useSendMessage,
     "useSendOtp",
     ()=>useSendOtp,
     "useSendResetOtp",
@@ -1278,8 +1290,12 @@ __turbopack_context__.s([
     ()=>useSupplierCommandesMerchants,
     "useSupplierOrders",
     ()=>useSupplierOrders,
+    "useSupportTickets",
+    ()=>useSupportTickets,
     "useSupprimerDuPanier",
     ()=>useSupprimerDuPanier,
+    "useSystemAlerts",
+    ()=>useSystemAlerts,
     "useUnreadAlerts",
     ()=>useUnreadAlerts,
     "useUpdateArticle",
@@ -1290,6 +1306,10 @@ __turbopack_context__.s([
     ()=>useUpdateCommandeStatus,
     "useUpdateFournisseur",
     ()=>useUpdateFournisseur,
+    "useUpdateMerchantStatus",
+    ()=>useUpdateMerchantStatus,
+    "useUpdateTicketStatus",
+    ()=>useUpdateTicketStatus,
     "useVente",
     ()=>useVente,
     "useVenteByCode",
@@ -1306,7 +1326,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Desktop/tj-track (2)/tj-track/lib/api.ts [app-client] (ecmascript)");
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature(), _s3 = __turbopack_context__.k.signature(), _s4 = __turbopack_context__.k.signature(), _s5 = __turbopack_context__.k.signature(), _s6 = __turbopack_context__.k.signature(), _s7 = __turbopack_context__.k.signature(), _s8 = __turbopack_context__.k.signature(), _s9 = __turbopack_context__.k.signature(), _s10 = __turbopack_context__.k.signature(), _s11 = __turbopack_context__.k.signature(), _s12 = __turbopack_context__.k.signature(), _s13 = __turbopack_context__.k.signature(), _s14 = __turbopack_context__.k.signature(), _s15 = __turbopack_context__.k.signature(), _s16 = __turbopack_context__.k.signature(), _s17 = __turbopack_context__.k.signature(), _s18 = __turbopack_context__.k.signature(), _s19 = __turbopack_context__.k.signature(), _s20 = __turbopack_context__.k.signature(), _s21 = __turbopack_context__.k.signature(), _s22 = __turbopack_context__.k.signature(), _s23 = __turbopack_context__.k.signature(), _s24 = __turbopack_context__.k.signature(), _s25 = __turbopack_context__.k.signature(), _s26 = __turbopack_context__.k.signature(), _s27 = __turbopack_context__.k.signature(), _s28 = __turbopack_context__.k.signature(), _s29 = __turbopack_context__.k.signature(), _s30 = __turbopack_context__.k.signature(), _s31 = __turbopack_context__.k.signature(), _s32 = __turbopack_context__.k.signature(), _s33 = __turbopack_context__.k.signature(), _s34 = __turbopack_context__.k.signature(), _s35 = __turbopack_context__.k.signature(), _s36 = __turbopack_context__.k.signature(), _s37 = __turbopack_context__.k.signature(), _s38 = __turbopack_context__.k.signature(), _s39 = __turbopack_context__.k.signature(), _s40 = __turbopack_context__.k.signature(), _s41 = __turbopack_context__.k.signature(), _s42 = __turbopack_context__.k.signature(), _s43 = __turbopack_context__.k.signature(), _s44 = __turbopack_context__.k.signature(), _s45 = __turbopack_context__.k.signature(), _s46 = __turbopack_context__.k.signature(), _s47 = __turbopack_context__.k.signature(), _s48 = __turbopack_context__.k.signature(), _s49 = __turbopack_context__.k.signature(), _s50 = __turbopack_context__.k.signature(), _s51 = __turbopack_context__.k.signature(), _s52 = __turbopack_context__.k.signature(), _s53 = __turbopack_context__.k.signature(), _s54 = __turbopack_context__.k.signature(), _s55 = __turbopack_context__.k.signature(), _s56 = __turbopack_context__.k.signature(), _s57 = __turbopack_context__.k.signature(), _s58 = __turbopack_context__.k.signature(), _s59 = __turbopack_context__.k.signature(), _s60 = __turbopack_context__.k.signature(), _s61 = __turbopack_context__.k.signature(), _s62 = __turbopack_context__.k.signature(), _s63 = __turbopack_context__.k.signature(), _s64 = __turbopack_context__.k.signature(), _s65 = __turbopack_context__.k.signature(), _s66 = __turbopack_context__.k.signature(), _s67 = __turbopack_context__.k.signature(), _s68 = __turbopack_context__.k.signature(), _s69 = __turbopack_context__.k.signature(), _s70 = __turbopack_context__.k.signature(), _s71 = __turbopack_context__.k.signature(), _s72 = __turbopack_context__.k.signature(), _s73 = __turbopack_context__.k.signature(), _s74 = __turbopack_context__.k.signature(), _s75 = __turbopack_context__.k.signature(), _s76 = __turbopack_context__.k.signature(), _s77 = __turbopack_context__.k.signature(), _s78 = __turbopack_context__.k.signature(), _s79 = __turbopack_context__.k.signature(), _s80 = __turbopack_context__.k.signature(), _s81 = __turbopack_context__.k.signature(), _s82 = __turbopack_context__.k.signature(), _s83 = __turbopack_context__.k.signature(), _s84 = __turbopack_context__.k.signature(), _s85 = __turbopack_context__.k.signature(), _s86 = __turbopack_context__.k.signature(), _s87 = __turbopack_context__.k.signature(), _s88 = __turbopack_context__.k.signature(), _s89 = __turbopack_context__.k.signature(), _s90 = __turbopack_context__.k.signature(), _s91 = __turbopack_context__.k.signature(), _s92 = __turbopack_context__.k.signature(), _s93 = __turbopack_context__.k.signature(), _s94 = __turbopack_context__.k.signature(), _s95 = __turbopack_context__.k.signature(), _s96 = __turbopack_context__.k.signature(), _s97 = __turbopack_context__.k.signature(), _s98 = __turbopack_context__.k.signature(), _s99 = __turbopack_context__.k.signature(), _s100 = __turbopack_context__.k.signature(), _s101 = __turbopack_context__.k.signature(), _s102 = __turbopack_context__.k.signature(), _s103 = __turbopack_context__.k.signature(), _s104 = __turbopack_context__.k.signature(), _s105 = __turbopack_context__.k.signature(), _s106 = __turbopack_context__.k.signature(), _s107 = __turbopack_context__.k.signature(), _s108 = __turbopack_context__.k.signature(), _s109 = __turbopack_context__.k.signature(), _s110 = __turbopack_context__.k.signature(), _s111 = __turbopack_context__.k.signature(), _s112 = __turbopack_context__.k.signature(), _s113 = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature(), _s3 = __turbopack_context__.k.signature(), _s4 = __turbopack_context__.k.signature(), _s5 = __turbopack_context__.k.signature(), _s6 = __turbopack_context__.k.signature(), _s7 = __turbopack_context__.k.signature(), _s8 = __turbopack_context__.k.signature(), _s9 = __turbopack_context__.k.signature(), _s10 = __turbopack_context__.k.signature(), _s11 = __turbopack_context__.k.signature(), _s12 = __turbopack_context__.k.signature(), _s13 = __turbopack_context__.k.signature(), _s14 = __turbopack_context__.k.signature(), _s15 = __turbopack_context__.k.signature(), _s16 = __turbopack_context__.k.signature(), _s17 = __turbopack_context__.k.signature(), _s18 = __turbopack_context__.k.signature(), _s19 = __turbopack_context__.k.signature(), _s20 = __turbopack_context__.k.signature(), _s21 = __turbopack_context__.k.signature(), _s22 = __turbopack_context__.k.signature(), _s23 = __turbopack_context__.k.signature(), _s24 = __turbopack_context__.k.signature(), _s25 = __turbopack_context__.k.signature(), _s26 = __turbopack_context__.k.signature(), _s27 = __turbopack_context__.k.signature(), _s28 = __turbopack_context__.k.signature(), _s29 = __turbopack_context__.k.signature(), _s30 = __turbopack_context__.k.signature(), _s31 = __turbopack_context__.k.signature(), _s32 = __turbopack_context__.k.signature(), _s33 = __turbopack_context__.k.signature(), _s34 = __turbopack_context__.k.signature(), _s35 = __turbopack_context__.k.signature(), _s36 = __turbopack_context__.k.signature(), _s37 = __turbopack_context__.k.signature(), _s38 = __turbopack_context__.k.signature(), _s39 = __turbopack_context__.k.signature(), _s40 = __turbopack_context__.k.signature(), _s41 = __turbopack_context__.k.signature(), _s42 = __turbopack_context__.k.signature(), _s43 = __turbopack_context__.k.signature(), _s44 = __turbopack_context__.k.signature(), _s45 = __turbopack_context__.k.signature(), _s46 = __turbopack_context__.k.signature(), _s47 = __turbopack_context__.k.signature(), _s48 = __turbopack_context__.k.signature(), _s49 = __turbopack_context__.k.signature(), _s50 = __turbopack_context__.k.signature(), _s51 = __turbopack_context__.k.signature(), _s52 = __turbopack_context__.k.signature(), _s53 = __turbopack_context__.k.signature(), _s54 = __turbopack_context__.k.signature(), _s55 = __turbopack_context__.k.signature(), _s56 = __turbopack_context__.k.signature(), _s57 = __turbopack_context__.k.signature(), _s58 = __turbopack_context__.k.signature(), _s59 = __turbopack_context__.k.signature(), _s60 = __turbopack_context__.k.signature(), _s61 = __turbopack_context__.k.signature(), _s62 = __turbopack_context__.k.signature(), _s63 = __turbopack_context__.k.signature(), _s64 = __turbopack_context__.k.signature(), _s65 = __turbopack_context__.k.signature(), _s66 = __turbopack_context__.k.signature(), _s67 = __turbopack_context__.k.signature(), _s68 = __turbopack_context__.k.signature(), _s69 = __turbopack_context__.k.signature(), _s70 = __turbopack_context__.k.signature(), _s71 = __turbopack_context__.k.signature(), _s72 = __turbopack_context__.k.signature(), _s73 = __turbopack_context__.k.signature(), _s74 = __turbopack_context__.k.signature(), _s75 = __turbopack_context__.k.signature(), _s76 = __turbopack_context__.k.signature(), _s77 = __turbopack_context__.k.signature(), _s78 = __turbopack_context__.k.signature(), _s79 = __turbopack_context__.k.signature(), _s80 = __turbopack_context__.k.signature(), _s81 = __turbopack_context__.k.signature(), _s82 = __turbopack_context__.k.signature(), _s83 = __turbopack_context__.k.signature(), _s84 = __turbopack_context__.k.signature(), _s85 = __turbopack_context__.k.signature(), _s86 = __turbopack_context__.k.signature(), _s87 = __turbopack_context__.k.signature(), _s88 = __turbopack_context__.k.signature(), _s89 = __turbopack_context__.k.signature(), _s90 = __turbopack_context__.k.signature(), _s91 = __turbopack_context__.k.signature(), _s92 = __turbopack_context__.k.signature(), _s93 = __turbopack_context__.k.signature(), _s94 = __turbopack_context__.k.signature(), _s95 = __turbopack_context__.k.signature(), _s96 = __turbopack_context__.k.signature(), _s97 = __turbopack_context__.k.signature(), _s98 = __turbopack_context__.k.signature(), _s99 = __turbopack_context__.k.signature(), _s100 = __turbopack_context__.k.signature(), _s101 = __turbopack_context__.k.signature(), _s102 = __turbopack_context__.k.signature(), _s103 = __turbopack_context__.k.signature(), _s104 = __turbopack_context__.k.signature(), _s105 = __turbopack_context__.k.signature(), _s106 = __turbopack_context__.k.signature(), _s107 = __turbopack_context__.k.signature(), _s108 = __turbopack_context__.k.signature(), _s109 = __turbopack_context__.k.signature(), _s110 = __turbopack_context__.k.signature(), _s111 = __turbopack_context__.k.signature(), _s112 = __turbopack_context__.k.signature(), _s113 = __turbopack_context__.k.signature(), _s114 = __turbopack_context__.k.signature(), _s115 = __turbopack_context__.k.signature(), _s116 = __turbopack_context__.k.signature(), _s117 = __turbopack_context__.k.signature(), _s118 = __turbopack_context__.k.signature(), _s119 = __turbopack_context__.k.signature(), _s120 = __turbopack_context__.k.signature(), _s121 = __turbopack_context__.k.signature(), _s122 = __turbopack_context__.k.signature(), _s123 = __turbopack_context__.k.signature();
 "use client";
 ;
 ;
@@ -3053,12 +3073,15 @@ _s85(usePendingUsers, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
     ];
 });
-function useAllUsers() {
+function useAllUsers(params) {
     _s86();
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
-        queryKey: queryKeys.allUsers,
+        queryKey: [
+            ...queryKeys.allUsers,
+            params
+        ],
         queryFn: {
-            "useAllUsers.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/all-users")
+            "useAllUsers.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/all-users", params)
         }["useAllUsers.useQuery"]
     });
 }
@@ -3670,6 +3693,210 @@ function useAddRole() {
 }
 _s113(useAddRole, "wwwtpB20p0aLiHIvSy5P98MwIUg=", false, function() {
     return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
+function useDashboardStats() {
+    _s114();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "dashboardStats"
+        ],
+        queryFn: {
+            "useDashboardStats.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/dashboard-stats")
+        }["useDashboardStats.useQuery"]
+    });
+}
+_s114(useDashboardStats, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+function useSystemAlerts() {
+    _s115();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "systemAlerts"
+        ],
+        queryFn: {
+            "useSystemAlerts.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/alerts")
+        }["useSystemAlerts.useQuery"]
+    });
+}
+_s115(useSystemAlerts, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+function useContentItems() {
+    _s116();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "contentItems"
+        ],
+        queryFn: {
+            "useContentItems.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/content")
+        }["useContentItems.useQuery"]
+    });
+}
+_s116(useContentItems, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+function useBulkUserActions() {
+    _s117();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useBulkUserActions.useMutation": ({ userIds, action })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/admin/bulk-user-actions", {
+                    userIds,
+                    action
+                })
+        }["useBulkUserActions.useMutation"],
+        onSuccess: {
+            "useBulkUserActions.useMutation": ()=>{
+                queryClient.invalidateQueries({
+                    queryKey: queryKeys.allUsers
+                });
+                queryClient.invalidateQueries({
+                    queryKey: queryKeys.pendingUsers
+                });
+            }
+        }["useBulkUserActions.useMutation"]
+    });
+}
+_s117(useBulkUserActions, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
+function useConversations() {
+    _s118();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "conversations"
+        ],
+        queryFn: {
+            "useConversations.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/conversations")
+        }["useConversations.useQuery"]
+    });
+}
+_s118(useConversations, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+function useSendMessage() {
+    _s119();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useSendMessage.useMutation": ({ userId, message, type })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].post("/admin/send-message", {
+                    userId,
+                    message,
+                    type
+                })
+        }["useSendMessage.useMutation"],
+        onSuccess: {
+            "useSendMessage.useMutation": ()=>{
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "conversations"
+                    ]
+                });
+            }
+        }["useSendMessage.useMutation"]
+    });
+}
+_s119(useSendMessage, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
+function useMerchantRelations() {
+    _s120();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "merchantRelations"
+        ],
+        queryFn: {
+            "useMerchantRelations.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/merchant-relations")
+        }["useMerchantRelations.useQuery"]
+    });
+}
+_s120(useMerchantRelations, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+function useUpdateMerchantStatus() {
+    _s121();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useUpdateMerchantStatus.useMutation": ({ merchantId, status })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].put(`/admin/merchants/${merchantId}/status`, {
+                    status
+                })
+        }["useUpdateMerchantStatus.useMutation"],
+        onSuccess: {
+            "useUpdateMerchantStatus.useMutation": ()=>{
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "merchantRelations"
+                    ]
+                });
+            }
+        }["useUpdateMerchantStatus.useMutation"]
+    });
+}
+_s121(useUpdateMerchantStatus, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
+function useSupportTickets() {
+    _s122();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+        queryKey: [
+            "supportTickets"
+        ],
+        queryFn: {
+            "useSupportTickets.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].get("/admin/support-tickets")
+        }["useSupportTickets.useQuery"]
+    });
+}
+_s122(useSupportTickets, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+    ];
+});
+function useUpdateTicketStatus() {
+    _s123();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useUpdateTicketStatus.useMutation": ({ ticketId, status })=>__TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$lib$2f$api$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["apiClient"].put(`/admin/tickets/${ticketId}/status`, {
+                    status
+                })
+        }["useUpdateTicketStatus.useMutation"],
+        onSuccess: {
+            "useUpdateTicketStatus.useMutation": ()=>{
+                queryClient.invalidateQueries({
+                    queryKey: [
+                        "supportTickets"
+                    ]
+                });
+            }
+        }["useUpdateTicketStatus.useMutation"]
+    });
+}
+_s123(useUpdateTicketStatus, "YK0wzM21ECnncaq5SECwU+/SVdQ=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
         __TURBOPACK__imported__module__$5b$project$5d2f$Desktop$2f$tj$2d$track__$28$2$292f$tj$2d$track$2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });

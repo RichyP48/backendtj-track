@@ -307,6 +307,7 @@ export interface ProfileResponse {
   enterpriseName?: string
   town?: string
   address?: string
+  createdAt?: string
 }
 
 export interface ProfileRequest {

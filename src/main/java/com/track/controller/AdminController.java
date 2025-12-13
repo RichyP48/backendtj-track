@@ -28,7 +28,7 @@ public class AdminController {
         return ResponseEntity.ok(profileService.getPendingUsers());
     }
 
-    @GetMapping(" /all-users")
+    @GetMapping("/all-users")
     public ResponseEntity<List<ProfileResponse>> getAllUsers() {
         return ResponseEntity.ok(profileService.getAllUsers());
     }

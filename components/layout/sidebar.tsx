@@ -19,6 +19,11 @@ import {
   ShieldCheck,
   LogOut,
   Home,
+  MessageSquare,
+  Percent,
+  Search,
+  Ticket,
+  Globe,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
@@ -47,23 +52,40 @@ const getMenuItems = (role?: string) => {
         title: "Administration",
         items: [
           { name: "Utilisateurs", href: "/dashboard/admin/utilisateurs", icon: Users },
-          { name: "Validations", href: "/dashboard/admin/validations", icon: ShieldCheck, badge: 3 },
-        ],
-      },
-      {
-        title: "Stock Global",
-        items: [
-          { name: "Inventaire", href: "/dashboard/inventaire", icon: Package },
-          { name: "Articles", href: "/dashboard/articles", icon: Box },
-          { name: "Alertes", href: "/dashboard/alertes", icon: AlertTriangle, badge: 5 },
+          { name: "Validations", href: "/dashboard/admin/validations", icon: ShieldCheck, badge: 12 },
+          { name: "Communication", href: "/dashboard/admin/communication", icon: MessageSquare, badge: 6 },
         ],
       },
       {
         title: "E-commerce",
         items: [
-          { name: "Commandes", href: "/dashboard/commandes", icon: ShoppingBag },
-          { name: "Statistiques", href: "/dashboard/statistiques", icon: BarChart3 },
+          { name: "Produits", href: "/dashboard/admin/produits", icon: Package },
+          { name: "Commandes", href: "/dashboard/admin/commandes", icon: ShoppingBag },
+          { name: "Promotions", href: "/dashboard/admin/promotions", icon: Percent },
+        ],
+      },
+      {
+        title: "Analytics & Rapports",
+        items: [
+          { name: "Analytics", href: "/dashboard/admin/analytics", icon: BarChart3 },
+          { name: "Statistiques", href: "/dashboard/statistiques", icon: TrendingUp },
           { name: "Rapports", href: "/dashboard/rapports", icon: FileText },
+        ],
+      },
+      {
+        title: "Support & Contenu",
+        items: [
+          { name: "Tickets Support", href: "/dashboard/admin/support", icon: Ticket, badge: 8 },
+          { name: "Gestion Contenu", href: "/dashboard/admin/contenu", icon: FileText },
+          { name: "SEO Manager", href: "/dashboard/admin/seo", icon: Search },
+        ],
+      },
+      {
+        title: "Stock Global",
+        items: [
+          { name: "Inventaire", href: "/dashboard/inventaire", icon: Box },
+          { name: "Articles", href: "/dashboard/articles", icon: Package },
+          { name: "Alertes", href: "/dashboard/alertes", icon: AlertTriangle, badge: 5 },
         ],
       },
       {
