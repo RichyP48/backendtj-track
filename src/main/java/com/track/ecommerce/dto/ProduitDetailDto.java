@@ -34,7 +34,7 @@ public class ProduitDetailDto {
     private String categorieNom;
     
     // Informations commerçant
-    private CommerçantInfo commercant;
+    private MerchantInfo commercant;
     
     // Évaluations et engagement
     private BigDecimal noteMoyenne;
@@ -58,7 +58,7 @@ public class ProduitDetailDto {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class CommerçantInfo {
+    public static class MerchantInfo {
         private String nom;
         private String entreprise;
         private String ville;

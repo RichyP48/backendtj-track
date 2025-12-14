@@ -109,14 +109,7 @@ public class ProduitDetailService {
                 .collect(Collectors.toList());
         
         // Informations commerçant
-        var commercantInfo = ProduitDetailDto.CommerçantInfo.builder()
-                .nom(merchant.getUser().getName())
-                .entreprise(merchant.getShopName())
-                .ville(merchant.getTown())
-                .telephone(merchant.getPhoneNumber())
-                .adresse(merchant.getAddress())
-                .nombreVentes(produit.getNombreVentes())
-                .build();
+        var commercantInfo = ProduitDetailDto.MerchantInfo.builder()
         
         return ProduitDetailDto.builder()
                 .id(produit.getId())
