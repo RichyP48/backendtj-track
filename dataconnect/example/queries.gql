@@ -1,0 +1,34 @@
+mutation CreateUser @auth(level: USER) {
+  user_insert(data: {
+    id_expr: "uuidV4()"
+    displayName: "New User"
+    email: "newuser@example.com"
+    createdAt_expr: "request.time"
+  })
+}
+
+query ListProducts @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  products {
+    id
+    name
+    description
+    price
+    imageUrl
+  }
+}
+
+mutation UpdateProduct($id: UUID!, $name: String, $description: String, $price: Float, $imageUrl: String) @auth(level: USER) {
+  product_update(
+    key: { id: $id }
+    data: {
+      name: $name
+      description: $description
+      price: $price
+      imageUrl: $imageUrl
+    }
+  )
+}
+
+mutation DeleteProduct($id: UUID!) @auth(level: USER) {
+  product_delete(key: { id: $id })
+}
