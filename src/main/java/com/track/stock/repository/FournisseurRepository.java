@@ -18,4 +18,7 @@ public interface FournisseurRepository extends JpaRepository<Fournisseur, Long> 
     boolean existsByEmail(String email);
     
     Optional<Fournisseur> findByNom(String nom);
+    
+    @Query("SELECT f.nom, COUNT(DISTINCT a.id), SUM(CASE WHEN a.quantiteStock > 0 THEN 1 ELSE 0 END), SUM(CASE WHEN a.quantiteStock <= a.seuilAlerte AND a.quantiteStock > 0 THEN 1 ELSE 0 END), SUM(CASE WHEN a.quantiteStock <= 0 THEN 1 ELSE 0 END) FROM Fournisseur f LEFT JOIN Article a ON a.fournisseur.id = f.id GROUP BY f.id, f.nom")
+    List<Object[]> getSupplierStats();
 }

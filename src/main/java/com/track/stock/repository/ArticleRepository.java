@@ -73,4 +73,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     
     @Query("SELECT CASE WHEN COUNT(pe) > 0 THEN true ELSE false END FROM ProduitEcommerce pe WHERE pe.article.id = :articleId AND pe.merchant.id = :merchantId")
     boolean existsArticleLinkedToMerchant(@Param("articleId") Long articleId, @Param("merchantId") Long merchantId);
+    
+    @Query("SELECT COUNT(a) FROM Article a WHERE a.quantiteStock <= 0 AND a.statut = 'ACTIF'")
+    Long countOutOfStockArticles();
+    
+    @Query("SELECT c.designation, COUNT(a), SUM(CASE WHEN a.quantiteStock > 0 THEN 1 ELSE 0 END), SUM(CASE WHEN a.quantiteStock <= a.seuilAlerte AND a.quantiteStock > 0 THEN 1 ELSE 0 END), SUM(CASE WHEN a.quantiteStock <= 0 THEN 1 ELSE 0 END) FROM Article a JOIN a.categorie c GROUP BY c.id, c.designation")
+    List<Object[]> getStockByMerchant();
 }

@@ -37,4 +37,12 @@ public interface CommandeClientRepository extends JpaRepository<CommandeClient, 
     
     @Query("SELECT AVG(c.totalTtc) FROM CommandeClient c")
     BigDecimal getAverageOrderValue();
+    
+    @Query("SELECT c.client.nom, COUNT(c), SUM(c.totalTtc) FROM CommandeClient c GROUP BY c.client.nom")
+    List<Object[]> getOrdersByMerchant();
+    
+    List<CommandeClient> findByStatut(CommandeClient.StatutCommande statut);
+    
+    @Query("SELECT c.client.nom, COUNT(c), SUM(c.totalTtc), MAX(c.dateCommande) FROM CommandeClient c GROUP BY c.client.id, c.client.nom ORDER BY COUNT(c) DESC")
+    List<Object[]> getTopClients(int limit);
 }
