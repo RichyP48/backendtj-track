@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Slf4j
-@Component
+//@Component
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
     

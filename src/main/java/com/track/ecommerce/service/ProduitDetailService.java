@@ -110,6 +110,13 @@ public class ProduitDetailService {
         
         // Informations commerçant
         var commercantInfo = ProduitDetailDto.MerchantInfo.builder()
+                .nom(merchant.getUser().getName())
+                .entreprise(merchant.getShopName())
+                .ville(merchant.getTown())
+                .telephone(merchant.getPhoneNumber())
+                .adresse(merchant.getAddress())
+                .nombreVentes(produit.getNombreVentes())
+                .build();
         
         return ProduitDetailDto.builder()
                 .id(produit.getId())
